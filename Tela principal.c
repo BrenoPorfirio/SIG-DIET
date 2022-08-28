@@ -13,11 +13,13 @@
 
 //MODULOS DAS FUNCOES
 void modulo_menu(void);
+void modulo_principal(void);
 
 //INICIO DO PROGRAMA
 int main(void){
-    modulo_menu();
-return 0;
+	modulo_menu();
+	modulo_principal();
+	return 0;
 }
 
 //DEFININDO MODULOS
@@ -48,4 +50,22 @@ void modulo_menu(void){
 	printf("\n|                                             |");
 	printf("\n|                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+}
+
+//MODULO PRINCIPAL
+void modulo_principal(void){
+	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|	Universidade Federal do Rio Grande do Norte (UFRN)                          |");
+	printf("\n|	Centro de Ensino Superior do Serido                                         |");
+	printf("\n|	Departamento de Computacao e Tecnologia                                     |");
+	printf("\n|	Disciplina DCT1106 -> Programacao                                           |");
+	printf("\n|	Projeto Sistema de Planejamento de Dieta                                    |");
+	printf("\n|	Developed by BrenoPorfirio and GrandeDDD (github) -> August, 2022)          |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| 	->Sistema de Gestao de Dietas<-                                             |");
+	printf("\n|  1-Clientes                                                                   |");
+	printf("\n|  2-Refeicoes                                                                  |");
+	printf("\n|  3-Receitas                                                                   |");
+	printf("\n|  0-Sair                                                                       |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 }
