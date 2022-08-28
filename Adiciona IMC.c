@@ -14,11 +14,13 @@
 //MODULOS DAS FUNCOES
 void modulo_menu(void);
 void modulo_principal(void);
+void modulo_imc(void);
 
 //INICIO DO PROGRAMA
 int main(void){
 	modulo_menu();
 	modulo_principal();
+	modulo_imc();
 	return 0;
 }
 
@@ -68,4 +70,18 @@ void modulo_principal(void){
 	printf("\n|  3-Receitas                                                                   |");
 	printf("\n|  0-Sair                                                                       |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+}
+
+//MODULO IMC:
+void modulo_imc(void){
+	float imc, altura, peso;
+  printf("\n\n\nDigite suas informacoes para calcularmos seu IMC");
+  printf("\nExemplo de altura -> 1.78");
+  printf("\nDigite a altura: ");//Necessário pontuacção por enquanto//
+  scanf("%f", &altura);
+  printf("Digite o peso: ");
+  scanf("%f", &peso);
+
+  imc = peso/(altura*altura);
+  printf("IMC = %.2f", imc);
 }
