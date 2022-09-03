@@ -23,10 +23,22 @@ void modulo_imc(void);
 int main(void){
 	modulo_menu();
 	modulo_principal();
+	
+	int num;
+	printf("\n\nEscolha uma opcao:");
+	scanf("%d", &num);
+	if (num==1){
 	modulo_clientes();
-	modulo_refeicoes();
-	modulo_receitas();
-	modulo_imc();
+	}
+  	else if (num==2){
+  	modulo_refeicoes();
+  	}
+  	else if (num==3){
+    	modulo_receitas();
+  	}
+  	else if (num==4){
+  	modulo_imc();
+  	}
 	return 0;
 }
 
@@ -74,6 +86,7 @@ void modulo_principal(void){
 	printf("\n|  1-Clientes                                                                   |");
 	printf("\n|  2-Refeicoes                                                                  |");
 	printf("\n|  3-Receitas                                                                   |");
+	printf("\n|  4-IMC                                                                        |");
 	printf("\n|  0-Sair                                                                       |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 }
