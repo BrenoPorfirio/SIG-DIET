@@ -14,12 +14,18 @@
 //MODULOS DAS FUNCOES
 void modulo_menu(void);
 void modulo_principal(void);
+void modulo_clientes(void);
+void modulo_refeicoes(void);
+void modulo_receitas(void);
 void modulo_imc(void);
 
 //INICIO DO PROGRAMA
 int main(void){
 	modulo_menu();
 	modulo_principal();
+	modulo_clientes();
+	modulo_refeicoes();
+	modulo_receitas();
 	modulo_imc();
 	return 0;
 }
@@ -84,4 +90,37 @@ void modulo_imc(void){
 
   imc = peso/(altura*altura);
   printf("IMC = %.2f", imc);
+}
+
+//MODULO CLIENTES:
+void modulo_clientes(void){
+	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| 1-Cadastrar Cliente                                                           |");
+	printf("\n| 2-Ver Clientes                                                                |");
+	printf("\n| 3-Modificar Cliente                                                           |");
+	printf("\n| 4-Deletar Cliente                                                             |");
+	printf("\n| 0-Sair para o menu principal                                                  |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+}
+
+//MODULO REFEICOES
+void modulo_refeicoes(void){
+	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| 1-Cadastrar Refeicao                                                          |");
+	printf("\n| 2-Ver Refeicoes                                                               |");
+	printf("\n| 3-Modificar Refeicao                                                          |");
+	printf("\n| 4-Deletar Refeicao                                                            |");
+	printf("\n| 0-Sair para o menu principal                                                  |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+}
+
+//MODULO RECEITAS
+void modulo_receitas(void){
+	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| 1-Cadastrar Receita                                                           |");
+	printf("\n| 2-Ver Receitas                                                                |");
+	printf("\n| 3-Modificar Receita                                                           |");
+	printf("\n| 4-Deletar Receita                                                             |");
+	printf("\n| 0-Sair para o menu principal                                                  |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 }
