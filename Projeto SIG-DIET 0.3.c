@@ -145,7 +145,7 @@ void modulo_imc(void){
 //MODULO CLIENTES:
 //
 void modulo_clientes(void){
-	int num;
+	char num;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| 1-Cadastrar Cliente                                                           |");
@@ -155,7 +155,7 @@ void modulo_clientes(void){
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opcao desejada: ");
-	scanf("%d", &num);
+	scanf("%c", &num);
 	getchar();
 	printf("\n\n->Precione ENTER para continuar<-");
 	getchar();
@@ -215,7 +215,7 @@ void modulo_del_clientes(void){
 //MODULO REFEICOES
 //
 void modulo_refeicoes(void){
-	int num;	
+	char num;	
 	system("clear||cls");
 	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| 1-Cadastrar Refeicao                                                          |");
@@ -225,7 +225,7 @@ void modulo_refeicoes(void){
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opcao desejada: ");
-	scanf("%d", &num);
+	scanf("%c", &num);
 	getchar();
 	printf("\n\n->Precione ENTER para continuar<-");
 	getchar();
@@ -280,7 +280,7 @@ void modulo_del_refeicoes(void){
 //MODULO RECEITAS
 //
 void modulo_receitas(void){
-	int num;
+	char num;
 	system("clear||cls");
 	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| 1-Cadastrar Receita                                                           |");
@@ -290,7 +290,7 @@ void modulo_receitas(void){
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opcao desejada: ");
-	scanf("%d", &num);
+	scanf("%c", &num);
 	getchar();
 	printf("\n\n->Precione ENTER para continuar<-");
 	getchar();
