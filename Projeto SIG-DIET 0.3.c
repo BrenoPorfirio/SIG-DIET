@@ -26,6 +26,10 @@ void modulo_ver_refeicoes(void);
 void modulo_mod_refeicoes(void);
 void modulo_del_refeicoes(void);
 void modulo_receitas(void);
+void modulo_cad_receitas(void);
+void modulo_ver_receitas(void);
+void modulo_mod_receitas(void);
+void modulo_del_receitas(void);
 void modulo_imc(void);
 
 //INICIO DO PROGRAMA
@@ -51,6 +55,10 @@ int main(void){
   	}
   	else if (num==3){
 	  modulo_receitas();
+	  modulo_cad_receitas();
+	  modulo_ver_receitas();
+	  modulo_mod_receitas();
+	  modulo_del_receitas();
   	}
   	else if (num==4){
 	  modulo_imc();
@@ -284,6 +292,53 @@ void modulo_receitas(void){
 	printf("\n\nEscolha a opcao desejada: ");
 	scanf("%d", &num);
 	getchar();
+	printf("\n\n->Precione ENTER para continuar<-");
+	getchar();
+}
+void modulo_cad_receitas(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| ->Modulo de cadastro de receitas<-                                            |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Nome da receita:                                                              |");
+	printf("\n| Liste os ingrediente e quantidades:                                           |");
+	printf("\n| Modo de preparo:                                                              |");
+	printf("\n| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15):                   |");
+	printf("\n| Quantas porcoes ela rende:                                                    |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n\n->Precione ENTER para continuar<-");
+	getchar();
+}
+
+void modulo_ver_receitas(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| ->Modulo de leitura de receitas<-                                             |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o nome da receita:                                                     |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n\n->Precione ENTER para continuar<-");
+	getchar();
+}
+
+void modulo_mod_receitas(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| ->Modulo de modificacao de receitas<-                                         |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o nome da receita que deseja modificar:                                |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n\n->Precione ENTER para continuar<-");
+	getchar();
+}
+
+void modulo_del_receitas(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| ->Modulo de delecao de receitas<-                                             |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o nome da receita que deseja deletar:                                  |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\n->Precione ENTER para continuar<-");
 	getchar();
 }
