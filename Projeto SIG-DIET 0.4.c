@@ -101,7 +101,7 @@ void modulo_menu(void){
 	printf("\n|                                             |");
 	printf("\n|                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -157,7 +157,7 @@ void modulo_clientes(void){
 	printf("\n\nEscolha a opcao desejada: ");
 	scanf("%c", &num);
 	getchar();
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -174,7 +174,7 @@ void modulo_cad_clientes(void){
 	printf("\n| Peso do cliente(Ex-> 60.0):                                                   |");
 	printf("\n| Altura(Ex-> 1.70):                                                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -185,7 +185,7 @@ void modulo_ver_clientes(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente:                                                      |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -196,7 +196,7 @@ void modulo_mod_clientes(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF que deseja modificar do cliente:                                 |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -207,7 +207,7 @@ void modulo_del_clientes(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF que deseja deletar do cliente:                                   |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -227,7 +227,7 @@ void modulo_refeicoes(void){
 	printf("\n\nEscolha a opcao desejada: ");
 	scanf("%c", &num);
 	getchar();
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 void modulo_cad_refeicoes(void){
@@ -239,7 +239,7 @@ void modulo_cad_refeicoes(void){
 	printf("\n| Quantidade de calorias:                                                       |");
 	printf("\n| Escolha uma opcao -> (c)afe, (a)lmoco, (j)anta ou (l)anche:                   |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -250,7 +250,7 @@ void modulo_ver_refeicoes(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da refeicao:                                                    |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -261,7 +261,7 @@ void modulo_mod_refeicoes(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da refeicao que deseja modificar:                               |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -272,7 +272,7 @@ void modulo_del_refeicoes(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da refeicao que deseja deletar:                                 |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -292,7 +292,7 @@ void modulo_receitas(void){
 	printf("\n\nEscolha a opcao desejada: ");
 	scanf("%c", &num);
 	getchar();
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 void modulo_cad_receitas(void){
@@ -306,7 +306,7 @@ void modulo_cad_receitas(void){
 	printf("\n| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15):                   |");
 	printf("\n| Quantas porcoes ela rende:                                                    |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -317,7 +317,7 @@ void modulo_ver_receitas(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita:                                                     |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -328,7 +328,7 @@ void modulo_mod_receitas(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja modificar:                                |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
@@ -339,6 +339,6 @@ void modulo_del_receitas(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja deletar:                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\n->Precione ENTER para continuar<-");
+	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
