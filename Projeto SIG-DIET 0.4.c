@@ -30,7 +30,7 @@ void modulo_cad_receitas(void);
 void modulo_ver_receitas(void);
 void modulo_mod_receitas(void);
 void modulo_del_receitas(void);
-void modulo_imc(void);
+int modulo_imc(void);
 
 //INICIO DO PROGRAMA
 int main(void){
@@ -127,7 +127,7 @@ void modulo_principal(void){
 }
 
 //MODULO IMC:
-void modulo_imc(void){
+int modulo_imc(void){
 	system("clear||cls");
 	float imc, altura, peso;
 	printf("\n\n\nDigite suas informacoes para calcularmos seu IMC");
@@ -139,6 +139,20 @@ void modulo_imc(void){
 	
 	imc = peso/(altura*altura);
 	printf("IMC = %.2f", imc);
+	if (imc<18.5){
+		printf("\nSeu IMC encontra-se abaixo do peso");
+	} else if (imc>=18.5 && imc<=24.9){
+		printf("\nSeu IMC encontra-se normal");
+	} else if (imc>=25.0 && imc<=29.9){
+		printf("\nSeu IMC encontra-se em SOBREPESO");
+	} else if (imc>=30.0 && imc<=34.9){
+		printf("\nSeu IMC encontra-se em OBESIDADE GRAU I");
+	} else if (imc>=35.0 && imc<=39.9){
+		printf("\nSeu IMC encontra-se em OBESIDADE GRAU II");	
+	} else {
+		printf("\nSeu IMC encontra-se em OBESIDADE GRAU III");
+	}
+
 }
 
 //
