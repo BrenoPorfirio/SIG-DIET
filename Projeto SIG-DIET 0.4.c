@@ -2,63 +2,87 @@
 #include <stdlib.h>
 
 //|=================================================================================|
-//|		Universidade Federal do Rio Grande do Norte (UFRN)							|
-//|		Centro de Ensino Superior do Serido											|
-//|		Departamento de Computacao e Tecnologia										|
-//|		Disciplina DCT1106 -> Programacao											|
-//|		Projeto Sistema de Planejamento de Dieta									|
-//|		Developed by "BrenoPorfirio" and "GrandeDDD" (github) -> August, 2022		|
+//|     Universidade Federal do Rio Grande do Norte (UFRN)                          |
+//|     Centro de Ensino Superior do Serido                                         |
+//|     Departamento de Computacao e Tecnologia                                     |
+//|     Disciplina DCT1106 -> Programacao                                           |
+//|     Projeto Sistema de Planejamento de Dieta                                    |
+//|     Developed by "BrenoPorfirio" and "GrandeDDD" (github) -> August, 2022       |
 //|=================================================================================|
-//|		Semana 4																	|
+//|     Semana 4                                                                    |
 //|=================================================================================|
 
 //MODULOS DAS FUNCOES
 void modulo_menu(void);
-void modulo_principal(void);
-void modulo_clientes(void);
-void modulo_cad_clientes(void);
+int modulo_principal(void);
+char modulo_clientes(void);
+char modulo_cad_clientes(void);
 void modulo_ver_clientes(void);
 void modulo_mod_clientes(void);
 void modulo_del_clientes(void);
-void modulo_refeicoes(void);
+char modulo_refeicoes(void);
 void modulo_cad_refeicoes(void);
 void modulo_ver_refeicoes(void);
 void modulo_mod_refeicoes(void);
 void modulo_del_refeicoes(void);
-void modulo_receitas(void);
+char modulo_receitas(void);
 void modulo_cad_receitas(void);
 void modulo_ver_receitas(void);
 void modulo_mod_receitas(void);
 void modulo_del_receitas(void);
 int modulo_imc(void);
 
+//VARIAVEIS GLOBAIS
+
 //INICIO DO PROGRAMA
 int main(void){
-	modulo_principal();
-	
 	int num;
-	printf("\n\nEscolha uma opcao: ");
-	scanf("%d", &num);
+	char esc;
+	num = modulo_principal();
 	if (num==1){
-	modulo_clientes();
-	modulo_cad_clientes();
-	modulo_ver_clientes();
-	modulo_mod_clientes();
-	modulo_del_clientes();
+		esc = modulo_clientes();
+		if (esc=='1'){
+			modulo_cad_clientes();
+		}
+		else if (esc=='2'){
+			modulo_ver_clientes();
+		}
+		else if (esc=='3'){
+			modulo_mod_clientes();
+		}
+		else if (esc=='4'){
+			modulo_del_clientes();
+		}
 	}
   	else if (num==2){
-	  modulo_refeicoes();
-	  modulo_cad_refeicoes();
-	  modulo_ver_refeicoes();
-	  modulo_mod_refeicoes();
-	  modulo_del_refeicoes();
+		esc = modulo_refeicoes();
+		if (esc=='1'){
+			modulo_cad_refeicoes();
+		}
+		else if (esc=='2'){
+			modulo_ver_refeicoes();
+		}
+		else if (esc=='3'){
+			modulo_mod_refeicoes();
+		}
+		else if (esc=='4'){
+			modulo_del_refeicoes();
+		}
   	}
   	else if (num==3){
-	  modulo_receitas();
-	  modulo_cad_receitas();
-	  modulo_ver_receitas();
-	  modulo_mod_receitas();
-	  modulo_del_receitas();
+		esc = modulo_receitas();
+		if (esc=='1'){
+			modulo_cad_receitas();
+		}
+		else if (esc=='2'){
+			modulo_ver_receitas();
+		}
+		else if (esc=='3'){
+			modulo_mod_receitas();
+		}
+		else if (esc=='4'){
+			modulo_del_receitas();
+		}
   	}
   	else if (num==4){
 	  modulo_imc();
@@ -106,7 +130,8 @@ void modulo_menu(void){
 }
 
 //MODULO PRINCIPAL
-void modulo_principal(void){
+int modulo_principal(void){
+	int num;
 	system("clear||cls");
 	printf("\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|	Universidade Federal do Rio Grande do Norte (UFRN)                      |");
@@ -124,6 +149,10 @@ void modulo_principal(void){
 	printf("\n|  5-Sobre este programa                                                        |");
 	printf("\n|  0-Sair                                                                       |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n\nEscolha uma opcao: ");
+	scanf("%d", &num);
+	getchar();
+	return num;
 }
 
 //MODULO IMC:
@@ -158,8 +187,8 @@ int modulo_imc(void){
 //
 //MODULO CLIENTES:
 //
-void modulo_clientes(void){
-	char num;
+char modulo_clientes(void){
+	char esc;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| 1-Cadastrar Cliente                                                           |");
@@ -169,67 +198,86 @@ void modulo_clientes(void){
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opcao desejada: ");
-	scanf("%c", &num);
+	scanf("%c", &esc);
 	getchar();
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return esc;
 }
 
-void modulo_cad_clientes(void){
+char modulo_cad_clientes(void){
+	char cpfCad[11], nomeCad[40], telefoneCad[11], emailCad[30], nascimentoCad[11], pesoCad[5], alturaCad[4];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de cadastro de clientes<-                                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| CPF do cliente(somente numeros):                                              |");
-	printf("\n| Nome completo:                                                                |");
-	printf("\n| Telefone(somente numeros):                                                    |");
-	printf("\n| E-mail:                                                                       |");
-	printf("\n| Data de nascimento(dd/mm/aaaa):                                               |");
-	printf("\n| Peso do cliente(Ex-> 60.0):                                                   |");
-	printf("\n| Altura(Ex-> 1.70):                                                            |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| CPF do cliente(somente numeros): ");
+	scanf("%s", cpfCad);
+	printf("| Nome completo: ");
+	scanf("%s", nomeCad);
+	printf("| Telefone(somente numeros): ");
+	scanf("%s", telefoneCad);
+	printf("| E-mail: ");
+	scanf("%s", emailCad);
+	printf("| Data de nascimento(dd/mm/aaaa): ");
+	scanf("%s", nascimentoCad);
+	printf("| Peso do cliente(Ex-> 60.0): ");
+	scanf("%s", pesoCad);
+	printf("| Altura(Ex-> 1.70): ");
+	scanf("%s", alturaCad);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return cpfCad, nomeCad, telefoneCad, emailCad, nascimentoCad, pesoCad, alturaCad;
 }
 
 void modulo_ver_clientes(void){
+	char cpfVer[11];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de leitura de clientes<-                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF do cliente:                                                      |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o CPF do cliente: ");
+	scanf("%s", cpfVer);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return cpfVer;
 }
 
 void modulo_mod_clientes(void){
+	char cpfMod[11];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de modificacao de clientes<-                                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF que deseja modificar do cliente:                                 |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o CPF que deseja modificar do cliente: ");
+	scanf("%s", cpfMod);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return cpfMod;
 }
 
 void modulo_del_clientes(void){
+	char cpfDel[11];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de delecao de clientes<-                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF que deseja deletar do cliente:                                   |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o CPF que deseja deletar do cliente: ");
+	scanf("%s", cpfDel);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return cpfDel;
 }
 
 //
 //MODULO REFEICOES
 //
-void modulo_refeicoes(void){
-	char num;	
+char modulo_refeicoes(void){
+	char esc;
 	system("clear||cls");
 	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| 1-Cadastrar Refeicao                                                          |");
@@ -239,62 +287,77 @@ void modulo_refeicoes(void){
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opcao desejada: ");
-	scanf("%c", &num);
+	scanf("%c", &esc);
 	getchar();
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return esc;
 }
 void modulo_cad_refeicoes(void){
+	char refeicaoCad[30], caloriasCad[6], cajCad[1];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de cadastro de refeicoes<-                                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Nome da refeicao:                                                             |");
-	printf("\n| Quantidade de calorias:                                                       |");
-	printf("\n| Escolha uma opcao -> (c)afe, (a)lmoco, (j)anta ou (l)anche:                   |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Nome da refeicao: ");
+	scanf("%s", refeicaoCad);
+	printf("| Quantidade de calorias: ");
+	scanf("%s", caloriasCad);
+	printf("| Escolha uma opcao -> (c)afe, (a)lmoco, (j)anta ou (l)anche: ");
+	scanf("%s", &cajCad);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return refeicaoCad[30], caloriasCad[6], cajCad;
 }
 
 void modulo_ver_refeicoes(void){
+	char refeicaoVer[30];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de leitura de refeicoes<-                                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da refeicao:                                                    |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o nome da refeicao: ");
+	scanf("%s", refeicaoVer);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return refeicaoVer;
 }
 
 void modulo_mod_refeicoes(void){
+	char refeicaoMod[30];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de modificacao de refeicoes<-                                        |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da refeicao que deseja modificar:                               |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o nome da refeicao que deseja modificar: ");
+	scanf("%s", refeicaoMod);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return refeicaoMod;
 }
 
 void modulo_del_refeicoes(void){
+	char refeicaoDel[30];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de delecao de refeicoes<-                                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da refeicao que deseja deletar:                                 |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o nome da refeicao que deseja deletar: ");
+	scanf("%s", refeicaoDel);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return refeicaoDel;
 }
 
 //
 //MODULO RECEITAS
 //
-void modulo_receitas(void){
-	char num;
+char modulo_receitas(void){
+	char esc;
 	system("clear||cls");
 	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| 1-Cadastrar Receita                                                           |");
@@ -304,55 +367,72 @@ void modulo_receitas(void){
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opcao desejada: ");
-	scanf("%c", &num);
+	scanf("%c", &esc);
 	getchar();
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return esc;
 }
 void modulo_cad_receitas(void){
+	char nomereceitaCad[30], ingredientesCad[100], preparoCad[500], tempoCad[5], porcaoCad[2];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de cadastro de receitas<-                                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Nome da receita:                                                              |");
-	printf("\n| Liste os ingrediente e quantidades:                                           |");
-	printf("\n| Modo de preparo:                                                              |");
-	printf("\n| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15):                   |");
-	printf("\n| Quantas porcoes ela rende:                                                    |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Nome da receita: ");
+	scanf("%s", nomereceitaCad);
+	printf("| Liste os ingrediente e quantidades: ");
+	scanf("%s", ingredientesCad);
+	printf("| Modo de preparo: ");
+	scanf("%s", preparoCad);
+	printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15): ");
+	scanf("%s", tempoCad);
+	printf("| Quantas porcoes ela rende: ");
+	scanf("%s", porcaoCad);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return nomereceitaCad, ingredientesCad, preparoCad, tempoCad, porcaoCad;
 }
 
 void modulo_ver_receitas(void){
+	char nomereceitaVer[30];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de leitura de receitas<-                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da receita:                                                     |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o nome da receita: ");
+	scanf("%s", nomereceitaVer);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return nomereceitaVer;
 }
 
 void modulo_mod_receitas(void){
+	char nomereceitaMod[30];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de modificacao de receitas<-                                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da receita que deseja modificar:                                |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o nome da receita que deseja modificar: ");
+	scanf("%s", nomereceitaMod);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return nomereceitaMod;
 }
 
 void modulo_del_receitas(void){
+	char nomereceitaDel[30];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de delecao de receitas<-                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da receita que deseja deletar:                                  |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Insira o nome da receita que deseja deletar: ");
+	scanf("%s", nomereceitaDel);
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return nomereceitaDel;
 }
