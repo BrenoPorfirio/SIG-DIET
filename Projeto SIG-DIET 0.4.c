@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcoes.h"
 
 //|=================================================================================|
 //|     Universidade Federal do Rio Grande do Norte (UFRN)                          |
@@ -30,9 +31,6 @@ void modulo_cad_receitas(void);
 void modulo_ver_receitas(void);
 void modulo_mod_receitas(void);
 void modulo_del_receitas(void);
-int modulo_imc(void);
-
-//VARIAVEIS GLOBAIS
 
 //INICIO DO PROGRAMA
 int main(void){
@@ -85,16 +83,10 @@ int main(void){
 		}
   	}
   	else if (num==4){
-	  modulo_imc();
-  	}
-  	else if (num==5){
 	  modulo_menu();
 	}
 	return 0;
 }
-
-//Para copiar:
-//printf("\n||");
 
 //DEFININDO MODULOS
 //MODULO DE MENU:
@@ -145,8 +137,7 @@ int modulo_principal(void){
 	printf("\n|  1-Clientes                                                                   |");
 	printf("\n|  2-Refeicoes                                                                  |");
 	printf("\n|  3-Receitas                                                                   |");
-	printf("\n|  4-IMC                                                                        |");
-	printf("\n|  5-Sobre este programa                                                        |");
+	printf("\n|  4-Sobre este programa                                                        |");
 	printf("\n|  0-Sair                                                                       |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha uma opcao: ");
@@ -155,33 +146,9 @@ int modulo_principal(void){
 	return num;
 }
 
-//MODULO IMC:
-int modulo_imc(void){
-	system("clear||cls");
-	float imc, altura, peso;
-	printf("\n\n\nDigite suas informacoes para calcularmos seu IMC");
-	printf("\nExemplo de altura -> 1.78");
-	printf("\nDigite a altura: ");//NecessÃ¡rio pontuacÃ§Ã£o por enquanto//
-	scanf("%f", &altura);
-	printf("Digite o peso: ");
-	scanf("%f", &peso);
-	
-	imc = peso/(altura*altura);
-	printf("IMC = %.2f", imc);
-	if (imc<18.5){
-		printf("\nSeu IMC encontra-se abaixo do peso");
-	} else if (imc>=18.5 && imc<=24.9){
-		printf("\nSeu IMC encontra-se normal");
-	} else if (imc>=25.0 && imc<=29.9){
-		printf("\nSeu IMC encontra-se em SOBREPESO");
-	} else if (imc>=30.0 && imc<=34.9){
-		printf("\nSeu IMC encontra-se em OBESIDADE GRAU I");
-	} else if (imc>=35.0 && imc<=39.9){
-		printf("\nSeu IMC encontra-se em OBESIDADE GRAU II");	
-	} else {
-		printf("\nSeu IMC encontra-se em OBESIDADE GRAU III");
-	}
-
+//CALCULO IMC:
+float calculoImc(float peso, float altura){
+  return peso/(altura*altura);
 }
 
 //
@@ -206,7 +173,8 @@ char modulo_clientes(void){
 }
 
 char modulo_cad_clientes(void){
-	char cpfCad[11], nomeCad[40], telefoneCad[11], emailCad[30], nascimentoCad[11], pesoCad[5], alturaCad[4];
+	char cpfCad[11], nomeCad[40], telefoneCad[11], emailCad[30], nascimentoCad[11];
+	float imc, peso, altura;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| ->Modulo de cadastro de clientes<-                                            |");
@@ -221,14 +189,24 @@ char modulo_cad_clientes(void){
 	scanf("%s", emailCad);
 	printf("| Data de nascimento(dd/mm/aaaa): ");
 	scanf("%s", nascimentoCad);
-	printf("| Peso do cliente(Ex-> 60.0): ");
-	scanf("%s", pesoCad);
-	printf("| Altura(Ex-> 1.70): ");
-	scanf("%s", alturaCad);
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("| Hora de Calcularmos seu IMC ");
+	printf("\n| Informe seu peso atual: ");
+	scanf("%f", &peso);
+	printf("| Informe sua altura atual: (EX-> 1.85) ");
+	scanf("%f", &altura);
+	imc = calculoImc(peso, altura);
+	printf("| Resultado do IMC: %f", imc);
+  	if (imc <18.5){
+    printf("\n| Resultado: ABAIXO DO PESO");  
+ 	} else if (imc >= 18.5 && imc <= 24.9){
+    printf("\n| Resultado: PESO IDEAL");
+	} else {
+    printf("\n| Resultado: SOBREPESO");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
-	return cpfCad, nomeCad, telefoneCad, emailCad, nascimentoCad, pesoCad, alturaCad;
+	return cpfCad, nomeCad, telefoneCad, emailCad, nascimentoCad;
 }
 
 void modulo_ver_clientes(void){
