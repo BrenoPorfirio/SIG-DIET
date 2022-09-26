@@ -93,7 +93,7 @@ int main(void){
 		modulo_menu();
 		}
 		else if (num==0){
-			printf("\nObrigado por usar nosso programa, até mais");
+			printf("\nObrigado por usar nosso programa, ate mais");
 		}
 	} while (num!=0);
 	return 0;
