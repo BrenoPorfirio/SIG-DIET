@@ -162,6 +162,37 @@ float calculoImc(float peso, float altura){
   return peso/(altura*altura);
 }
 
+//TESTA DATAS (CREDITS TO FLAVIUS GORGONIO)
+int bissexto(int aa){
+	if ((aa % 4 == 0) && (aa % 100 != 100)) {
+		return 1;
+	} else if (aa % 400 == 0){
+		return 1;
+	} else{
+		return 0;
+	}
+}
+
+int testaData(int dd, int mm, int aa) {
+  int maiorDia;
+  if (aa < 0 || mm < 1 || mm > 12)
+    return 0;
+  if (mm == 2) {
+    if (bissexto(aa)) 
+      maiorDia = 29;
+    else
+      maiorDia = 28;
+  } else if (mm == 4 || mm == 6 || 
+             mm == 9 || mm == 11) {
+               maiorDia = 30;
+  } else
+    maiorDia = 31;
+
+  if (dd < 1 || dd > maiorDia)
+    return 0;
+
+  return 1;
+}
 //
 //MODULO CLIENTES:
 //
@@ -184,7 +215,9 @@ char modulo_clientes(void){
 }
 
 char modulo_cad_clientes(void){
-	char cpfCad[12], nomeCad[60], telefoneCad[14], emailCad[40], nascimentoCad[11];
+	char cpfCad[12], nomeCad[60], telefoneCad[14], emailCad[40];
+	int dataValida;
+  	int dia, mes, ano;
 	float imc, peso, altura;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -202,8 +235,20 @@ char modulo_cad_clientes(void){
 	printf("| E-mail: ");
 	scanf("%[a-zA-Z@.0-9_-]", emailCad);
 	getchar();
-	printf("| Data de nascimento(dd/mm/aaaa): ");
-	scanf("%[0-9/]", nascimentoCad);
+	printf("| Informe sua data de nascimento: ");
+	printf("\n| Dia: ");
+	scanf("%d", &dia);
+	printf("| Mes: ");
+	scanf("%d", &mes);
+	printf("| Ano: ");
+	scanf("%d", &ano);
+	dataValida = testaData(dia, mes, ano);
+	if (!dataValida){
+		printf("| A data %02d/%02d/%d == NOT OK \n", dia, mes, ano);
+		printf("\n| !! TENTE NOVAMENTE !!\n\n");
+	} else {
+		printf("| A data %02d/%02d/%d == OK\n", dia, mes, ano);
+	}
 	getchar();
 	printf("|");
 	printf("\n| Hora de Calcularmos seu IMC ");
