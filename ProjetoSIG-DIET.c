@@ -4,10 +4,10 @@
 
 //|=================================================================================|
 //|     Universidade Federal do Rio Grande do Norte (UFRN)                          |
-//|     Centro de Ensino Superior do Serido                                         |
-//|     Departamento de Computacao e Tecnologia                                     |
-//|     Disciplina DCT1106 -> Programacao                                           |
-//|     Projeto Sistema de Planejamento de Dieta                                    |
+//|     Centro de Ensino Superior do Seridó                                         |
+//|     Departamento de Computação e Tecnologia                                     |
+//|     Disciplina DCT1106 -> Programação                                           |
+//|     Projeto Sistema de Planejamento de Dietas                                   |
 //|     Developed by "BrenoPorfirio" and "GrandeDDD" (github) -> August, 2022       |
 //|=================================================================================|
 //|     Semana 5                                                                    |
@@ -93,7 +93,7 @@ int main(void){
 		modulo_menu();
 		}
 		else if (num==0){
-			printf("\nObrigado por usar nosso programa, ate mais");
+			printf("\nObrigado por usar nosso programa, até mais");
 		}
 	} while (num!=0);
 	return 0;
@@ -106,9 +106,9 @@ void modulo_menu(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Projeto: SIG-DietPlan                       |");
 	printf("\n|                                             |");
-	printf("\n| Descricao: Um sistema capaz auxiliar na     |");
-	printf("\n| escolha de um cardapio dependendo das       |");
-	printf("\n| restricoes impostas por um nutricionista.   |");
+	printf("\n| Descrição: Um sistema capaz auxiliar na     |");
+	printf("\n| escolha de um cardápio dependendo das       |");
+	printf("\n| restrições impostas por um nutricionista.   |");
 	printf("\n|                                             |");
 	printf("\n| Programadores: Breno Costa (20220042506)    |");
 	printf("\n|                Diego Alves (20220043174)    |");
@@ -116,7 +116,7 @@ void modulo_menu(void){
 	printf("\n| Professor: Flavius da Luz e Gorgonio        |");
 	printf("\n| (1687186)                                   |");
 	printf("\n|                                             |");
-	printf("\n| Programa produzido com intuito academico.   |");
+	printf("\n| Programa produzido com intuito acadêmico.   |");
 	printf("\n|                                             |");
 	printf("\n| Produzido sem fins comerciais em mente.     |");
 	printf("\n|                                             |");
@@ -138,20 +138,20 @@ int modulo_principal(void){
 	system("clear||cls");
 	printf("\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|	Universidade Federal do Rio Grande do Norte (UFRN)                      |");
-	printf("\n|	Centro de Ensino Superior do Serido                                     |");
-	printf("\n|	Departamento de Computacao e Tecnologia                                 |");
-	printf("\n|	Disciplina DCT1106 -> Programacao                                       |");
-	printf("\n|	Projeto Sistema de Planejamento de Dieta                                |");
+	printf("\n|	Centro de Ensino Superior do Seridó                                     |");
+	printf("\n|	Departamento de Computação e Tecnologia                                 |");
+	printf("\n|	Disciplina DCT1106 -> Programação                                       |");
+	printf("\n|	Projeto Sistema de Planejamento de Dietas                               |");
 	printf("\n|	Developed by BrenoPorfirio and GrandeDDD (github) -> August, 2022)      |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|       ->Sistema de Gestao de Dietas<-                                         |");
+	printf("\n|       ->Sistema de Gestão de Dietas<-                                         |");
 	printf("\n|  1-Clientes                                                                   |");
-	printf("\n|  2-Refeicoes                                                                  |");
+	printf("\n|  2-Refeições                                                                  |");
 	printf("\n|  3-Receitas                                                                   |");
 	printf("\n|  4-Sobre este programa                                                        |");
 	printf("\n|  0-Sair                                                                       |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\nEscolha uma opcao: ");
+	printf("\n\nEscolha uma opção: ");
 	scanf("%d", &num);
 	getchar();
 	return num;
@@ -206,7 +206,7 @@ char modulo_clientes(void){
 	printf("\n| 4-Deletar Cliente                                                             |");
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\nEscolha a opcao desejada: ");
+	printf("\n\nEscolha a opção desejada: ");
 	scanf("%c", &esc);
 	getchar();
 	printf("\n->Pressione ENTER para continuar<-");
@@ -221,15 +221,15 @@ void modulo_cad_clientes(void){
 	float imc, peso, altura;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de cadastro de clientes<-                                            |");
+	printf("\n| ->Módulo de cadastro de clientes<-                                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| CPF do cliente(somente numeros): ");
+	printf("\n| CPF do cliente(somente números): ");
 	scanf("%[0-9]", cpfCad);
 	getchar();
 	printf("| Nome completo: ");
 	scanf("%[a-z A-Z]", nomeCad);
 	getchar();
-	printf("| Telefone(somente numeros): ");
+	printf("| Telefone(somente números): ");
 	scanf("%[0-9()]", telefoneCad);
 	getchar();
 	printf("| E-mail: ");
@@ -238,7 +238,7 @@ void modulo_cad_clientes(void){
 	printf("| Informe sua data de nascimento: ");
 	printf("\n| Dia: ");
 	scanf("%d", &dia);
-	printf("| Mes: ");
+	printf("| Mês: ");
 	scanf("%d", &mes);
 	printf("| Ano: ");
 	scanf("%d", &ano);
@@ -251,7 +251,7 @@ void modulo_cad_clientes(void){
 	}
 	getchar();
 	printf("|");
-	printf("\n| Hora de Calcularmos seu IMC ");
+	printf("\n| Hora de calcularmos seu IMC ");
 	printf("\n| Informe seu peso atual: ");
 	scanf("%f", &peso);
 	getchar();
@@ -276,7 +276,7 @@ void modulo_ver_clientes(void){
 	char cpfVer[12];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de leitura de clientes<-                                             |");
+	printf("\n| ->Módulo de leitura de clientes<-                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente: ");
 	scanf("%[0-9]", cpfVer);
@@ -290,7 +290,7 @@ void modulo_mod_clientes(void){
 	char cpfMod[12];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de modificacao de clientes<-                                         |");
+	printf("\n| ->Módulo de modificação de clientes<-                                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF que deseja modificar do cliente: ");
 	scanf("%[0-9]", cpfMod);
@@ -304,9 +304,9 @@ void modulo_del_clientes(void){
 	char cpfDel[12];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de delecao de clientes<-                                             |");
+	printf("\n| ->Módulo de deleção de clientes<-                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF que deseja deletar do cliente: ");
+	printf("\n| Insira o CPF do cliente que deseja deletar: ");
 	scanf("%[0-9]", cpfDel);
 	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -321,13 +321,13 @@ char modulo_refeicoes(void){
 	char esc;
 	system("clear||cls");
 	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| 1-Cadastrar Refeicao                                                          |");
-	printf("\n| 2-Ver Refeicoes                                                               |");
-	printf("\n| 3-Modificar Refeicao                                                          |");
-	printf("\n| 4-Deletar Refeicao                                                            |");
+	printf("\n| 1-Cadastrar Refeição                                                          |");
+	printf("\n| 2-Ver Refeições                                                               |");
+	printf("\n| 3-Modificar Refeição                                                          |");
+	printf("\n| 4-Deletar Refeição                                                            |");
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\nEscolha a opcao desejada: ");
+	printf("\n\nEscolha a opção desejada: ");
 	scanf("%c", &esc);
 	getchar();
 	printf("\n->Pressione ENTER para continuar<-");
@@ -338,15 +338,15 @@ void modulo_cad_refeicoes(void){
 	char refeicaoCad[70], caloriasCad[6], cajCad[2];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de cadastro de refeicoes<-                                           |");
+	printf("\n| ->Módulo de cadastro de refeições<-                                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Nome da refeicao: ");
+	printf("\n| Nome da refeição: ");
 	scanf("%[a-z A-Z]", refeicaoCad);
 	getchar();
 	printf("| Quantidade de calorias: ");
 	scanf("%[0-9]", caloriasCad);
 	getchar();
-	printf("| Escolha uma opcao -> (c)afe, (a)lmoco, (j)anta ou (l)anche: ");
+	printf("| Escolha uma opção -> (c)afe, (a)lmoco, (j)anta ou (l)anche: ");
 	scanf("%[cajl]", cajCad);
 	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -358,9 +358,9 @@ void modulo_ver_refeicoes(void){
 	char refeicaoVer[70];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de leitura de refeicoes<-                                            |");
+	printf("\n| ->Módulo de leitura de refeições<-                                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da refeicao: ");
+	printf("\n| Insira o nome da refeição: ");
 	scanf("%[a-z A-Z]", refeicaoVer);
 	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -372,9 +372,9 @@ void modulo_mod_refeicoes(void){
 	char refeicaoMod[70];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de modificacao de refeicoes<-                                        |");
+	printf("\n| ->Modulo de modificação de refeições<-                                        |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da refeicao que deseja modificar: ");
+	printf("\n| Insira o nome da refeição que deseja modificar: ");
 	scanf("%[a-z A-Z]", refeicaoMod);
 	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -386,9 +386,9 @@ void modulo_del_refeicoes(void){
 	char refeicaoDel[70];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de delecao de refeicoes<-                                            |");
+	printf("\n| ->Módulo de deleção de refeições<-                                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da refeicao que deseja deletar: ");
+	printf("\n| Insira o nome da refeição que deseja deletar: ");
 	scanf("%[a-z A-Z]", refeicaoDel);
 	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -409,7 +409,7 @@ char modulo_receitas(void){
 	printf("\n| 4-Deletar Receita                                                             |");
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n\nEscolha a opcao desejada: ");
+	printf("\n\nEscolha a opção desejada: ");
 	scanf("%c", &esc);
 	getchar();
 	printf("\n->Pressione ENTER para continuar<-");
@@ -420,7 +420,7 @@ void modulo_cad_receitas(void){
 	char nomereceitaCad[70], ingredientesCad[300], preparoCad[800], tempoCad[6], porcaoCad[3];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de cadastro de receitas<-                                            |");
+	printf("\n| ->Módulo de cadastro de receitas<-                                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Nome da receita: ");
 	scanf("%[a-z A-Z]", nomereceitaCad);
@@ -434,7 +434,7 @@ void modulo_cad_receitas(void){
 	printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15): ");
 	scanf("%[0-9:]", tempoCad);
 	getchar();
-	printf("| Quantas porcoes ela rende: ");
+	printf("| Quantas porções ela rende: ");
 	scanf("%[0-9]", porcaoCad);
 	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -446,7 +446,7 @@ void modulo_ver_receitas(void){
 	char nomereceitaVer[70];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de leitura de receitas<-                                             |");
+	printf("\n| ->Módulo de leitura de receitas<-                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita: ");
 	scanf("%[a-z A-Z]", nomereceitaVer);
@@ -460,7 +460,7 @@ void modulo_mod_receitas(void){
 	char nomereceitaMod[70];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de modificacao de receitas<-                                         |");
+	printf("\n| ->Módulo de modificação de receitas<-                                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja modificar: ");
 	scanf("%[a-z A-Z]", nomereceitaMod);
@@ -474,7 +474,7 @@ void modulo_del_receitas(void){
 	char nomereceitaDel[70];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Modulo de delecao de receitas<-                                             |");
+	printf("\n| ->Módulo de deleção de receitas<-                                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja deletar: ");
 	scanf("%[a-z A-Z]", nomereceitaDel);
