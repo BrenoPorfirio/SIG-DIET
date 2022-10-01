@@ -346,12 +346,12 @@ char modulo_acompanhamento(void){
 }
 void modulo_cad_acompanhamento(void){
 	char acMedCintura[8], acMedQuadril[8], acMedbicepsD[7], acMedbicepsE[7], acMedpernaD[7], acMedpernaE[7];
-	float imc;
+	//float imc;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                        -> AVALIAÇÃO ANTROPOMÉTRICA <-                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Seu IMC atual %f=", imc); //apontador para IMC informado no cadastro do cliente
+	//printf("\n| Seu IMC atual %f=", imc); //apontador para IMC informado no cadastro do cliente
 	getchar();
 	printf("| Cadastre a medida da cintura atual: ");
 	scanf("%[0-9.,]", acMedCintura);
