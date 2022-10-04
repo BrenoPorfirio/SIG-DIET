@@ -319,9 +319,9 @@ void modulo_mod_clientes(void){
 	char cpfMod[12];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                        -> MODIFICAÇÃO DE CLIENTES <-                          |");
+	printf("\n|                    -> MODIFICAÇÃO DE DADOS DO CLIENTES <-                    |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF que deseja modificar do cliente: ");
+	printf("\n| Insira o CPF que deseja modificar os dados do cliente: ");
 	scanf("%[0-9]", cpfMod);
 	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -517,7 +517,7 @@ void modulo_ver_receitas(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> LEITURA DE RECEITAS <-                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da receita: ");
+	printf("\n| Insira o nome da receita que desejar verificar: ");
 	scanf("%[a-z A-Z]", nomereceitaVer);
 	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -634,7 +634,7 @@ void modulo_edit_diet(void){
 	printf("| INFORME O NOME DA DIETA QUE NÃO FOI FUNCIONAL: ");
 	scanf("%[a-z A-Z]", nomeDiet);
 	getchar();
-	printf("| JÁ QUE A DIETA ANTERIOR NÃO TENTE A: ");
+	printf("| JÁ QUE A DIETA ANTERIOR NÃO FUNCIONOU NÃO TENTE A: ");
 	getchar();
 	printf("| AQUI TERÁ UM IF DIRECIONANDO O CLIENTE A UMA NOVA DIETA.");
 	getchar();
