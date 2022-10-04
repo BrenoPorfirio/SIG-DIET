@@ -250,7 +250,7 @@ void modulo_cad_clientes(void){
 	float imc, peso, altura;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Módulo de cadastro de clientes<-                                            |");
+	printf("\n|                          -> CADASTRO DE CLIENTES <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| CPF do cliente(somente números): ");
 	scanf("%[0-9]", cpfCad);
@@ -305,7 +305,7 @@ void modulo_ver_clientes(void){
 	char cpfVer[12];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Módulo de leitura de clientes<-                                             |");
+	printf("\n|                          -> LEITURA DE CLIENTES <-                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente: ");
 	scanf("%[0-9]", cpfVer);
@@ -319,7 +319,7 @@ void modulo_mod_clientes(void){
 	char cpfMod[12];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Módulo de modificação de clientes<-                                         |");
+	printf("\n|                        -> MODIFICAÇÃO DE CLIENTES <-                          |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF que deseja modificar do cliente: ");
 	scanf("%[0-9]", cpfMod);
@@ -333,7 +333,7 @@ void modulo_del_clientes(void){
 	char cpfDel[12];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Módulo de deleção de clientes<-                                             |");
+	printf("\n|                         -> DELEÇÃO DE CLIENTES <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja deletar: ");
 	scanf("%[0-9]", cpfDel);
@@ -416,7 +416,7 @@ void modulo_mod_acompanhamento(void){
 	char modAvalia[15];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                             -> MODIFICAR AVALIAÇÃO <-                         |");
+	printf("\n|                           -> MODIFICAR AVALIAÇÃO <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja modificar avaliação: ");
 	scanf("%[0-9.-]", modAvalia);
@@ -489,7 +489,7 @@ void modulo_cad_receitas(void){
 	char nomereceitaCad[70], ingredientesCad[300], preparoCad[800], tempoCad[6], porcaoCad[3];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Módulo de cadastro de receitas<-                                            |");
+	printf("\n|                        -> CADASTRO DE RECEITAS <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Nome da receita: ");
 	scanf("%[a-z A-Z]", nomereceitaCad);
@@ -515,7 +515,7 @@ void modulo_ver_receitas(void){
 	char nomereceitaVer[70];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Módulo de leitura de receitas<-                                             |");
+	printf("\n|                          -> LEITURA DE RECEITAS <-                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita: ");
 	scanf("%[a-z A-Z]", nomereceitaVer);
@@ -529,7 +529,7 @@ void modulo_mod_receitas(void){
 	char nomereceitaMod[70];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Módulo de modificação de receitas<-                                         |");
+	printf("\n|                         -> MODIFICAÇÃO DE RECEITAS <-                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja modificar: ");
 	scanf("%[a-z A-Z]", nomereceitaMod);
@@ -543,7 +543,7 @@ void modulo_del_receitas(void){
 	char nomereceitaDel[70];
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| ->Módulo de deleção de receitas<-                                             |");
+	printf("\n|                         -> DELEÇÃO DE RECEITAS <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja deletar: ");
 	scanf("%[a-z A-Z]", nomereceitaDel);
