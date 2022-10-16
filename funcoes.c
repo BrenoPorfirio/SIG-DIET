@@ -3,7 +3,7 @@
 #include <string.h>
 #include "funcoes.h"
 
-//CALCULO IMC:
+//CÁLCULO IMC:
 float calculoImc(float peso, float altura){
   return peso/(altura*altura);
 }
@@ -41,7 +41,8 @@ int testaData(int dd, int mm, int aa) {
 }
 
 //BASEADO NO CÓDIGO DE BRUNOWCST
-//https://github.com/Brunowcst/Sistema-de-controle-de-clientes-
+///https://github.com/Brunowcst/Sistema-de-controle-de-clientes-
+//Valida CPF
 int validaCPF(char *cpf){
   int i, j, digito1 = 0, digito2 =0;
   if(strlen(cpf) !=11)
@@ -70,5 +71,25 @@ int validaCPF(char *cpf){
         return 0;
         }
     }
+    return 1;
+}
+//VALIDAR NOME
+//BASEADO NO CÓDIGO DE FLAVIUS GORGÔNIO
+int testaLetra(char c){
+  if (c >= 'A' && c <= 'Z'){
+    return 1;
+  } else if (c >= 'a' && c <= 'z'){
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+int validarNome(char *nome){
+  for (int i=0; nome[i]!='\0'; i++){
+    if (!testaLetra(nome[i])){
+      return 0;
+    }
+  }
     return 1;
 }

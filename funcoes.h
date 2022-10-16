@@ -5,3 +5,5 @@ int bissexto(int);
 int testaData(int, int, int);
 
 int validaCPF(char*);
+
+int validarNome(char*);

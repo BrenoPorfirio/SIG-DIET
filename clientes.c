@@ -25,7 +25,8 @@ char modulo_clientes(void){
 }
 
 void modulo_cad_clientes(void){
-	char cpf[12], nomeCad[60], telefoneCad[14], emailCad[40];
+	char cpf[12], nome[60], telefoneCad[14], emailCad[40];
+	char valNome;
 	int validaCpf;
 	int dataValida;
   	int dia, mes, ano;
@@ -39,14 +40,20 @@ void modulo_cad_clientes(void){
 	getchar();
 	validaCpf = validaCPF(cpf);
 	if (validaCpf){
-		printf("CPF ACEITO E CORRETO");
+		printf("| CPF ACEITO E CORRETO");
 	} else {
-		printf("CPF INCORRETO, TENTE NOVAMENTE !");
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
 	}
-	printf("| Nome completo: ");
-	scanf("%[a-z A-Z]", nomeCad);
+	printf("\n| Nome completo: ");
+	scanf("%s", nome);
 	getchar();
-	printf("| Telefone(somente números): ");
+	valNome = validarNome(nome);
+	if ((valNome) == 1){
+		printf("| NOME OK!");
+	} else {
+		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
+	}
+	printf("\n| Telefone(somente números): ");
 	scanf("%[0-9()]", telefoneCad);
 	getchar();
 	printf("| E-mail: ");
