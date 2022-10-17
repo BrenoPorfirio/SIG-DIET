@@ -84,7 +84,7 @@ int testaLetra(char c){
     return 0;
   }
 }
-
+//BASEADO NO CÓDIGO DE FLAVIUS GORGÔNIO
 int validarNome(char *nome){
   for (int i=0; nome[i]!='\0'; i++){
     if (!testaLetra(nome[i])){
@@ -92,4 +92,26 @@ int validarNome(char *nome){
     }
   }
     return 1;
+}
+
+//VALIDA TELEFONE
+int validaTele(char* fone){ 
+  int tam;
+  tam = strlen(fone);
+  if (tam != 11){
+    return 0;
+  }
+  for (int i=0; i < tam; i++){
+    if (!ehDg(fone[i])) {
+      return 0;
+    }
+  }
+  return 1;
+}
+int ehDg(char c){
+  if (c>= '0' && c <= '9'){
+    return 1;
+  } else {
+    return 0;
+  }
 }
