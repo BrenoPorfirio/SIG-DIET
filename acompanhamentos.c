@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "acompanhamentos.h"
+#include "funcoes.h"
 
 //
 //MODULO ACOMPANHAMENTO
@@ -58,68 +59,103 @@ void modulo_cad_acompanhamento(void){
 }
 
 void modulo_ver_acompanhamento(void){
-	char verAvalia[15];
+	char cpf[12];
+	int verAvalia;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                            -> CONSULTAR AVALIAÇÃO <-                          |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja ver informações: ");
-	scanf("%[0-9.-]", verAvalia);
+	scanf("%[0-9]", cpf);
 	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	verAvalia = validaCPF(cpf);
+	if ((verAvalia) == 1){
+		printf("| CPF ACEITO E CORRETO");
+	} else {
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void modulo_mod_acompanhamento(void){
-	char modAvalia[15];
+	char cpf[12];
+	int modAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                           -> MODIFICAR AVALIAÇÃO <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja modificar avaliação: ");
-	scanf("%[0-9.-]", modAvalia);
+	scanf("%[0-9]", cpf);
 	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	modAC = validaCPF(cpf);
+	if ((modAC) == 1){
+		printf("| CPF ACEITO E CORRETO");
+	} else {
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void modulo_del_acompanhamento(void){
-	char delAvalia[15];
+	char cpf[12];
+	int delAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                             -> DELETAR AVALIAÇÃO <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira CPF do cliente que deseja deletar avaliação: ");
-	scanf("%[0-9.-]", delAvalia);
+	scanf("%[0-9]", cpf);
 	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	delAC = validaCPF(cpf);
+	if ((delAC) == 1){
+		printf("| CPF ACEITO E CORRETO");
+	} else {
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 void modulo_orienta(void){ //AQUI SERÃO APRESENTADAS ORIENTAÇÕES DESTINADAS A DIETA FÍSICA
-	char cpfOrient[15];
+	char cpf[12];
+	int orientAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                              -> ORIENTAÇÕES <-                                |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|Informe o CPF do cliente para análise dos dados e indicações relacionadas ao físico: ");
-	scanf("%[0-9.-]", cpfOrient);
+	scanf("%[0-9]", cpf);
 	getchar();
+	orientAC = validaCPF(cpf);
+	if ((orientAC) == 1){
+		printf("| CPF ACEITO E CORRETO");
+	} else {
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	}
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 void modulo_historico(void){ //LISTAGEM DE TODOS OS DADOS DO CLIENTE JUNTO DAS DATAS
-	char cpfHis[15];
+	char cpf[12];
+	int histAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                              -> HISTÓRICO <-                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|Informe o CPF do cliente para mostrar todo seu histórico: ");
-	scanf("%[0-9.-]", cpfHis);
+	scanf("%[0-9]", cpf);
 	getchar();
+	histAC = validaCPF(cpf);
+	if ((histAC) == 1){
+		printf("| CPF ACEITO E CORRETO");
+	} else {
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	}
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();

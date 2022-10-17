@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "receitas.h"
+#include"funcoes.h"
 
 //
 //MODULO RECEITAS
@@ -23,15 +24,22 @@ char modulo_receitas(void){
 	return esc;
 }
 void modulo_cad_receitas(void){
-	char nomereceitaCad[70], ingredientesCad[300], preparoCad[800], tempoCad[6], porcaoCad[3];
+	char nome[70], ingredientesCad[300], preparoCad[800], tempoCad[6], porcaoCad[3];
+	int valiNmC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                        -> CADASTRO DE RECEITAS <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Nome da receita: ");
-	scanf("%[a-z A-Z]", nomereceitaCad);
+	scanf("%s", nome);
 	getchar();
-	printf("| Liste os ingrediente e quantidades: ");
+	valiNmC = validarNome(nome);
+	if ((valiNmC) == 1){
+		printf("| NOME OK!");
+	} else {
+		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
+	}
+	printf("\n| Liste os ingrediente e quantidades: ");
 	scanf("%[a-zA-Z0-9 -.,]", ingredientesCad);
 	getchar();
 	printf("| Modo de preparo: ");
@@ -49,43 +57,64 @@ void modulo_cad_receitas(void){
 }
 
 void modulo_ver_receitas(void){
-	char nomereceitaVer[70];
+	char nome[70];
+	int valiNmV;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> LEITURA DE RECEITAS <-                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que desejar verificar: ");
-	scanf("%[a-z A-Z]", nomereceitaVer);
+	scanf("%s", nome);
 	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	valiNmV = validarNome(nome);
+	if ((valiNmV) == 1){
+		printf("| NOME OK!");
+	} else {
+		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void modulo_mod_receitas(void){
-	char nomereceitaMod[70];
+	char nome[70];
+	int valiNmRD;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> MODIFICAÇÃO DE RECEITAS <-                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja modificar: ");
-	scanf("%[a-z A-Z]", nomereceitaMod);
+	scanf("%s", nome);
 	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	valiNmRD = validarNome(nome);
+	if ((valiNmRD) == 1){
+		printf("| NOME OK!");
+	} else {
+		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void modulo_del_receitas(void){
-	char nomereceitaDel[70];
+	char nome[70];
+	int valiNmDR;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE RECEITAS <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja deletar: ");
-	scanf("%[a-z A-Z]", nomereceitaDel);
+	scanf("%s", nome);
 	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	valiNmDR = validarNome(nome);
+	if ((valiNmDR) == 1){
+		printf("| NOME OK!");
+	} else {
+		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }

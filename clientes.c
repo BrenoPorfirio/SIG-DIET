@@ -39,7 +39,7 @@ void modulo_cad_clientes(void){
 	scanf("%[0-9]", cpf);
 	getchar();
 	validaCpf = validaCPF(cpf);
-	if (validaCpf){
+	if ((validaCpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
 		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
@@ -97,43 +97,64 @@ void modulo_cad_clientes(void){
 }
 
 void modulo_ver_clientes(void){
-	char cpfVer[12];
+	char cpf[12];
+	int vercpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> LEITURA DE CLIENTES <-                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente: ");
-	scanf("%[0-9]", cpfVer);
+	scanf("%[0-9]", cpf);
 	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	vercpf = validaCPF(cpf);
+	if ((vercpf) == 1){
+		printf("| CPF ACEITO E CORRETO");
+	} else {
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void modulo_mod_clientes(void){
-	char cpfMod[12];
+	char cpf[12];
+	int modcpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                    -> MODIFICAÇÃO DE DADOS DO CLIENTES <-                    |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF que deseja modificar os dados do cliente: ");
-	scanf("%[0-9]", cpfMod);
+	scanf("%[0-9]", cpf);
 	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	modcpf = validaCPF(cpf);
+	if ((modcpf) == 1){
+		printf("| CPF ACEITO E CORRETO");
+	} else {
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void modulo_del_clientes(void){
-	char cpfDel[12];
+	char cpf[12];
+	int delcpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE CLIENTES <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja deletar: ");
-	scanf("%[0-9]", cpfDel);
+	scanf("%[0-9]", cpf);
 	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	delcpf = validaCPF(cpf);
+	if ((delcpf) == 1){
+		printf("| CPF ACEITO E CORRETO");
+	} else {
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
