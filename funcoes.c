@@ -8,7 +8,8 @@ float calculoImc(float peso, float altura){
   return peso/(altura*altura);
 }
 
-//TESTA DATAS (CREDITS TO FLAVIUS GORGONIO)
+//TESTA DATAS 
+//BASEADO NO CÓDIGO DE FLAVIUS GORGÔNIO
 int bissexto(int aa){
 	if ((aa % 4 == 0) && (aa % 100 != 100)) {
 		return 1;
@@ -18,7 +19,8 @@ int bissexto(int aa){
 		return 0;
 	}
 }
-//TESTA DATAS (CREDITS TO FLAVIUS GORGONIO)
+//TESTA DATAS
+//BASEADO NO CÓDIGO DE FLAVIUS GORGÔNIO
 int testaData(int dd, int mm, int aa) {
   int maiorDia;
   if (aa < 0 || mm < 1 || mm > 12)
@@ -42,7 +44,7 @@ int testaData(int dd, int mm, int aa) {
 
 //BASEADO NO CÓDIGO DE BRUNOWCST
 ///https://github.com/Brunowcst/Sistema-de-controle-de-clientes-
-//Valida CPF
+//VALIDA CPF
 int validaCPF(char *cpf){
   int i, j, digito1 = 0, digito2 =0;
   if(strlen(cpf) !=11)
