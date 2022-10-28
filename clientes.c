@@ -24,8 +24,15 @@ char modulo_clientes(void){
 	return esc;
 }
 
+struct cliente{
+	char cpf[12];
+	char nome[61];
+	char telefone[20];
+	char email[40];
+};
+
 void modulo_cad_clientes(void){
-	char cpf[12], nome[60], telefone[14], email[40];
+	struct cliente cl;
 	int valtele;
 	char valNome;
 	int validaCpf;
@@ -37,34 +44,34 @@ void modulo_cad_clientes(void){
 	printf("\n|                          -> CADASTRO DE CLIENTES <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| CPF do cliente(somente números): ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", cl.cpf);
 	getchar();
-	validaCpf = validaCPF(cpf);
+	validaCpf = validaCPF(cl.cpf);
 	if ((validaCpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
 		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
 	}
 	printf("\n| Nome completo: ");
-	scanf("%s", nome);
+	scanf("%s", cl.nome);
 	getchar();
-	valNome = validarNome(nome);
+	valNome = validarNome(cl.nome);
 	if ((valNome) == 1){
 		printf("| NOME OK!");
 	} else {
 		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
 	}
 	printf("\n| Telefone(somente números): ");
-	scanf("%[0-9()]", telefone);
+	scanf("%[0-9()]", cl.telefone);
 	getchar();
-	valtele = validaTele(telefone);
+	valtele = validaTele(cl.telefone);
 	if ((valtele) == 1){
 		printf("| NÚMERO CORRETO ! ");
 	} else {
 		printf("| NÚMERO INCORRETO ! ");
 	}
 	printf("\n| E-mail: ");
-	scanf("%[a-zA-Z@.0-9_-]", email);
+	scanf("%[a-zA-Z@.0-9_-]", cl.email);
 	getchar();
 	printf("\n| Informe sua data de nascimento: ");
 	printf("\n| Dia: ");
@@ -104,21 +111,25 @@ void modulo_cad_clientes(void){
 }
 
 void modulo_ver_clientes(void){
-	char cpf[12];
+	struct cliente cl;
 	int vercpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> LEITURA DE CLIENTES <-                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", cl.cpf);
 	getchar();
-	vercpf = validaCPF(cpf);
+	vercpf = validaCPF(cl.cpf);
 	if ((vercpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
 		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
 	}
+	printf("| CPF: %s", cl.cpf);
+	printf("\n| Nome: %s", cl.nome);
+	printf("\n| Telefone: %s", cl.telefone);
+	printf("\n| Email: %s", cl.email);
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
