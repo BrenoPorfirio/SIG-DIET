@@ -6,6 +6,16 @@
 //
 //MODULO ACOMPANHAMENTO
 //
+
+struct acompanhamento {
+	char acMedCintura[8]; 
+	char acMedQuadril[8]; 
+	char acMedbicepsD[7]; 
+	char acMedbicepsE[7]; 
+	char acMedpernaD[7]; 
+	char acMedpernaE[7];
+};
+
 char modulo_acompanhamento(void){
 	char esc;
 	system("clear||cls");
@@ -26,7 +36,7 @@ char modulo_acompanhamento(void){
 	return esc;
 }
 void modulo_cad_acompanhamento(void){
-	char acMedCintura[8], acMedQuadril[8], acMedbicepsD[7], acMedbicepsE[7], acMedpernaD[7], acMedpernaE[7];
+	struct acompanhamento cad;
 	//float imc;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -35,22 +45,22 @@ void modulo_cad_acompanhamento(void){
 	//printf("\n| Seu IMC atual %f=", imc); //apontador para IMC informado no cadastro do cliente
 	getchar();
 	printf("| Cadastre a medida da cintura atual: ");
-	scanf("%[0-9.,]", acMedCintura);
+	scanf("%7[0-9.,]", cad.acMedCintura);
 	getchar();
 	printf("| Cadastre a medida do quadril atual: ");
-	scanf("%[0-9.,]", acMedQuadril);
+	scanf("%7[0-9.,]", cad.acMedQuadril);
 	getchar();
 	printf("| Cadastre a medida do bíceps direito atual: ");
-	scanf("%[0-9.,]", acMedbicepsD);
+	scanf("%6[0-9.,]", cad.acMedbicepsD);
 	getchar();
 	printf("| Cadastre a medida do bíceps esquerdo atual: ");
-	scanf("%[0-9.,]", acMedbicepsE);
+	scanf("%6[0-9.,]", cad.acMedbicepsE);
 	getchar();
 	printf("| Cadastre a medida da coxa direita atual: ");
-	scanf("%[0-9.,]", acMedpernaD);
+	scanf("%6[0-9.,]", cad.acMedpernaD);
 	getchar();
 	printf("| Cadastre a medida da coxa esquerda atual: ");
-	scanf("%[0-9.,]", acMedpernaE);
+	scanf("%6[0-9.,]", cad.acMedpernaE);
 	printf("| MEDIDAS CADASTRADAS COM SUCESSO !");
 	getchar();
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");

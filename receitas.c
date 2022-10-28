@@ -6,6 +6,14 @@
 //
 //MODULO RECEITAS
 //
+
+struct receitas {
+	char ingredientesCad[300];
+	char preparoCad[800];
+	char tempoCad[6];
+	char porcaoCad[3];
+};
+
 char modulo_receitas(void){
 	char esc;
 	system("clear||cls");
@@ -24,7 +32,8 @@ char modulo_receitas(void){
 	return esc;
 }
 void modulo_cad_receitas(void){
-	char nome[70], ingredientesCad[300], preparoCad[800], tempoCad[6], porcaoCad[3];
+	struct receitas cad;
+	char nome[70];
 	int valiNmC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -40,16 +49,16 @@ void modulo_cad_receitas(void){
 		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
 	}
 	printf("\n| Liste os ingrediente e quantidades: ");
-	scanf("%[a-zA-Z0-9 -.,]", ingredientesCad);
+	scanf("%299[a-zA-Z0-9 -.,]", cad.ingredientesCad);
 	getchar();
 	printf("| Modo de preparo: ");
-	scanf("%[a-zA-Z0-9 -.,]", preparoCad);
+	scanf("%699[a-zA-Z0-9 -.,]", cad.preparoCad);
 	getchar();
 	printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15): ");
-	scanf("%[0-9:]", tempoCad);
+	scanf("%5[0-9:]", cad.tempoCad);
 	getchar();
 	printf("| Quantas porções ela rende: ");
-	scanf("%[0-9]", porcaoCad);
+	scanf("%2[0-9]", cad.porcaoCad);
 	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
