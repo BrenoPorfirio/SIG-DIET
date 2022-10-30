@@ -23,16 +23,19 @@ char modulo_clientes(void){
 	getchar();
 	return esc;
 }
+typedef struct cliente Cliente;
 
-struct cliente{
-	char cpf[12];
-	char nome[61];
-	char telefone[20];
-	char email[40];
-};
+Cliente *cadastro();
 
 void modulo_cad_clientes(void){
-	struct cliente cl;
+	Cliente* cl;
+	cl = cadastro();
+	free(cl);
+}
+
+Cliente *cadastro(void) {
+	Cliente* cl;
+	cl = (Cliente*) malloc(sizeof(Cliente));
 	int valtele;
 	char valNome;
 	int validaCpf;
@@ -44,34 +47,34 @@ void modulo_cad_clientes(void){
 	printf("\n|                          -> CADASTRO DE CLIENTES <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| CPF do cliente(somente números): ");
-	scanf("%[0-9]", cl.cpf);
+	scanf("%[0-9]", cl->cpf);
 	getchar();
-	validaCpf = validaCPF(cl.cpf);
+	validaCpf = validaCPF(cl->cpf);
 	if ((validaCpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
 		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
 	}
 	printf("\n| Nome completo: ");
-	scanf("%s", cl.nome);
+	scanf("%s[a-z A-Z]", cl->nome);
 	getchar();
-	valNome = validarNome(cl.nome);
+	valNome = validarNome(cl->nome);
 	if ((valNome) == 1){
 		printf("| NOME OK!");
 	} else {
 		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
 	}
 	printf("\n| Telefone(somente números): ");
-	scanf("%[0-9()]", cl.telefone);
+	scanf("%[0-9()]", cl->telefone);
 	getchar();
-	valtele = validaTele(cl.telefone);
+	valtele = validaTele(cl->telefone);
 	if ((valtele) == 1){
 		printf("| NÚMERO CORRETO ! ");
 	} else {
 		printf("| NÚMERO INCORRETO ! ");
 	}
 	printf("\n| E-mail: ");
-	scanf("%[a-zA-Z@.0-9_-]", cl.email);
+	scanf("%[a-zA-Z@.0-9_-]", cl->email);
 	getchar();
 	printf("\n| Informe sua data de nascimento: ");
 	printf("\n| Dia: ");
@@ -108,44 +111,45 @@ void modulo_cad_clientes(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return cl;
 }
 
 void modulo_ver_clientes(void){
-	struct cliente cl;
+	struct cliente Cliente;
 	int vercpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> LEITURA DE CLIENTES <-                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente: ");
-	scanf("%[0-9]", cl.cpf);
+	scanf("%[0-9]", Cliente.cpf);
 	getchar();
-	vercpf = validaCPF(cl.cpf);
+	vercpf = validaCPF(Cliente.cpf);
 	if ((vercpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
 		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
 	}
-	printf("| CPF: %s", cl.cpf);
-	printf("\n| Nome: %s", cl.nome);
-	printf("\n| Telefone: %s", cl.telefone);
-	printf("\n| Email: %s", cl.email);
+	printf("| CPF: %s", Cliente.cpf);
+	printf("\n| Nome: %s", Cliente.nome);
+	printf("\n| Telefone: %s", Cliente.telefone);
+	printf("\n| Email: %s", Cliente.email);
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void modulo_mod_clientes(void){
-	char cpf[12];
+	struct cliente Cliente;
 	int modcpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                    -> MODIFICAÇÃO DE DADOS DO CLIENTES <-                    |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF que deseja modificar os dados do cliente: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Cliente.cpf);
 	getchar();
-	modcpf = validaCPF(cpf);
+	modcpf = validaCPF(Cliente.cpf);
 	if ((modcpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -157,16 +161,16 @@ void modulo_mod_clientes(void){
 }
 
 void modulo_del_clientes(void){
-	char cpf[12];
+	struct cliente Cliente;
 	int delcpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE CLIENTES <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja deletar: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Cliente.cpf);
 	getchar();
-	delcpf = validaCPF(cpf);
+	delcpf = validaCPF(Cliente.cpf);
 	if ((delcpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
