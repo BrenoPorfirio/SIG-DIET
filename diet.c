@@ -24,17 +24,27 @@ char modulo_diet(void){
 	return esc;
 }
 
+typedef struct diet Diet;
+Diet *cadastroDT();
+
 void modulo_iniciar_diet(void){
-	char cpf[12];
+	Diet* dt;
+	dt = cadastroDT();
+	free(dt);
+}
+
+Diet *cadastroDT(void){
+	Diet* dt;
+	dt = (Diet*) malloc(sizeof(Diet));
 	int idcpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                            -> INICIAR DIETA <-                                |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|Informe seu CPF para podermos dar início a sua dieta: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", dt->cpf);
 	getchar();
-	idcpf = validaCPF(cpf);
+	idcpf = validaCPF(dt->cpf);
 	if ((idcpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -57,19 +67,20 @@ void modulo_iniciar_diet(void){
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| -> Pressione ENTER para continuar<-");
 	getchar();
+	return dt;
 }
 
 void modulo_acompanha_diet(void){
-	char cpf[12];
+	struct diet Diet;
 	int cpfACD;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                            -> ACOMPANHAR DIETA <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Informe seu CPF para acompanhar sua dieta: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Diet.cpf);
 	getchar();
-	cpfACD = validaCPF(cpf);
+	cpfACD = validaCPF(Diet.cpf);
 	if ((cpfACD) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -86,7 +97,7 @@ void modulo_acompanha_diet(void){
 }
 
 void modulo_edit_diet(void){
-	char cpf[12], nome[30];
+	struct diet Diet;
 	int cpfED;
 	int valiNmD;
 	system("clear||cls");
@@ -94,9 +105,9 @@ void modulo_edit_diet(void){
 	printf("\n|                            -> EDITAR DIETA <-                                 |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Informe seu CPF para editar sua dieta: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Diet.cpf);
 	getchar();
-	cpfED = validaCPF(cpf);
+	cpfED = validaCPF(Diet.cpf);
 	if ((cpfED) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -104,9 +115,9 @@ void modulo_edit_diet(void){
 	}
 	// aqui será o módulo onde editaremos uma dieta caso ela não esteja funcionando.
 	printf("\n| INFORME O NOME DA DIETA QUE NÃO FOI FUNCIONAL: ");
-	scanf("%s", nome);
+	scanf("%s", Diet.nome);
 	getchar();
-	valiNmD = validarNome(nome);
+	valiNmD = validarNome(Diet.nome);
 	if ((valiNmD) == 1){
 		printf("| NOME OK!");
 	} else {
@@ -122,16 +133,16 @@ void modulo_edit_diet(void){
 }
 
 void modulo_delet_diet(void){
-	char cpf[12];
+	struct diet Diet;
 	int cpfDE;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                             -> DELETAR DIETA <-                              |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira CPF do cliente que deseja deletar dieta: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Diet.cpf);
 	getchar();
-	cpfDE = validaCPF(cpf);
+	cpfDE = validaCPF(Diet.cpf);
 	if ((cpfDE) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
