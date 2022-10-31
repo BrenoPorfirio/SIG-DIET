@@ -6,16 +6,6 @@
 //
 //MODULO ACOMPANHAMENTO
 //
-
-struct acompanhamento {
-	char acMedCintura[8]; 
-	char acMedQuadril[8]; 
-	char acMedbicepsD[7]; 
-	char acMedbicepsE[7]; 
-	char acMedpernaD[7]; 
-	char acMedpernaE[7];
-};
-
 char modulo_acompanhamento(void){
 	char esc;
 	system("clear||cls");
@@ -35,8 +25,19 @@ char modulo_acompanhamento(void){
 	getchar();
 	return esc;
 }
+
+typedef struct acompanhamento Acompanhamento;
+Acompanhamento *cadastroAC();
+
 void modulo_cad_acompanhamento(void){
-	struct acompanhamento cad;
+	Acompanhamento* ac;
+	ac = cadastroAC();
+	free(ac);
+}
+
+Acompanhamento *cadastroAC(void){
+	Acompanhamento* ac;
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	//float imc;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -45,40 +46,41 @@ void modulo_cad_acompanhamento(void){
 	//printf("\n| Seu IMC atual %f=", imc); //apontador para IMC informado no cadastro do cliente
 	getchar();
 	printf("| Cadastre a medida da cintura atual: ");
-	scanf("%7[0-9.,]", cad.acMedCintura);
+	scanf("%7[0-9.,]", ac->acMedCintura);
 	getchar();
 	printf("| Cadastre a medida do quadril atual: ");
-	scanf("%7[0-9.,]", cad.acMedQuadril);
+	scanf("%7[0-9.,]", ac->acMedQuadril);
 	getchar();
 	printf("| Cadastre a medida do bíceps direito atual: ");
-	scanf("%6[0-9.,]", cad.acMedbicepsD);
+	scanf("%6[0-9.,]", ac->acMedbicepsD);
 	getchar();
 	printf("| Cadastre a medida do bíceps esquerdo atual: ");
-	scanf("%6[0-9.,]", cad.acMedbicepsE);
+	scanf("%6[0-9.,]", ac->acMedbicepsE);
 	getchar();
 	printf("| Cadastre a medida da coxa direita atual: ");
-	scanf("%6[0-9.,]", cad.acMedpernaD);
+	scanf("%6[0-9.,]", ac->acMedpernaD);
 	getchar();
 	printf("| Cadastre a medida da coxa esquerda atual: ");
-	scanf("%6[0-9.,]", cad.acMedpernaE);
+	scanf("%6[0-9.,]", ac->acMedpernaE);
 	printf("| MEDIDAS CADASTRADAS COM SUCESSO !");
 	getchar();
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+	return ac;
 }
 
 void modulo_ver_acompanhamento(void){
-	char cpf[12];
+	struct acompanhamento Acompanhamento;
 	int verAvalia;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                            -> CONSULTAR AVALIAÇÃO <-                          |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja ver informações: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Acompanhamento.cpf);
 	getchar();
-	verAvalia = validaCPF(cpf);
+	verAvalia = validaCPF(Acompanhamento.cpf);
 	if ((verAvalia) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -90,16 +92,16 @@ void modulo_ver_acompanhamento(void){
 }
 
 void modulo_mod_acompanhamento(void){
-	char cpf[12];
+	struct acompanhamento Acompanhamento;
 	int modAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                           -> MODIFICAR AVALIAÇÃO <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja modificar avaliação: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Acompanhamento.cpf);
 	getchar();
-	modAC = validaCPF(cpf);
+	modAC = validaCPF(Acompanhamento.cpf);
 	if ((modAC) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -111,16 +113,16 @@ void modulo_mod_acompanhamento(void){
 }
 
 void modulo_del_acompanhamento(void){
-	char cpf[12];
+	struct acompanhamento Acompanhamento;
 	int delAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                             -> DELETAR AVALIAÇÃO <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira CPF do cliente que deseja deletar avaliação: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Acompanhamento.cpf);
 	getchar();
-	delAC = validaCPF(cpf);
+	delAC = validaCPF(Acompanhamento.cpf);
 	if ((delAC) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -131,16 +133,16 @@ void modulo_del_acompanhamento(void){
 	getchar();
 }
 void modulo_orienta(void){ //AQUI SERÃO APRESENTADAS ORIENTAÇÕES DESTINADAS A DIETA FÍSICA
-	char cpf[12];
+	struct acompanhamento Acompanhamento;
 	int orientAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                              -> ORIENTAÇÕES <-                                |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|Informe o CPF do cliente para análise dos dados e indicações relacionadas ao físico: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Acompanhamento.cpf);
 	getchar();
-	orientAC = validaCPF(cpf);
+	orientAC = validaCPF(Acompanhamento.cpf);
 	if ((orientAC) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -151,16 +153,16 @@ void modulo_orienta(void){ //AQUI SERÃO APRESENTADAS ORIENTAÇÕES DESTINADAS A
 	getchar();
 }
 void modulo_historico(void){ //LISTAGEM DE TODOS OS DADOS DO CLIENTE JUNTO DAS DATAS
-	char cpf[12];
+	struct acompanhamento Acompanhamento;
 	int histAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                              -> HISTÓRICO <-                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|Informe o CPF do cliente para mostrar todo seu histórico: ");
-	scanf("%[0-9]", cpf);
+	scanf("%[0-9]", Acompanhamento.cpf);
 	getchar();
-	histAC = validaCPF(cpf);
+	histAC = validaCPF(Acompanhamento.cpf);
 	if ((histAC) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
