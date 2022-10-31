@@ -6,7 +6,7 @@
 //
 //MODULO ACOMPANHAMENTO
 //
-char modulo_acompanhamento(void){
+char moduloAcompanhamento(void){
 	char esc;
 	system("clear||cls");
 	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -29,7 +29,7 @@ char modulo_acompanhamento(void){
 typedef struct acompanhamento Acompanhamento;
 Acompanhamento *cadastroAC();
 
-void modulo_cad_acompanhamento(void){
+void cadAcompanhamento(void){
 	Acompanhamento* ac;
 	ac = cadastroAC();
 	free(ac);
@@ -70,7 +70,7 @@ Acompanhamento *cadastroAC(void){
 	return ac;
 }
 
-void modulo_ver_acompanhamento(void){
+void verAcompanhamento(void){
 	struct acompanhamento Acompanhamento;
 	int verAvalia;
 	system("clear||cls");
@@ -91,7 +91,7 @@ void modulo_ver_acompanhamento(void){
 	getchar();
 }
 
-void modulo_mod_acompanhamento(void){
+void modAcompanhamento(void){
 	struct acompanhamento Acompanhamento;
 	int modAC;
 	system("clear||cls");
@@ -112,7 +112,7 @@ void modulo_mod_acompanhamento(void){
 	getchar();
 }
 
-void modulo_del_acompanhamento(void){
+void delAcompanhamento(void){
 	struct acompanhamento Acompanhamento;
 	int delAC;
 	system("clear||cls");
@@ -132,7 +132,7 @@ void modulo_del_acompanhamento(void){
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
-void modulo_orienta(void){ //AQUI SERÃO APRESENTADAS ORIENTAÇÕES DESTINADAS A DIETA FÍSICA
+void orienta(void){ //AQUI SERÃO APRESENTADAS ORIENTAÇÕES DESTINADAS A DIETA FÍSICA
 	struct acompanhamento Acompanhamento;
 	int orientAC;
 	system("clear||cls");
@@ -152,7 +152,7 @@ void modulo_orienta(void){ //AQUI SERÃO APRESENTADAS ORIENTAÇÕES DESTINADAS A
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
-void modulo_historico(void){ //LISTAGEM DE TODOS OS DADOS DO CLIENTE JUNTO DAS DATAS
+void historico(void){ //LISTAGEM DE TODOS OS DADOS DO CLIENTE JUNTO DAS DATAS
 	struct acompanhamento Acompanhamento;
 	int histAC;
 	system("clear||cls");

@@ -6,7 +6,7 @@
 //
 //MODULO CLIENTES:
 //
-char modulo_clientes(void){
+char moduloClientes(void){
 	char esc;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -27,7 +27,7 @@ typedef struct cliente Cliente;
 
 Cliente *cadastro();
 
-void modulo_cad_clientes(void){
+void cadClientes(void){
 	Cliente* cl;
 	cl = cadastro();
 	free(cl);
@@ -114,7 +114,7 @@ Cliente *cadastro(void) {
 	return cl;
 }
 
-void modulo_ver_clientes(void){
+void verClientes(void){
 	struct cliente Cliente;
 	int vercpf;
 	system("clear||cls");
@@ -139,7 +139,7 @@ void modulo_ver_clientes(void){
 	getchar();
 }
 
-void modulo_mod_clientes(void){
+void modClientes(void){
 	struct cliente Cliente;
 	int modcpf;
 	system("clear||cls");
@@ -160,7 +160,7 @@ void modulo_mod_clientes(void){
 	getchar();
 }
 
-void modulo_del_clientes(void){
+void delClientes(void){
 	struct cliente Cliente;
 	int delcpf;
 	system("clear||cls");

@@ -1,8 +1,8 @@
-char modulo_receitas(void);
-void modulo_cad_receitas(void);
-void modulo_ver_receitas(void);
-void modulo_mod_receitas(void);
-void modulo_del_receitas(void);
+char moduloReceitas(void);
+void cadReceitas(void);
+void verReceitas(void);
+void modReceitas(void);
+void delReceitas(void);
 
 typedef struct receitas Receitas;
 struct receitas {
@@ -12,4 +12,4 @@ struct receitas {
 	char porcaoCad[3];
 	char nome[70];
 };
-char modulo_receitas();
+char moduloReceitas();

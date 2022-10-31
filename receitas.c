@@ -7,7 +7,7 @@
 //MODULO RECEITAS
 //
 
-char modulo_receitas(void){
+char moduloReceitas(void){
 	char esc;
 	system("clear||cls");
 	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -28,7 +28,7 @@ char modulo_receitas(void){
 typedef struct receitas Receitas;
 Receitas *cadastroRC();
 
-void modulo_cad_receitas(void){
+void cadReceitas(void){
 	Receitas* rc;
 	rc = cadastroRC();
 	free(rc);
@@ -69,7 +69,7 @@ Receitas *cadastroRC(void){
 	return rc;
 }
 
-void modulo_ver_receitas(void){
+void verReceitas(void){
 	struct receitas Receitas;
 	int valiNmV;
 	system("clear||cls");
@@ -90,7 +90,7 @@ void modulo_ver_receitas(void){
 	getchar();
 }
 
-void modulo_mod_receitas(void){
+void modReceitas(void){
 	struct receitas Receitas;
 	int valiNmRD;
 	system("clear||cls");
@@ -111,7 +111,7 @@ void modulo_mod_receitas(void){
 	getchar();
 }
 
-void modulo_del_receitas(void){
+void delReceitas(void){
 	struct receitas Receitas;
 	int valiNmDR;
 	system("clear||cls");

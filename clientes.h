@@ -1,4 +1,4 @@
-char modulo_clientes(void);
+char moduloClientes(void);
 typedef struct cliente Cliente;
 struct cliente{
 	char cpf[12];
@@ -7,7 +7,7 @@ struct cliente{
 	char email[40];
 };
 Cliente *cadastro();
-void modulo_cad_clientes(void);
-void modulo_ver_clientes(void);
-void modulo_mod_clientes(void);
-void modulo_del_clientes(void);
+void cadClientes(void);
+void verClientes(void);
+void modClientes(void);
+void delClientes(void);

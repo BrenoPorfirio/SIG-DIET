@@ -6,7 +6,7 @@
 //
 //MODULO DIETAS
 //
-char modulo_diet(void){
+char moduloDiet(void){
 	char esc;
 	system("clear||cls");
 	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -27,7 +27,7 @@ char modulo_diet(void){
 typedef struct diet Diet;
 Diet *cadastroDT();
 
-void modulo_iniciar_diet(void){
+void iniciarDiet(void){
 	Diet* dt;
 	dt = cadastroDT();
 	free(dt);
@@ -70,7 +70,7 @@ Diet *cadastroDT(void){
 	return dt;
 }
 
-void modulo_acompanha_diet(void){
+void acompanhaDiet(void){
 	struct diet Diet;
 	int cpfACD;
 	system("clear||cls");
@@ -96,7 +96,7 @@ void modulo_acompanha_diet(void){
 	getchar();	
 }
 
-void modulo_edit_diet(void){
+void editDiet(void){
 	struct diet Diet;
 	int cpfED;
 	int valiNmD;
@@ -132,7 +132,7 @@ void modulo_edit_diet(void){
 	getchar();	
 }
 
-void modulo_delet_diet(void){
+void deletDiet(void){
 	struct diet Diet;
 	int cpfDE;
 	system("clear||cls");

@@ -18,88 +18,88 @@
 //|=================================================================================|
 
 //MODULOS DAS FUNCOES
-void modulo_menu(void);
-int modulo_principal(void);
+void moduloMenu(void);
+int moduloPrincipal(void);
 
 //INICIO DO PROGRAMA
 int main(void){
 	int num;
 	char esc;
 	do {
-		num = modulo_principal();
+		num = moduloPrincipal();
 		if (num==1){
 			do{
-				esc = modulo_clientes();
+				esc = moduloClientes();
 				if (esc=='1'){
-					modulo_cad_clientes();
+					cadClientes();
 				}
 				else if (esc=='2'){
-					modulo_ver_clientes();
+					verClientes();
 				}
 				else if (esc=='3'){
-					modulo_mod_clientes();
+					modClientes();
 				}
 				else if (esc=='4'){
-					modulo_del_clientes();
+					delClientes();
 				}
 			} while (esc!='0');
 		}
 		else if (num==2){
 			do {
-				esc = modulo_acompanhamento();
+				esc = moduloAcompanhamento();
 				if (esc=='1'){
-					modulo_cad_acompanhamento();
+					cadAcompanhamento();
 				}
 				else if (esc=='2'){
-					modulo_ver_acompanhamento();
+					verAcompanhamento();
 				}
 				else if (esc=='3'){
-					modulo_mod_acompanhamento();
+					modAcompanhamento();
 				}
 				else if (esc=='4'){
-					modulo_del_acompanhamento();
+					delAcompanhamento();
 				}
 				else if (esc=='5'){
-					modulo_orienta();
+					orienta();
 				}
 				else if (esc=='6'){
-					modulo_historico();
+					historico();
 				}
 			} while (esc!='0');
 		}
 		else if (num==3){
 			do {
-				esc = modulo_receitas();
+				esc = moduloReceitas();
 				if (esc=='1'){
-					modulo_cad_receitas();
+					cadReceitas();
 				}
 				else if (esc=='2'){
-					modulo_ver_receitas();
+					verReceitas();
 				}
 				else if (esc=='3'){
-					modulo_mod_receitas();
+					modReceitas();
 				}
 				else if (esc=='4'){
-					modulo_del_receitas();
+					delReceitas();
 				}
 			} while (esc!='0');
 		}
 		else if (num==4){
 			do{
-				esc = modulo_diet();
+				esc = moduloDiet();
 				if (esc=='1'){
-					modulo_iniciar_diet();
+					iniciarDiet();
 				} else if (esc=='2'){
-					modulo_acompanha_diet();
+					acompanhaDiet();
 				} else if (esc=='3'){
-					modulo_edit_diet();
+					editDiet();
 				} else if (esc=='4'){
-					modulo_delet_diet();
+					deletDiet();
 				}
 			} while (esc!='0');
 		}
 		else if (num==5){
-			modulo_menu();
+			moduloMenu();
 		}
 		else if (num==0){
 			printf("\nObrigado por usar nosso programa, até mais");
@@ -110,7 +110,7 @@ int main(void){
 
 //DEFININDO MODULOS
 //MODULO DE MENU:
-void modulo_menu(void){
+void moduloMenu(void){
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Projeto: SIG-DietPlan                       |");
@@ -142,7 +142,7 @@ void modulo_menu(void){
 }
 
 //MODULO PRINCIPAL
-int modulo_principal(void){
+int moduloPrincipal(void){
 	int num;
 	system("clear||cls");
 	printf("\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
