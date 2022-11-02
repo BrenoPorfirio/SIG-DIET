@@ -6,6 +6,9 @@
 //
 //MODULO ACOMPANHAMENTO
 //
+
+typedef struct acompanhamento Acompanhamento;
+
 char moduloAcompanhamento(void){
 	char esc;
 	system("clear||cls");
@@ -26,12 +29,11 @@ char moduloAcompanhamento(void){
 	return esc;
 }
 
-typedef struct acompanhamento Acompanhamento;
-Acompanhamento *cadastroAC();
 
 void cadAcompanhamento(void){
 	Acompanhamento* ac;
 	ac = cadastroAC();
+	// gravar
 	free(ac);
 }
 
@@ -71,16 +73,17 @@ Acompanhamento *cadastroAC(void){
 }
 
 void verAcompanhamento(void){
-	struct acompanhamento Acompanhamento;
+	Acompanhamento* ac;
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	int verAvalia;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                            -> CONSULTAR AVALIAÇÃO <-                          |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja ver informações: ");
-	scanf("%[0-9]", Acompanhamento.cpf);
+	scanf("%[0-9]", ac->cpf);
 	getchar();
-	verAvalia = validaCPF(Acompanhamento.cpf);
+	verAvalia = validaCPF(ac->cpf);
 	if ((verAvalia) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -92,16 +95,17 @@ void verAcompanhamento(void){
 }
 
 void modAcompanhamento(void){
-	struct acompanhamento Acompanhamento;
+	Acompanhamento* ac;
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	int modAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                           -> MODIFICAR AVALIAÇÃO <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja modificar avaliação: ");
-	scanf("%[0-9]", Acompanhamento.cpf);
+	scanf("%[0-9]", ac->cpf);
 	getchar();
-	modAC = validaCPF(Acompanhamento.cpf);
+	modAC = validaCPF(ac->cpf);
 	if ((modAC) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -113,16 +117,17 @@ void modAcompanhamento(void){
 }
 
 void delAcompanhamento(void){
-	struct acompanhamento Acompanhamento;
+	Acompanhamento* ac;
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	int delAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                             -> DELETAR AVALIAÇÃO <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira CPF do cliente que deseja deletar avaliação: ");
-	scanf("%[0-9]", Acompanhamento.cpf);
+	scanf("%[0-9]", ac->cpf);
 	getchar();
-	delAC = validaCPF(Acompanhamento.cpf);
+	delAC = validaCPF(ac->cpf);
 	if ((delAC) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -133,16 +138,17 @@ void delAcompanhamento(void){
 	getchar();
 }
 void orienta(void){ //AQUI SERÃO APRESENTADAS ORIENTAÇÕES DESTINADAS A DIETA FÍSICA
-	struct acompanhamento Acompanhamento;
+	Acompanhamento* ac;
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	int orientAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                              -> ORIENTAÇÕES <-                                |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|Informe o CPF do cliente para análise dos dados e indicações relacionadas ao físico: ");
-	scanf("%[0-9]", Acompanhamento.cpf);
+	scanf("%[0-9]", ac->cpf);
 	getchar();
-	orientAC = validaCPF(Acompanhamento.cpf);
+	orientAC = validaCPF(ac->cpf);
 	if ((orientAC) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -153,16 +159,17 @@ void orienta(void){ //AQUI SERÃO APRESENTADAS ORIENTAÇÕES DESTINADAS A DIETA 
 	getchar();
 }
 void historico(void){ //LISTAGEM DE TODOS OS DADOS DO CLIENTE JUNTO DAS DATAS
-	struct acompanhamento Acompanhamento;
+	Acompanhamento* ac;
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	int histAC;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                              -> HISTÓRICO <-                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|Informe o CPF do cliente para mostrar todo seu histórico: ");
-	scanf("%[0-9]", Acompanhamento.cpf);
+	scanf("%[0-9]",ac->cpf);
 	getchar();
-	histAC = validaCPF(Acompanhamento.cpf);
+	histAC = validaCPF(ac->cpf);
 	if ((histAC) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {

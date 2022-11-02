@@ -82,6 +82,8 @@ int testaLetra(char c){
     return 1;
   } else if (c >= 'a' && c <= 'z'){
     return 1;
+  } else if (c == ' '){
+    return 1;
   } else {
     return 0;
   }
@@ -90,6 +92,7 @@ int testaLetra(char c){
 int validarNome(char *nome){
   for (int i=0; nome[i]!='\0'; i++){
     if (!testaLetra(nome[i])){
+      printf("<%c>", nome[i]);
       return 0;
     }
   }

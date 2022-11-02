@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "clientes.h"
 #include "funcoes.h"
+
 
 //
 //MODULO CLIENTES:
@@ -42,6 +44,7 @@ Cliente *cadastro(void) {
 	int dataValida;
   	int dia, mes, ano;
 	float imc, peso, altura;
+	int tam;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> CADASTRO DE CLIENTES <-                           |");
@@ -56,8 +59,11 @@ Cliente *cadastro(void) {
 		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
 	}
 	printf("\n| Nome completo: ");
-	scanf("%s[a-z A-Z]", cl->nome);
-	getchar();
+	//scanf("%s[a-z A-Z]", cl->nome);
+	fgets(cl->nome, 60, stdin);
+	tam = strlen(cl->nome);
+	cl->nome[tam-1] = '\0';
+	//getchar();
 	valNome = validarNome(cl->nome);
 	if ((valNome) == 1){
 		printf("| NOME OK!");
@@ -115,41 +121,43 @@ Cliente *cadastro(void) {
 }
 
 void verClientes(void){
-	struct cliente Cliente;
+	Cliente* cl;
+	cl = (Cliente*) malloc(sizeof(Cliente));	
 	int vercpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> LEITURA DE CLIENTES <-                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente: ");
-	scanf("%[0-9]", Cliente.cpf);
+	scanf("%[0-9]", cl->cpf);
 	getchar();
-	vercpf = validaCPF(Cliente.cpf);
+	vercpf = validaCPF(cl->cpf);
 	if ((vercpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
 		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
 	}
-	printf("| CPF: %s", Cliente.cpf);
-	printf("\n| Nome: %s", Cliente.nome);
-	printf("\n| Telefone: %s", Cliente.telefone);
-	printf("\n| Email: %s", Cliente.email);
+	printf("| CPF: %s", cl->cpf);
+	printf("\n| Nome: %s", cl->nome);
+	printf("\n| Telefone: %s", cl->telefone);
+	printf("\n| Email: %s", cl->email);
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void modClientes(void){
-	struct cliente Cliente;
+	Cliente* cl;
+	cl = (Cliente*) malloc(sizeof(Cliente));	
 	int modcpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                    -> MODIFICAÇÃO DE DADOS DO CLIENTES <-                    |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF que deseja modificar os dados do cliente: ");
-	scanf("%[0-9]", Cliente.cpf);
+	scanf("%[0-9]", cl->cpf);
 	getchar();
-	modcpf = validaCPF(Cliente.cpf);
+	modcpf = validaCPF(cl->cpf);
 	if ((modcpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {
@@ -161,16 +169,17 @@ void modClientes(void){
 }
 
 void delClientes(void){
-	struct cliente Cliente;
+	Cliente* cl;
+	cl = (Cliente*) malloc(sizeof(Cliente));	
 	int delcpf;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE CLIENTES <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja deletar: ");
-	scanf("%[0-9]", Cliente.cpf);
+	scanf("%[0-9]", cl->cpf);
 	getchar();
-	delcpf = validaCPF(Cliente.cpf);
+	delcpf = validaCPF(cl->cpf);
 	if ((delcpf) == 1){
 		printf("| CPF ACEITO E CORRETO");
 	} else {

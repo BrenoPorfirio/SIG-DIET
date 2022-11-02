@@ -70,16 +70,17 @@ Receitas *cadastroRC(void){
 }
 
 void verReceitas(void){
-	struct receitas Receitas;
+	Receitas* rc;
+	rc = (Receitas*) malloc(sizeof(Receitas));	
 	int valiNmV;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> LEITURA DE RECEITAS <-                            |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que desejar verificar: ");
-	scanf("%s", Receitas.nome);
+	scanf("%s", rc->nome);
 	getchar();
-	valiNmV = validarNome(Receitas.nome);
+	valiNmV = validarNome(rc->nome);
 	if ((valiNmV) == 1){
 		printf("| NOME OK!");
 	} else {
@@ -91,16 +92,17 @@ void verReceitas(void){
 }
 
 void modReceitas(void){
-	struct receitas Receitas;
+	Receitas* rc;
+	rc = (Receitas*) malloc(sizeof(Receitas));	
 	int valiNmRD;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> MODIFICAÇÃO DE RECEITAS <-                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja modificar: ");
-	scanf("%s", Receitas.nome);
+	scanf("%s", rc->nome);
 	getchar();
-	valiNmRD = validarNome(Receitas.nome);
+	valiNmRD = validarNome(rc->nome);
 	if ((valiNmRD) == 1){
 		printf("| NOME OK!");
 	} else {
@@ -112,16 +114,16 @@ void modReceitas(void){
 }
 
 void delReceitas(void){
-	struct receitas Receitas;
-	int valiNmDR;
+	Receitas* rc;
+	rc = (Receitas*) malloc(sizeof(Receitas));	int valiNmDR;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE RECEITAS <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o nome da receita que deseja deletar: ");
-	scanf("%s", Receitas.nome);
+	scanf("%s", rc->nome);
 	getchar();
-	valiNmDR = validarNome(Receitas.nome);
+	valiNmDR = validarNome(rc->nome);
 	if ((valiNmDR) == 1){
 		printf("| NOME OK!");
 	} else {
