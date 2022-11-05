@@ -29,9 +29,17 @@ typedef struct cliente Cliente;
 
 Cliente *cadastro();
 
+
 void cadClientes(void){
 	Cliente* cl;
 	cl = cadastro();
+	gravaClientes(cl);
+	free(cl);
+}
+void verClientes(void){
+	Cliente* cl;
+	cl = buscaCliente();
+	VCliente(cl);
 	free(cl);
 }
 
@@ -120,30 +128,59 @@ Cliente *cadastro(void) {
 	return cl;
 }
 
-void verClientes(void){
-	Cliente* cl;
-	cl = (Cliente*) malloc(sizeof(Cliente));	
-	int vercpf;
-	system("clear||cls");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                          -> LEITURA DE CLIENTES <-                            |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF do cliente: ");
-	scanf("%[0-9]", cl->cpf);
-	getchar();
-	vercpf = validaCPF(cl->cpf);
-	if ((vercpf) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+void gravaClientes(Cliente* cl){
+	FILE* CLI;
+	CLI = fopen("clientes.dat", "ab");
+	if (CLI == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
 	}
-	printf("| CPF: %s", cl->cpf);
-	printf("\n| Nome: %s", cl->nome);
-	printf("\n| Telefone: %s", cl->telefone);
-	printf("\n| Email: %s", cl->email);
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n->Pressione ENTER para continuar<-");
-	getchar();
+	fwrite(cl, sizeof(Cliente), 1, CLI);
+	fclose(CLI);
+}
+
+Cliente* buscaCliente(void){
+	FILE* CLI;
+	Cliente* cl;
+	char cpf[12];
+	printf("Informe o CPF: ");
+	scanf("%s", cpf);
+	cl = (Cliente*) malloc(sizeof(Cliente));
+	CLI = fopen("clientes.dat", "rb");
+	if (CLI == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	while(!feof(CLI)){
+		fread(cl, sizeof(Cliente), 1, CLI);
+		if (!strcmp(cl->cpf, cpf)){
+			fclose(CLI);
+			return cl;
+		}
+	}
+	fclose(CLI);
+	return NULL;
+}
+
+void VCliente(Cliente* cl){
+	if ((cl != NULL)){
+		system("clear||cls");
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n|                          -> LEITURA DE CLIENTES <-                            |");
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n| CPF: %s", cl->cpf);
+		printf("\n| Nome: %s", cl->nome);
+		printf("\n| Telefone: %s", cl->telefone);
+		printf("\n| Email: %s", cl->email);
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n->Pressione ENTER para continuar<-");
+		getchar();
+	} else {
+		printf("Cliente não existe");
+		getchar();
+	}
 }
 
 void modClientes(void){
