@@ -177,6 +177,7 @@ void VCliente(Cliente* cl){
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 		printf("\n->Pressione ENTER para continuar<-");
 		getchar();
+		getchar();
 	} else {
 		printf("Cliente não existe");
 		getchar();
