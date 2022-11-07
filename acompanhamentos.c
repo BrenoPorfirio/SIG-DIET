@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "acompanhamentos.h"
 #include "funcoes.h"
 
@@ -33,12 +34,20 @@ char moduloAcompanhamento(void){
 void cadAcompanhamento(void){
 	Acompanhamento* ac;
 	ac = cadastroAC();
-	// gravar
+	gravaAcompanhamento(ac);
+	free(ac);
+}
+
+void verAcompanhamento(void){
+	Acompanhamento* ac;
+	ac = buscaAcompanhamento();
+	VAcompanhamento(ac);
 	free(ac);
 }
 
 Acompanhamento *cadastroAC(void){
 	Acompanhamento* ac;
+	int validaCpf;
 	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	//float imc;
 	system("clear||cls");
@@ -46,8 +55,16 @@ Acompanhamento *cadastroAC(void){
 	printf("\n|                        -> AVALIAÇÃO ANTROPOMÉTRICA <-                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	//printf("\n| Seu IMC atual %f=", imc); //apontador para IMC informado no cadastro do cliente
+	printf("\n| CPF do cliente(somente números): ");
+	scanf("%[0-9]", ac->cpf);
 	getchar();
-	printf("| Cadastre a medida da cintura atual: ");
+	validaCpf = validaCPF(ac->cpf);
+	if ((validaCpf) == 1){
+		printf("| CPF ACEITO E CORRETO");
+	} else {
+		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	}
+	printf("\n| Cadastre a medida da cintura atual: ");
 	scanf("%7[0-9.,]", ac->acMedCintura);
 	getchar();
 	printf("| Cadastre a medida do quadril atual: ");
@@ -72,26 +89,63 @@ Acompanhamento *cadastroAC(void){
 	return ac;
 }
 
-void verAcompanhamento(void){
-	Acompanhamento* ac;
-	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
-	int verAvalia;
-	system("clear||cls");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                            -> CONSULTAR AVALIAÇÃO <-                          |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF do cliente que deseja ver informações: ");
-	scanf("%[0-9]", ac->cpf);
-	getchar();
-	verAvalia = validaCPF(ac->cpf);
-	if ((verAvalia) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+void gravaAcompanhamento(Acompanhamento* ac){
+	FILE* ACM;
+	ACM = fopen("acompanhamento.dat", "ab");
+	if (ACM == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
 	}
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n->Pressione ENTER para continuar<-");
-	getchar();
+	fwrite(ac, sizeof(Acompanhamento), 1, ACM);
+	fclose(ACM);
+}
+
+Acompanhamento* buscaAcompanhamento(void){
+	FILE* ACM;
+	Acompanhamento* ac;
+	char cpf[12];
+	printf("Informe o CPF: ");
+	scanf("%s", cpf);
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
+	ACM = fopen("acompanhamento.dat", "rb");
+	if (ACM == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	while(!feof(ACM)){
+		fread(ac, sizeof(Acompanhamento), 1, ACM);
+		if (!strcmp(ac->cpf, cpf)){
+			fclose(ACM);
+			return ac;
+		}
+	}
+	fclose(ACM);
+	return NULL;
+}
+
+void VAcompanhamento(Acompanhamento* ac){
+	if ((ac != NULL)){
+		system("clear||cls");
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n|                          -> LEITURA DE CLIENTES <-                            |");
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n| cpf: %s", ac->cpf);
+		printf("\n| medida da cintura: %s", ac->acMedCintura);
+		printf("\n| medida do quadril: %s", ac->acMedQuadril);
+		printf("\n| medida do bíceps direito: %s", ac->acMedbicepsD);
+		printf("\n| medida do bíceps esquerdo: %s", ac->acMedbicepsE);
+		printf("\n| medida da coxa direita: %s", ac->acMedpernaD);
+		printf("\n| medida da coxa esquerda: %s", ac->acMedpernaE);
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n->Pressione ENTER para continuar<-");
+		getchar();
+		getchar();
+	} else {
+		printf("Cliente não existe");
+		getchar();
+	}
 }
 
 void modAcompanhamento(void){

@@ -17,3 +17,6 @@ struct acompanhamento {
 	char cpf[12];
 };
 Acompanhamento *cadastroAC();
+void gravaAcompanhamento(Acompanhamento*);
+Acompanhamento* buscaAcompanhamento(void);
+void VAcompanhamento(Acompanhamento*);
