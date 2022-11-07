@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "receitas.h"
 #include"funcoes.h"
 
@@ -31,6 +32,14 @@ Receitas *cadastroRC();
 void cadReceitas(void){
 	Receitas* rc;
 	rc = cadastroRC();
+	gravaReceitas(rc);
+	free(rc);
+}
+
+void verReceitas(void){
+	Receitas* rc;
+	rc = buscaReceitas();
+	VReceitas(rc);
 	free(rc);
 }
 
@@ -63,32 +72,70 @@ Receitas *cadastroRC(void){
 	printf("| Quantas porções ela rende: ");
 	scanf("%2[0-9]", rc->porcaoCad);
 	getchar();
+	printf("| Informe o ID da receita: ");
+	scanf("%6[0-9]", rc->id);
+	getchar();
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 	return rc;
 }
 
-void verReceitas(void){
-	Receitas* rc;
-	rc = (Receitas*) malloc(sizeof(Receitas));	
-	int valiNmV;
-	system("clear||cls");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                          -> LEITURA DE RECEITAS <-                            |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da receita que desejar verificar: ");
-	scanf("%s", rc->nome);
-	getchar();
-	valiNmV = validarNome(rc->nome);
-	if ((valiNmV) == 1){
-		printf("| NOME OK!");
-	} else {
-		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
+void gravaReceitas(Receitas* rc){
+	FILE* RCT;
+	RCT = fopen("receitas.dat", "ab");
+	if (RCT == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
 	}
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n->Pressione ENTER para continuar<-");
-	getchar();
+	fwrite(rc, sizeof(Receitas), 1, RCT);
+	fclose(RCT);
+}
+
+Receitas* buscaReceitas(void){
+	FILE* RCT;
+	Receitas* rc;
+	char id[6];
+	printf("\nInforme o id da receita: ");
+	scanf("%s", id);
+	rc = (Receitas*) malloc(sizeof(Receitas));
+	RCT = fopen("receitas.dat", "rb");
+	if (RCT == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	while(!feof(RCT)){
+		fread(rc, sizeof(Receitas), 1, RCT);
+		if (!strcmp(rc->id, id)){
+			fclose(RCT);
+			return rc;
+		}
+	}
+	fclose(RCT);
+	return NULL;
+}
+
+void VReceitas(Receitas* rc){
+	if ((rc != NULL)){
+		system("clear||cls");
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n|                          -> LEITURA DE RECEITAS <-                            |");
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n| Nome: %s", rc->nome);
+		printf("\n| Ingredientes: %s", rc->ingredientesCad);
+		printf("\n| Modo de preparo: %s", rc->preparoCad);
+		printf("\n| Tempo de preparo: %s", rc->tempoCad);
+		printf("\n| Quantidade de porções: %s", rc->porcaoCad);
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n->Pressione ENTER para continuar<-");
+		getchar();
+		getchar();
+	} else {
+		printf("Receita não existe");
+		getchar();
+	}
 }
 
 void modReceitas(void){

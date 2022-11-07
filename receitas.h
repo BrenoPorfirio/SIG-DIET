@@ -11,5 +11,10 @@ struct receitas {
 	char tempoCad[6];
 	char porcaoCad[3];
 	char nome[70];
+	char id[6];
 };
 char moduloReceitas();
+Receitas* cadastroRC();
+void VReceitas(Receitas*);
+void gravaReceitas(Receitas*);
+Receitas* buscaReceitas(void);
