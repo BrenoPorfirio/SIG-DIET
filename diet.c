@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "diet.h"
 #include "funcoes.h"
 
@@ -30,6 +31,14 @@ Diet *cadastroDT();
 void iniciarDiet(void){
 	Diet* dt;
 	dt = cadastroDT();
+	gravaDiet(dt);
+	free(dt);
+}
+
+void acompanhaDiet(void){
+	Diet* dt;
+	dt = buscaDiet();
+	VDiet(dt);;
 	free(dt);
 }
 
@@ -70,31 +79,66 @@ Diet *cadastroDT(void){
 	return dt;
 }
 
-void acompanhaDiet(void){
-	Diet* dt;
-	dt = (Diet*) malloc(sizeof(Diet));	
-	int cpfACD;
-	system("clear||cls");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                            -> ACOMPANHAR DIETA <-                             |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Informe seu CPF para acompanhar sua dieta: ");
-	scanf("%[0-9]", dt->cpf);
-	getchar();
-	cpfACD = validaCPF(dt->cpf);
-	if ((cpfACD) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+void gravaDiet(Diet* dt){
+	FILE* DIT;
+	DIT = fopen("diet.dat", "ab");
+	if (DIT == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
 	}
-	// aqui será o módulo onde veremos se a dieta está funcionando com base no histórico, e suas novas medidas
-	printf("\n| SUA DIETA ESTÁ FUNCIONAL, CONTINUE NELA.");
-	getchar();
-	printf("| SUA DIETA NÃO ESTÁ FUNCIONANDO, TROQUE-A.");
-	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| -> Pressione ENTER para continuar<-");
-	getchar();	
+	fwrite(dt, sizeof(Diet), 1, DIT);
+	fclose(DIT);
+}
+
+Diet* buscaDiet(void){
+	FILE* DIT;
+	Diet* dt;
+	char cpf[12];
+	printf("Informe o CPF: ");
+	scanf("%s", cpf);
+	dt = (Diet*) malloc(sizeof(Diet));
+	DIT = fopen("diet.dat", "rb");
+	if (DIT == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	while(!feof(DIT)){
+		fread(dt, sizeof(Diet), 1, DIT);
+		if (!strcmp(dt->cpf, cpf)){
+			fclose(DIT);
+			return dt;
+		}
+	}
+	fclose(DIT);
+	return NULL;
+}
+
+void VDiet(Diet* dt){
+	if((dt != NULL)){
+		system("clear||cls");
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n|                            -> ACOMPANHAR DIETA <-                             |");
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		//printf("\n| Informe seu CPF para acompanhar sua dieta: ");
+		//scanf("%[0-9]", dt->cpf);
+		//getchar();
+		//cpfACD = validaCPF(dt->cpf);
+		//if ((cpfACD) == 1){
+		//printf("| CPF ACEITO E CORRETO");
+		//} else {
+		//printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+		//}
+		// aqui será o módulo onde veremos se a dieta está funcionando com base no histórico, e suas novas medidas
+		printf("\n| SUA DIETA ESTÁ FUNCIONAL, CONTINUE NELA.");
+		getchar();
+		printf("| SUA DIETA NÃO ESTÁ FUNCIONANDO, TROQUE-A.");
+		getchar();
+		printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+		printf("\n| -> Pressione ENTER para continuar<-");
+		getchar();
+	}
 }
 
 void editDiet(void){

@@ -10,3 +10,6 @@ struct diet {
     char nome[30];
 };
 Diet *cadastroDT();
+void gravaDiet(Diet*);
+Diet* buscaDiet(void);
+void VDiet(Diet*);
