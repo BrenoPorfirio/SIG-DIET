@@ -122,6 +122,7 @@ Cliente *cadastro(void) {
 	} else {
     printf("\n| Resultado: SOBREPESO");
 	}
+	cl->status = 'c';
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
@@ -165,6 +166,7 @@ Cliente* buscaCliente(void){
 }
 
 void VCliente(Cliente* cl){
+	char situacao[20];
 	if ((cl != NULL)){
 		system("clear||cls");
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -174,12 +176,20 @@ void VCliente(Cliente* cl){
 		printf("\n| Nome: %s", cl->nome);
 		printf("\n| Telefone: %s", cl->telefone);
 		printf("\n| Email: %s", cl->email);
+		if (cl->status=='c'){
+			strcpy(situacao, "Cadastrado");
+		}// else if (cl->status=='d'){
+		//	strcpy(situacao, "Desistiu");
+		//} 
+		else {
+			strcpy(situacao, "Não encontrada");
+		}
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 		printf("\n->Pressione ENTER para continuar<-");
 		getchar();
 		getchar();
 	} else {
-		printf("Cliente não existe");
+		printf("Cliente não cadastrado ou inexistente");
 		getchar();
 	}
 }

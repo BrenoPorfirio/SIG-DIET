@@ -5,6 +5,7 @@ struct cliente{
 	char nome[61];
 	char telefone[20];
 	char email[40];
+	char status;
 };
 Cliente *cadastro();
 void gravaClientes(Cliente*);
