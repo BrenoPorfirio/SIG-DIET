@@ -50,7 +50,6 @@ Cliente *cadastro(void) {
 	char valNome;
 	int validaCpf;
 	int dataValida;
-	float imc, peso, altura;
 	int tam;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -111,16 +110,16 @@ Cliente *cadastro(void) {
 	printf("|");
 	printf("\n| Hora de calcularmos seu IMC ");
 	printf("\n| Informe seu peso atual: ");
-	scanf("%f", &peso);
+	scanf("%f", &cl->peso);
 	getchar();
 	printf("| Informe sua altura atual: (EX-> 1.85) ");
-	scanf("%f", &altura);
+	scanf("%f", &cl->altura);
 	getchar();
-	imc = calculoImc(peso, altura);
-	printf("| Resultado do IMC: %f", imc);
-  	if (imc <18.5){
+	cl->imc = calculoImc(cl->peso, cl->altura);
+	printf("| Resultado do IMC: %f", cl->imc);
+  	if (cl->imc <18.5){
     printf("\n| Resultado: ABAIXO DO PESO");  
- 	} else if (imc >= 18.5 && imc <= 24.9){
+ 	} else if (cl->imc >= 18.5 && cl->imc <= 24.9){
     printf("\n| Resultado: PESO IDEAL");
 	} else {
     printf("\n| Resultado: SOBREPESO");
@@ -148,7 +147,7 @@ Cliente* buscaCliente(void){
 	FILE* CLI;
 	Cliente* cl;
 	char cpf[12];
-	printf("Informe o CPF: ");
+	printf("| Informe o CPF: ");
 	scanf("%s", cpf);
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	CLI = fopen("clientes.dat", "rb");
@@ -179,6 +178,7 @@ void VCliente(Cliente* cl){
 		printf("\n| Telefone: %s", cl->telefone);
 		printf("\n| Email: %s", cl->email);
 		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
+		printf("\n| Seu IMC atual:  %f", cl->imc);
 		if (cl->status=='c'){
 			printf("\n| Status: Cadastrado");
 		} else if (cl->status=='d'){
@@ -290,6 +290,22 @@ void modClientes(void){
 			printf("| A data %02d/%02d/%d == OK", cl->dia, cl->mes, cl->ano);
 		}
 		getchar();
+		printf("| Informe seus dados para alterarmos seu IMC: ");
+		printf("\n| Informe seu peso atual: ");
+		scanf("%f", &cl->peso);
+		getchar();
+		printf("| Informe sua altura atual: (EX-> 1.85) ");
+		scanf("%f", &cl->altura);
+		getchar();
+		cl->imc = calculoImc(cl->peso, cl->altura);
+		printf("| Resultado do IMC: %f", cl->imc);
+  		if (cl->imc <18.5){
+    	printf("\n| Resultado: ABAIXO DO PESO");  
+ 		} else if (cl->imc >= 18.5 && cl->imc <= 24.9){
+   		printf("\n| Resultado: PESO IDEAL");
+		} else {
+  	 	printf("\n| Resultado: SOBREPESO");
+		}
 		printf("|");
 		printf("\n| Informe o status do cliente -");
 		printf("\n| (c)adastrado ou (d)esistiu (c|d): ");
