@@ -21,3 +21,5 @@ void verClientes(void);
 void VCliente(Cliente*);
 void modClientes(void);
 void delClientes(void);
+void listaClientes(void);
+void exibeCliente(Cliente*);

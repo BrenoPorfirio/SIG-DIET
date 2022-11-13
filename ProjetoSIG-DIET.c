@@ -42,6 +42,9 @@ int main(void){
 				else if (esc=='4'){
 					delClientes();
 				}
+				else if (esc=='5'){
+					listaClientes();
+				}
 			} while (esc!='0');
 		}
 		else if (num==2){

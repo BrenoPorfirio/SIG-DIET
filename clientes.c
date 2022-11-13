@@ -16,6 +16,7 @@ char moduloClientes(void){
 	printf("\n| 2-Ver Clientes                                                                |");
 	printf("\n| 3-Modificar Cliente                                                           |");
 	printf("\n| 4-Deletar Cliente                                                             |");
+	printf("\n| 5-Listar Clientes                                                             |");
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opção desejada: ");
@@ -383,4 +384,50 @@ void delClientes(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+}
+
+void exibeCliente(Cliente* cl) {
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n| CPF: %s", cl->cpf);
+	printf("\n| Nome: %s", cl->nome);
+	printf("\n| Telefone: %s", cl->telefone);
+	printf("\n| Email: %s", cl->email);
+	printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
+	printf("\n| Seu IMC atual:  %f", cl->imc);
+	if (cl->status=='c'){
+		printf("\n| Status: Cadastrado");
+	} else if (cl->status=='d'){
+		printf("\n| Status: Desistiu");
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n");
+}
+
+
+void listaClientes(void){
+	FILE* CLI;
+	Cliente* cl;
+	char status;
+	CLI = fopen("Clientes.dat", "rb");
+	if (CLI == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                       -> LISTAGEM DE CLIENTES <-                              |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| Deseja ver clientes cadastrados ou que desistiu? (c/d): ");
+	scanf("%c", &status);
+	getchar();
+	cl = (Cliente*) malloc(sizeof(Cliente));
+	while (fread(cl, sizeof(Cliente), 1, CLI)){
+	if ((cl != NULL && cl->status=='c') || (cl != NULL && cl->status=='d')){
+		exibeCliente(cl);
+		}
+	}
+	getchar();
+	free(cl);
+	fclose(CLI);
 }
