@@ -168,7 +168,7 @@ Cliente* buscaCliente(void){
 }
 
 void VCliente(Cliente* cl){
-	if ((cl != NULL)){
+	if ((cl != NULL && cl->status=='c') || (cl != NULL && cl->status=='d')){
 		system("clear||cls");
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 		printf("\n|                          -> LEITURA DE CLIENTES <-                            |");
@@ -183,16 +183,15 @@ void VCliente(Cliente* cl){
 			printf("\n| Status: Cadastrado");
 		} else if (cl->status=='d'){
 			printf("\n| Status: Desistiu");
-		} 
-		else {
+		} else {
 			printf("\n| Não encontrada");
 		}
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 		printf("\n->Pressione ENTER para continuar<-");
 		getchar();
-		getchar();
 	} else {
-		printf("Cliente não cadastrado ou inexistente");
+		printf("| Cliente não cadastrado ou inexistente");
+		getchar();
 		getchar();
 	}
 }
@@ -209,7 +208,6 @@ void modClientes(void){
 	char valNome;
 	int validaCpf;
 	int dataValida;
-  	//int dia, mes, ano;
 	char mCPF[12];
 	CLI = fopen("clientes.dat","r+b");
 	if (CLI == NULL){
@@ -330,22 +328,58 @@ void modClientes(void){
 }
 
 void delClientes(void){
+	FILE* CLI;
 	Cliente* cl;
-	cl = (Cliente*) malloc(sizeof(Cliente));	
-	int delcpf;
+	long int menosum = -1;
+	char escolha;
+	int achou;
+	char dCPF[12];
+	CLI = fopen("clientes.dat","r+b");
+	if (CLI == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE CLIENTES <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Insira o CPF do cliente que deseja deletar: ");
-	scanf("%[0-9]", cl->cpf);
+	scanf("%11[^\n]", dCPF);
 	getchar();
-	delcpf = validaCPF(cl->cpf);
-	if ((delcpf) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	cl = (Cliente*) malloc(sizeof(Cliente));
+	achou = 0;
+	//modcpf = validaCPF(cl->cpf);
+	//if ((modcpf) == 1){
+	//	printf("| CPF ACEITO E CORRETO");
+	//} else {
+	//	printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	//}
+	while((!achou) && (fread(cl, sizeof(Cliente), 1, CLI))) {
+		if ((strcmp(cl->cpf, dCPF) == 0) && (cl->status != 'x')){
+			achou = 1;
+		}
 	}
+
+	if (achou) {
+		printf("| Tem certeza que gostaria de apagar o cliente? (s|n) ");
+    	scanf("%c", &escolha);
+		if (escolha=='s' || escolha=='S'){
+			cl->status = 'x';
+			fseek(CLI, (menosum)*sizeof(Cliente), SEEK_CUR);
+			fwrite(cl, sizeof(Cliente), 1, CLI);
+			printf("| -----Cliente deletado com sucesso-----");
+			getchar();
+		} else {
+			printf("\n| Os dados não foram alterados");
+			getchar();
+		}
+		
+	} else {
+		printf("Cliente não encontrado");
+	}
+	free(cl);
+	fclose(CLI);
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
