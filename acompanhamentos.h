@@ -15,6 +15,11 @@ struct acompanhamento {
 	char acMedpernaD[7]; 
 	char acMedpernaE[7];
 	char cpf[12];
+	// float peso;
+	// float altura;
+	// float imc;
+	// data e hora
+	// dieta sugerida (codigo)
 };
 Acompanhamento *cadastroAC();
 void gravaAcompanhamento(Acompanhamento*);

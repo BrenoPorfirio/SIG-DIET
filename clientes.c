@@ -407,7 +407,7 @@ void listaClientes(void){
 	FILE* CLI;
 	Cliente* cl;
 	char status;
-	CLI = fopen("Clientes.dat", "rb");
+	CLI = fopen("clientes.dat", "rb");
 	if (CLI == NULL){
 		printf("\nErro na abertura do arquivo!");
 		printf("\nImpossível continuar este programa...!");
@@ -422,8 +422,10 @@ void listaClientes(void){
 	getchar();
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	while (fread(cl, sizeof(Cliente), 1, CLI)){
-	if ((cl != NULL && cl->status=='c') || (cl != NULL && cl->status=='d')){
-		exibeCliente(cl);
+		if ((cl != NULL) && (cl->status=='c')){
+			exibeCliente(cl);
+		} else if ((cl != NULL) && (cl->status=='d')) {
+			exibeCliente(cl);
 		}
 	}
 	getchar();
