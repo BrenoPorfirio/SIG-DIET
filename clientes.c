@@ -22,8 +22,6 @@ char moduloClientes(void){
 	printf("\n\nEscolha a opção desejada: ");
 	scanf("%c", &esc);
 	getchar();
-	printf("\n->Pressione ENTER para continuar<-");
-	getchar();
 	return esc;
 }
 typedef struct cliente Cliente;
