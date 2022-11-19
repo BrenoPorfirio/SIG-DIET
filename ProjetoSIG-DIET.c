@@ -91,13 +91,7 @@ int main(void){
 			do{
 				esc = moduloDiet();
 				if (esc=='1'){
-					iniciarDiet();
-				} else if (esc=='2'){
-					acompanhaDiet();
-				} else if (esc=='3'){
-					editDiet();
-				} else if (esc=='4'){
-					deletDiet();
+					verDiet();
 				}
 			} while (esc!='0');
 		}

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "diet.h"
-#include "funcoes.h"
 
 //
 //MODULO DIETAS
@@ -10,11 +9,8 @@
 char moduloDiet(void){
 	char esc;
 	system("clear||cls");
-	printf("\n\n\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| 1-Iniciar dieta                                                               |");
-	printf("\n| 2-Acompanhar dieta                                                            |");
-	printf("\n| 3-Editar dieta                                                                |");
-	printf("\n| 4-Deletar dieta                                                               |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| 1-Ver dietas cadastradas                                                      |");
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opção desejada: ");
@@ -23,177 +19,164 @@ char moduloDiet(void){
 	return esc;
 }
 
-typedef struct diet Diet;
-Diet *cadastroDT();
-
-void iniciarDiet(void){
-	Diet* dt;
-	dt = cadastroDT();
-	gravaDiet(dt);
-	free(dt);
-}
-
-void acompanhaDiet(void){
-	Diet* dt;
-	dt = buscaDiet();
-	VDiet(dt);;
-	free(dt);
-}
-
-Diet *cadastroDT(void){
-	Diet* dt;
-	dt = (Diet*) malloc(sizeof(Diet));
-	int idcpf;
+void verDiet(void){
 	system("clear||cls");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                            -> INICIAR DIETA <-                                |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|Informe seu CPF para podermos dar início a sua dieta: ");
-	scanf("%[0-9]", dt->cpf);
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                     BEM VINDO A DIETA MEDITERRÂNEA                              |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Sua dieta consiste em mudar seu estilo de vida e melhorar seu metabolismo       ");
+	printf("\n| assim, sua perda de peso e disposição surgem como consequência da vida saudável.");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -PEIXES E FRUTOS DO MAR");
+	printf("\n| -AZEITE E GORDURAS BOAS");
+	printf("\n| -ALIMENTOS INTEGRAIS");
+	printf("\n| -FRUTAS E VERDURAS");
+	printf("\n| -PROTEÍNAS E LEGUMINOSAS");
+	printf("\n|");
+	printf("\n| -------------------------- O QUE VOCÊ NÃO DEVE COMER: ---------------------------");
+	printf("\n| -PRODUTOS INDUSTRIALIZADOS");
+	printf("\n| -CARNES VERMELHAS");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n| Seus pratos estão ligados a: ");
+	printf("\n| -OSSOS MAIS FORTES");
+	printf("\n| -CORAÇÃO MAIS SAUDÁVEL");
+	printf("\n| -VIDA MAIS LONGA");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| TECLE ENTER PARA VER A PRÓXIMA DIETA");
 	getchar();
-	idcpf = validaCPF(dt->cpf);
-	if ((idcpf) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-	}
-	// códgio onde mostrará o imc e medidas, e também, isso com apontadores ao que foi cadastrado no #mod_acompanhamento
-	printf("\n|EXEMPLO DE TELA DA DIETA:");
-	printf("\n| SUAS MEDIDAS ATUAIS: ");
-	printf("\n|=-=-= SEU IMC ATUAL: 30.342 =-=-=");
-	getchar();
-	printf("|=-=-= CINTURA ATUAL: 100.98 =-=-=");
-	getchar();
-	printf("|=-=-= QUADRIL ATUAL: 89.42  =-=-=");
-	getchar();
-	printf("|Com base no seu IMC e medidas sua dieta ideal será: ");
-	// código onde calculará uma dieta ideal, com base no imc e medidas
-	printf("\n|SUA DIETA IDEAL É A DIETA MEDITERRÂNEA !");
-	// código explicando como será está dieta.
-	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| -> Pressione ENTER para continuar<-");
-	getchar();
-	return dt;
-}
-
-void gravaDiet(Diet* dt){
-	FILE* DIT;
-	DIT = fopen("diet.dat", "ab");
-	if (DIT == NULL){
-		printf("\nErro na abertura do arquivo!");
-		printf("\nImpossível continuar este programa...!");
-		exit(1);
-	}
-	fwrite(dt, sizeof(Diet), 1, DIT);
-	fclose(DIT);
-}
-
-Diet* buscaDiet(void){
-	FILE* DIT;
-	Diet* dt;
-	char cpf[12];
-	printf("Informe o CPF: ");
-	scanf("%s", cpf);
-	dt = (Diet*) malloc(sizeof(Diet));
-	DIT = fopen("diet.dat", "rb");
-	if (DIT == NULL){
-		printf("\nErro na abertura do arquivo!");
-		printf("\nImpossível continuar este programa...!");
-		exit(1);
-	}
-	while(!feof(DIT)){
-		fread(dt, sizeof(Diet), 1, DIT);
-		if (!strcmp(dt->cpf, cpf)){
-			fclose(DIT);
-			return dt;
-		}
-	}
-	fclose(DIT);
-	return NULL;
-}
-
-void VDiet(Diet* dt){
-	if((dt != NULL)){
-		system("clear||cls");
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-		printf("\n|                            -> ACOMPANHAR DIETA <-                             |");
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-		//printf("\n| Informe seu CPF para acompanhar sua dieta: ");
-		//scanf("%[0-9]", dt->cpf);
-		//getchar();
-		//cpfACD = validaCPF(dt->cpf);
-		//if ((cpfACD) == 1){
-		//printf("| CPF ACEITO E CORRETO");
-		//} else {
-		//printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-		//}
-		// aqui será o módulo onde veremos se a dieta está funcionando com base no histórico, e suas novas medidas
-		printf("\n| SUA DIETA ESTÁ FUNCIONAL, CONTINUE NELA.");
-		getchar();
-		printf("| SUA DIETA NÃO ESTÁ FUNCIONANDO, TROQUE-A.");
-		getchar();
-		printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-		printf("\n| -> Pressione ENTER para continuar<-");
-		getchar();
-	}
-}
-
-void editDiet(void){
-	Diet* dt;
-	dt = (Diet*) malloc(sizeof(Diet));	
-	int cpfED;
-	int valiNmD;
 	system("clear||cls");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                            -> EDITAR DIETA <-                                 |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Informe seu CPF para editar sua dieta: ");
-	scanf("%[0-9]", dt->cpf);
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                         BEM VINDO A DIETA DASH                                  |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Propõe o baixo consumo de sódio, açúcares e de gordura saturada                 ");
+	printf("\n| encontrada em frituras, carnes vermelhas e industrializados.                    ");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -CARNES MAGRAS");
+	printf("\n| -OLEAGINOSAS");
+	printf("\n| -FRUTAS, LEGUMES E VERDURAS");
+	printf("\n| -LEITE E DERIVADOS MAGROS");
+	printf("\n| -CEREAIS INTEGRAIS");
+	printf("\n| -ÓLEOS VEGETAIS");
+	printf("\n|");
+	printf("\n| -------------------------- O QUE VOCÊ NÃO DEVE COMER: ---------------------------");
+	printf("\n| -ALIMENTOS PREPARADOS COM FARINHA BRANCA, COMO PÃO, BISCOITOS E MACARRÃO");
+	printf("\n| -ALIMENTOS RICOS EM GORDURA SATURADA");
+	printf("\n| -DOCES E AÇUCAR");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n| O principal objetivo da Dash não é o emagrecimento, mas a redução da pressão arterial."); 
+	printf("\n| Assim, se a finalidade for apenas e perda de peso, é preciso fazer uma restrição de calorias.");
+	printf("\n| -DIMINUIÇÃO NOS RISCOS DE OSTEOPOROSE");
+	printf("\n| -COMBATER A OBESIDADE");
+	printf("\n| -INCENTIVA O CONSUMO ADEQUADO DE GORDURAS E DO SAL.");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| TECLE ENTER PARA VER A PRÓXIMA DIETA");
 	getchar();
-	cpfED = validaCPF(dt->cpf);
-	if ((cpfED) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-	}
-	// aqui será o módulo onde editaremos uma dieta caso ela não esteja funcionando.
-	printf("\n| INFORME O NOME DA DIETA QUE NÃO FOI FUNCIONAL: ");
-	scanf("%s", dt->nome);
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                     BEM VINDO A DIETA FLEXITARIANA                              |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Uma dieta que reduz o consumo de carne vermelha sem abrir mão de proteína animal");
+	printf("\n| combinação de “flexível” e “vegetariano”.                                       ");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -ALIMENTOS DE ORIGEM VEGETAL ");
+	printf("\n| -FRUTAS, VERDURAS, LEGUMES");
+	printf("\n| -GRÃOS, NOZES");
+	printf("\n| -FRUTAS E VERDURAS");
+	printf("\n| -PRODUTOS DE SOJA");
+	printf("\n|");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n| O flexitarianismo defende a adição de uma maior ");
+	printf("\n| variedade de alimentos às refeições o que pode ser ");
+	printf("\n| extremamente benéfico para a saúde.");
+	printf("\n| -COMBATER O COLESTEROL ALTO ");
+	printf("\n| -MANTER OS NÍVEIS DE COLESTEROL SAUDÁVEIS");
+	printf("\n| -FORNECEM ÁCIDOS GRAXOS ESSENCIAIS");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	getchar();
-	valiNmD = validarNome(dt->nome);
-	if ((valiNmD) == 1){
-		printf("| NOME OK!");
-	} else {
-		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
-	}
-	printf("\n| JÁ QUE A DIETA ANTERIOR NÃO FUNCIONOU NÃO TENTE A: ");
-	getchar();
-	printf("| AQUI TERÁ UM IF DIRECIONANDO O CLIENTE A UMA NOVA DIETA.");
-	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| -> Pressione ENTER para continuar<-");
-	getchar();	
 }
 
-void deletDiet(void){
-	Diet* dt;
-	dt = (Diet*) malloc(sizeof(Diet));	
-	int cpfDE;
+void dietMediterranea(void){
 	system("clear||cls");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                             -> DELETAR DIETA <-                              |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira CPF do cliente que deseja deletar dieta: ");
-	scanf("%[0-9]", dt->cpf);
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                     BEM VINDO A DIETA MEDITERRÂNEA                              |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Sua dieta consiste em mudar seu estilo de vida e melhorar seu metabolismo       ");
+	printf("\n| assim, sua perda de peso e disposição surgem como consequência da vida saudável.");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -PEIXES E FRUTOS DO MAR");
+	printf("\n| -AZEITE E GORDURAS BOAS");
+	printf("\n| -ALIMENTOS INTEGRAIS");
+	printf("\n| -FRUTAS E VERDURAS");
+	printf("\n| -PROTEÍNAS E LEGUMINOSAS");
+	printf("\n|");
+	printf("\n| -------------------------- O QUE VOCÊ NÃO DEVE COMER: ---------------------------");
+	printf("\n| -PRODUTOS INDUSTRIALIZADOS");
+	printf("\n| -CARNES VERMELHAS");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n| Seus pratos estão ligados a: ");
+	printf("\n| -OSSOS MAIS FORTES");
+	printf("\n| -CORAÇÃO MAIS SAUDÁVEL");
+	printf("\n| -VIDA MAIS LONGA");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	getchar();
-	cpfDE = validaCPF(dt->cpf);
-	if ((cpfDE) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-	}
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n->Pressione ENTER para continuar<-");
+}
+
+void dietDash(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                         BEM VINDO A DIETA DASH                                  |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Propõe o baixo consumo de sódio, açúcares e de gordura saturada                 ");
+	printf("\n| encontrada em frituras, carnes vermelhas e industrializados.                    ");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -CARNES MAGRAS");
+	printf("\n| -OLEAGINOSAS");
+	printf("\n| -FRUTAS, LEGUMES E VERDURAS");
+	printf("\n| -LEITE E DERIVADOS MAGROS");
+	printf("\n| -CEREAIS INTEGRAIS");
+	printf("\n| -ÓLEOS VEGETAIS");
+	printf("\n|");
+	printf("\n| -------------------------- O QUE VOCÊ NÃO DEVE COMER: ---------------------------");
+	printf("\n| -ALIMENTOS PREPARADOS COM FARINHA BRANCA, COMO PÃO, BISCOITOS E MACARRÃO");
+	printf("\n| -ALIMENTOS RICOS EM GORDURA SATURADA");
+	printf("\n| -DOCES E AÇUCAR");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n| O principal objetivo da Dash não é o emagrecimento, mas a redução da pressão arterial."); 
+	printf("\n| Assim, se a finalidade for apenas e perda de peso, é preciso fazer uma restrição de calorias.");
+	printf("\n| -DIMINUIÇÃO NOS RISCOS DE OSTEOPOROSE");
+	printf("\n| -COMBATER A OBESIDADE");
+	printf("\n| -INCENTIVA O CONSUMO ADEQUADO DE GORDURAS E DO SAL.");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	getchar();
-} // este módulo só será utilizado quando um cliente desistir 
+}
+
+void dietflexitariana(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                     BEM VINDO A DIETA FLEXITARIANA                              |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Uma dieta que reduz o consumo de carne vermelha sem abrir mão de proteína animal");
+	printf("\n| combinação de “flexível” e “vegetariano”.                                       ");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -ALIMENTOS DE ORIGEM VEGETAL ");
+	printf("\n| -FRUTAS, VERDURAS, LEGUMES");
+	printf("\n| -GRÃOS, NOZES");
+	printf("\n| -FRUTAS E VERDURAS");
+	printf("\n| -PRODUTOS DE SOJA");
+	printf("\n|");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n| O flexitarianismo defende a adição de uma maior ");
+	printf("\n| variedade de alimentos às refeições o que pode ser ");
+	printf("\n| extremamente benéfico para a saúde.");
+	printf("\n| -COMBATER O COLESTEROL ALTO ");
+	printf("\n| -MANTER OS NÍVEIS DE COLESTEROL SAUDÁVEIS");
+	printf("\n| -FORNECEM ÁCIDOS GRAXOS ESSENCIAIS");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	getchar();
+}
