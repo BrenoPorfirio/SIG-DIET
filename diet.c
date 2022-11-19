@@ -46,6 +46,34 @@ void verDiet(void){
 	getchar();
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                     BEM VINDO A DIETA HIPERPROTEICA                             |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Uma dieta que visa auxiliar no ganho de massa magra por aqueles que pratica      ");
+	printf("\n| atividades físicas, baseada no aumento do consumo de alimentos ricos em proteina,");
+	printf("\n| ao mesmo tempo que diminui o consumo de carboidratos");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -CARNES MAGRAS, OVOS E PEIXES");
+	printf("\n| -AZEITE E GORDURAS BOAS");
+	printf("\n| -LEITE E DERIVADOS");
+	printf("\n| -NOZES E AMÊNDOAS");
+	printf("\n| -FOLHAS VERDES E HOTALIÇAS");
+	printf("\n| -------------------------- O QUE VOCÊ NÃO DEVE COMER: ---------------------------");
+	printf("\n| -TUBÉRCULOS");
+	printf("\n| -GRÃOS E CEREAIS");
+	printf("\n| -MASSAS");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n|  A dieta Hiperproteica ajuda no controle da saciedade,");
+	printf("\n|  uma vez que atua diretamente nos níveis do hormônio ");
+	printf("\n|  grelina, que regula o apetite.");
+	printf("\n| -PERCA DE PESO");
+	printf("\n| -GANHO DE MASSA MUSCULAR");
+	printf("\n| -DIMINUIÇÃO DA GORDURA CORPORAL");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	getchar();
+	printf("\n| TECLE ENTER PARA VER A PRÓXIMA DIETA");
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         BEM VINDO A DIETA DASH                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|");
@@ -70,6 +98,39 @@ void verDiet(void){
 	printf("\n| -DIMINUIÇÃO NOS RISCOS DE OSTEOPOROSE");
 	printf("\n| -COMBATER A OBESIDADE");
 	printf("\n| -INCENTIVA O CONSUMO ADEQUADO DE GORDURAS E DO SAL.");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| TECLE ENTER PARA VER A PRÓXIMA DIETA");
+	getchar();
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                    BEM VINDO A DIETA HIPERCALORICA                              |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Uma dieta que visa auxiliar no granho de peso e combate a desnutrição");
+	printf("\n| de maneira segura e saudável.                    ");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -TUBERCULOS");
+	printf("\n| -MASSAS");
+	printf("\n| -GRÃOS E CEREIAIS");
+	printf("\n| -LEITE E DERIVADOS");
+	printf("\n| -PROTEINAS ANIMAIS");
+	printf("\n| -ÓLEOS VEGETAIS");
+	printf("\n| -AZEITE E GORDURAS BOAS");
+	printf("\n| -NOZES E AMÊNDOAS");
+	printf("\n| -fRUTAS E VERDURAS");
+	printf("\n| -------------------------- O QUE VOCÊ NÃO DEVE COMER: ---------------------------");
+	printf("\n| -DOCES");
+	printf("\n| -BEBIDAS ALCOÓLICAS");
+	printf("\n| -FRITURAS");
+	printf("\n| -EMBUTIDOS");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n| É indicada para aqueles com dificuldade no granho");
+	printf("\n| de massa. Muito usada por levantadores de peso");
+	printf("\n| no processo chamado 'Bulking'");
+	printf("\n| ");
+	printf("\n| -GANHO DE MASSA");
+	printf("\n| -COMBATER A DESNUTRIÇÃO");
+	printf("\n| -MAIS FORÇA E ENERGIA");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| TECLE ENTER PARA VER A PRÓXIMA DIETA");
 	getchar();
@@ -120,8 +181,41 @@ void dietMediterranea(void){
 	printf("\n| -CORAÇÃO MAIS SAUDÁVEL");
 	printf("\n| -VIDA MAIS LONGA");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| PRESSIONE ENTER PARA CONTINUAR ");
 	getchar();
 }
+
+void dietHiperproteica(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                     BEM VINDO A DIETA HIPERPROTEICA                             |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Uma dieta que visa auxiliar no ganho de massa magra por aqueles que pratica      ");
+	printf("\n| atividades físicas, baseada no aumento do consumo de alimentos ricos em proteina,");
+	printf("\n| ao mesmo tempo que diminui o consumo de carboidratos");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -CARNES MAGRAS, OVOS E PEIXES");
+	printf("\n| -AZEITE E GORDURAS BOAS");
+	printf("\n| -LEITE E DERIVADOS");
+	printf("\n| -NOZES E AMÊNDOAS");
+	printf("\n| -FOLHAS VERDES E HOTALIÇAS");
+	printf("\n| -------------------------- O QUE VOCÊ NÃO DEVE COMER: ---------------------------");
+	printf("\n| -TUBÉRCULOS");
+	printf("\n| -GRÃOS E CEREAIS");
+	printf("\n| -MASSAS");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n|  A dieta Hiperproteica ajuda no controle da saciedade,");
+	printf("\n|  uma vez que atua diretamente nos níveis do hormônio ");
+	printf("\n|  grelina, que regula o apetite.");
+	printf("\n| -PERCA DE PESO");
+	printf("\n| -GANHO DE MASSA MUSCULAR");
+	printf("\n| -DIMINUIÇÃO DA GORDURA CORPORAL");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| PRESSIONE ENTER PARA CONTINUAR ");
+	getchar();
+}
+
 
 void dietDash(void){
 	system("clear||cls");
@@ -151,10 +245,47 @@ void dietDash(void){
 	printf("\n| -COMBATER A OBESIDADE");
 	printf("\n| -INCENTIVA O CONSUMO ADEQUADO DE GORDURAS E DO SAL.");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| PRESSIONE ENTER PARA CONTINUAR ");
 	getchar();
 }
 
-void dietflexitariana(void){
+void dietHipercalorica(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                    BEM VINDO A DIETA HIPERCALORICA                              |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|");
+	printf("\n| Uma dieta que visa auxiliar no granho de peso e combate a desnutrição");
+	printf("\n| de maneira segura e saudável.                    ");
+	printf("\n| -------------------------- O QUE VOCÊ DEVE COMER: -------------------------------");
+	printf("\n| -TUBERCULOS");
+	printf("\n| -MASSAS");
+	printf("\n| -GRÃOS E CEREIAIS");
+	printf("\n| -LEITE E DERIVADOS");
+	printf("\n| -PROTEINAS ANIMAIS");
+	printf("\n| -ÓLEOS VEGETAIS");
+	printf("\n| -AZEITE E GORDURAS BOAS");
+	printf("\n| -NOZES E AMÊNDOAS");
+	printf("\n| -fRUTAS E VERDURAS");
+	printf("\n| -------------------------- O QUE VOCÊ NÃO DEVE COMER: ---------------------------");
+	printf("\n| -DOCES");
+	printf("\n| -BEBIDAS ALCOÓLICAS");
+	printf("\n| -FRITURAS");
+	printf("\n| -EMBUTIDOS");
+	printf("\n| ------------------------------ BENEFÍCIOS: --------------------------------------");
+	printf("\n| É indicada para aqueles com dificuldade no granho");
+	printf("\n| de massa. Muito usada por levantadores de peso");
+	printf("\n| no processo chamado 'Bulking'");
+	printf("\n| ");
+	printf("\n| -GANHO DE MASSA");
+	printf("\n| -COMBATER A DESNUTRIÇÃO");
+	printf("\n| -MAIS FORÇA E ENERGIA");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| PRESSIONE ENTER PARA CONTINUAR ");
+	getchar();
+}
+
+void dietFlexitariana(void){
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                     BEM VINDO A DIETA FLEXITARIANA                              |");
@@ -176,5 +307,6 @@ void dietflexitariana(void){
 	printf("\n| -MANTER OS NÍVEIS DE COLESTEROL SAUDÁVEIS");
 	printf("\n| -FORNECEM ÁCIDOS GRAXOS ESSENCIAIS");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| PRESSIONE ENTER PARA CONTINUAR ");
 	getchar();
 }

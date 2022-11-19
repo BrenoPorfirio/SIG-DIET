@@ -63,7 +63,7 @@ int main(void){
 					delAcompanhamento();
 				}
 				else if (esc=='5'){
-					orienta();
+					dietaInd();
 				}
 				else if (esc=='6'){
 					historico();

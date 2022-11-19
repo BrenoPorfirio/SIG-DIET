@@ -8,9 +8,6 @@ struct cliente{
 	int dia;
 	int mes;
 	int ano;
-	float peso;		// retirar
-	float altura;	// retirar
-	float imc;		// retirar
 	char status;
 };
 Cliente *cadastro();
