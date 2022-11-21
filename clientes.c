@@ -188,7 +188,7 @@ void modClientes(void){
 	int tam;	
 	int valtele;
 	char valNome;
-	int validaCpf;
+	//int validaCpf;
 	int dataValida;
 	char mCPF[12];
 	CLI = fopen("clientes.dat","r+b");
@@ -219,15 +219,6 @@ void modClientes(void){
 	}
 	if (achou) {
 		//printf("|");
-		printf("| CPF do cliente(somente números): ");
-		scanf("%[0-9]", cl->cpf);
-		getchar();
-		validaCpf = validaCPF(cl->cpf);
-		if ((validaCpf) == 1){
-			printf("| CPF ACEITO E CORRETO");
-		} else {
-			printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-		}
 		printf("\n| Nome completo: ");
 		//scanf("%s[a-z A-Z]", cl->nome);
 		fgets(cl->nome, 60, stdin);
