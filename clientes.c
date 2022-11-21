@@ -66,7 +66,7 @@ Cliente *cadastro(void) {
 	tam = strlen(cl->nome);
 	cl->nome[tam-1] = '\0';
 	if (!validarNome(cl->nome)){
-		printf("| Há algo de incomum no nome fornecido, tente novamente\n");
+		printf("| Nome inválido, tente novamente\n");
 		printf("|\n");
 	}
 	} while (!validarNome(cl->nome));
@@ -218,7 +218,7 @@ void modClientes(void){
 		tam = strlen(cl->nome);
 		cl->nome[tam-1] = '\0';
 		if (!validarNome(cl->nome)){
-			printf("| Há algo de incomum no nome fornecido, tente novamente\n");
+			printf("| Nome inválido, tente novamente\n");
 			printf("|\n");
 		}
 		} while (!validarNome(cl->nome));
