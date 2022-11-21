@@ -16,6 +16,7 @@ char moduloReceitas(void){
 	printf("\n| 2-Ver Receitas                                                                |");
 	printf("\n| 3-Modificar Receita                                                           |");
 	printf("\n| 4-Deletar Receita                                                             |");
+	printf("\n| 5-Listar Receitas                                                             |");
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opção desejada: ");
@@ -63,10 +64,10 @@ Receitas *cadastroRC(void){
 		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
 	}
 	printf("\n| Liste os ingrediente e quantidades: ");
-	scanf("%299[a-zA-Z0-9 -.,]", rc->ingredientesCad);
+	scanf("%299[^\n]", rc->ingredientesCad);
 	getchar();
 	printf("| Modo de preparo: ");
-	scanf("%699[a-zA-Z0-9 -.,]", rc->preparoCad);
+	scanf("%699[^\n]", rc->preparoCad);
 	getchar();
 	printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15): ");
 	scanf("%5[0-9:]", rc->tempoCad);
@@ -194,10 +195,10 @@ void modReceitas(void){
 			printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
 		}
 		printf("\n| Liste os ingrediente e quantidades: ");
-		scanf("%299[a-zA-Z0-9 -.,]", rc->ingredientesCad);
+		scanf("%299[^\n]", rc->ingredientesCad);
 		getchar();
 		printf("| Modo de preparo: ");
-		scanf("%699[a-zA-Z0-9 -.,]", rc->preparoCad);
+		scanf("%699[^\n]", rc->preparoCad);
 		getchar();
 		printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15): ");
 		scanf("%5[0-9:]", rc->tempoCad);
@@ -272,4 +273,41 @@ void delReceitas(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
+}
+
+void exibeReceitas(Receitas* rc) {
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n| Nome: %s", rc->nome);
+	printf("\n| Ingredientes: %s", rc->ingredientesCad);
+	printf("\n| Modo de preparo: %s", rc->preparoCad);
+	printf("\n| Tempo de preparo: %s", rc->tempoCad);
+	printf("\n| Quantidade de porções: %s", rc->porcaoCad);
+	printf("\n| ID: %s", rc->id);
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n");
+}
+
+void listaReceitas(void){
+	FILE* RCT;
+	Receitas* rc;
+	//char status;
+	RCT = fopen("receitas.dat", "rb");
+	if (RCT == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                       -> LISTAGEM DE RECEITAS <-                              |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	rc = (Receitas*) malloc(sizeof(Receitas));
+	while (fread(rc, sizeof(Receitas), 1, RCT)){
+		if ((rc != NULL) && (rc->status=='c')){
+			exibeReceitas(rc);
+		}
+	}
+	getchar();
+	free(rc);
+	fclose(RCT);
 }

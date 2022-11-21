@@ -85,6 +85,9 @@ int main(void){
 				else if (esc=='4'){
 					delReceitas();
 				}
+				else if (esc=='5') {
+					listaReceitas();
+				}
 			} while (esc!='0');
 		}
 		else if (num==4){

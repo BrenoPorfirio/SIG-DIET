@@ -19,3 +19,5 @@ Receitas* cadastroRC();
 void VReceitas(Receitas*);
 void gravaReceitas(Receitas*);
 Receitas* buscaReceitas(void);
+void exibeReceitas(Receitas*);
+void listaReceitas(void);
