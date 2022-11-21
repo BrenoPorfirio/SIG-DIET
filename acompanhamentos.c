@@ -52,22 +52,25 @@ void verAcompanhamento(void){
 
 Acompanhamento *cadastroAC(void){
 	Acompanhamento* ac;
-	int validaCpf;
+	int tam;
 	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                        -> AVALIAÇÃO ANTROPOMÉTRICA <-                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| CPF do cliente(somente números): ");
+	printf("\n");
+	do {
+	printf("| CPF do cliente(somente números): ");
 	scanf("%[0-9]", ac->cpf);
 	getchar();
-	validaCpf = validaCPF(ac->cpf);
-	if ((validaCpf) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-	}
-	printf("\n| Cadastre a medida da cintura atual: ");
+	} while (!validaCPF(ac->cpf));
+	do {
+	printf("| Nome e sobrenome: ");
+	fgets(ac->nome, 60, stdin);
+	tam = strlen(ac->nome);
+	ac->nome[tam-1] = '\0';
+	} while (!validarNome(ac->nome));
+	printf("| Cadastre a medida da cintura atual: ");
 	scanf("%7[0-9.,]", ac->acMedCintura);
 	getchar();
 	printf("| Cadastre a medida do quadril atual: ");
@@ -96,9 +99,9 @@ Acompanhamento *cadastroAC(void){
 	time_t t;
 	time(&t);
 	printf("\n| Data e hora da avaliação: %s", ctime(&t));
+	ac->status = 'c';
 	printf("| MEDIDAS CADASTRADAS COM SUCESSO !");
-	getchar();
-	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 	return ac;
@@ -120,8 +123,10 @@ Acompanhamento* buscaAcompanhamento(void){
 	FILE* ACM;
 	Acompanhamento* ac;
 	char cpf[12];
-	printf("| Informe o CPF: ");
+	do{
+	printf("| Informe o CPF do cliente que deseja ver sua avaliação: ");
 	scanf("%s", cpf);
+	} while (!validaCPF(cpf));
 	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	ACM = fopen("acompanhamento.dat", "rb");
 	if (ACM == NULL){
@@ -146,7 +151,8 @@ void VAcompanhamento(Acompanhamento* ac){
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 		printf("\n|                         -> LEITURA DE AVALIAÇÃO <-                            |");
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-		printf("\n| CPF: %s", ac->cpf);
+		printf("\n| Olá %s", ac->nome);
+		printf("\n| Essas são suas medidas atuais");
 		printf("\n| Seu IMC atual: %0.2f", ac->imc);
 		printf("\n| Medida da cintura: %s", ac->acMedCintura);
 		printf("\n| Medida do quadril: %s", ac->acMedQuadril);
@@ -154,6 +160,13 @@ void VAcompanhamento(Acompanhamento* ac){
 		printf("\n| Medida do bíceps esquerdo: %s", ac->acMedbicepsE);
 		printf("\n| Medida da coxa direita: %s", ac->acMedpernaD);
 		printf("\n| Medida da coxa esquerda: %s", ac->acMedpernaE);
+		if (ac->status=='c'){
+			printf("\n| Status: Cadastrado");
+		} else if (ac->status=='d'){
+			printf("\n| Status: Desistiu");
+		} else {
+			printf("\n| Não encontrada");
+		}
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 		printf("\n->Pressione ENTER para continuar<-");
 		getchar();
@@ -165,44 +178,140 @@ void VAcompanhamento(Acompanhamento* ac){
 }
 
 void modAcompanhamento(void){
+	FILE* ACM;
 	Acompanhamento* ac;
-	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
-	int modAC;
+	long int menosum = -1;
+	char escolha;
+	int achou;
+	int tam;	
+	char mdCPF[12];
+	ACM = fopen("acompanhamento.dat","r+b");
+	if (ACM == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                           -> MODIFICAR AVALIAÇÃO <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF do cliente que deseja modificar avaliação: ");
-	scanf("%[0-9]", ac->cpf);
+	printf("\n");
+	do {
+	printf("| Insira o CPF do cliente que deseja modificar a avaliação: ");
+	scanf("%11[^\n]", mdCPF);
 	getchar();
-	modAC = validaCPF(ac->cpf);
-	if ((modAC) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	} while (!validaCPF(mdCPF));
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
+	achou = 0;
+	while((!achou) && (fread(ac, sizeof(Acompanhamento), 1, ACM))) {
+		if ((strcmp(ac->cpf, mdCPF) == 0) && (ac->status != 'x')){
+			achou = 1;
+		}
 	}
+	if (achou) {
+		do {
+		printf("| Nome e sobrenome: ");
+		fgets(ac->nome, 60, stdin);
+		tam = strlen(ac->nome);
+		ac->nome[tam-1] = '\0';
+		} while (!validarNome(ac->nome));
+		printf("| Cadastre a medida da cintura atual: ");
+		scanf("%7[0-9.,]", ac->acMedCintura);
+		getchar();
+		printf("| Cadastre a medida do quadril atual: ");
+		scanf("%7[0-9.,]", ac->acMedQuadril);
+		getchar();
+		printf("| Cadastre a medida do bíceps direito atual: ");
+		scanf("%6[0-9.,]", ac->acMedbicepsD);
+		getchar();
+		printf("| Cadastre a medida do bíceps esquerdo atual: ");
+		scanf("%6[0-9.,]", ac->acMedbicepsE);
+		getchar();
+		printf("| Cadastre a medida da coxa direita atual: ");
+		scanf("%6[0-9.,]", ac->acMedpernaD);
+		getchar();
+		printf("| Cadastre a medida da coxa esquerda atual: ");
+		scanf("%6[0-9.,]", ac->acMedpernaE);
+		printf("| Agora vamos calcular seu IMC ");
+		printf("\n| Informe seu peso atual: ");
+		scanf("%f", &ac->peso);
+		getchar();
+		printf("| Informe sua altura atual: (Exemplo = 1.85) ");
+		scanf("%f", &ac->altura);
+		getchar();
+		ac->imc = calculoImc(ac->peso, ac->altura);
+		printf("| Resultado do IMC: %0.2f", ac->imc);
+		printf("\n| Informe o status do cliente -");
+		printf("\n| (c)adastrado ou (d)esistiu (c|d): ");
+		scanf("%c", &escolha); 
+		if (escolha == 'c' || escolha == 'C'){
+			ac->status = 'c';
+		} else if (escolha == 'd' || escolha == 'D'){
+			ac->status = 'd';
+		}
+		fseek(ACM, (menosum)*sizeof(Acompanhamento), SEEK_CUR);
+		fwrite(ac, sizeof(Acompanhamento), 1, ACM);
+		printf("|  -------------------- AVALIAÇÃO EDITADA COM SUCESSO --------------------  ");
+		getchar();
+	} else {
+		printf("| Avaliação não foi encontrada");
+	}
+	free(ac);
+	fclose(ACM);
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void delAcompanhamento(void){
+	FILE* ACM;
 	Acompanhamento* ac;
-	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
-	int delAC;
+	long int menosum = -1;
+	char escolha;
+	int achou;
+	char delAC[12];
+	ACM = fopen("acompanhamento.dat","r+b");
+	if (ACM == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                             -> DELETAR AVALIAÇÃO <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira CPF do cliente que deseja deletar avaliação: ");
-	scanf("%[0-9]", ac->cpf);
+	printf("\n");
+	do {
+	printf("| Insira o CPF do cliente que deseja deletar sua avaliação: ");
+	scanf("%11[^\n]", delAC);
 	getchar();
-	delAC = validaCPF(ac->cpf);
-	if ((delAC) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
+	} while (!validaCPF(delAC));
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
+	achou = 0;
+	while((!achou) && (fread(ac, sizeof(Acompanhamento), 1, ACM))) {
+		if ((strcmp(ac->cpf, delAC) == 0) && (ac->status != 'x')){
+			achou = 1;
+		}
 	}
+	if (achou) {
+		printf("| Tem certeza que gostaria de apagar a avaliação do cliente? (s|n) ");
+    	scanf("%c", &escolha);
+		if (escolha=='s' || escolha=='S'){
+			ac->status = 'x';
+			fseek(ACM, (menosum)*sizeof(Acompanhamento), SEEK_CUR);
+			fwrite(ac, sizeof(Acompanhamento), 1, ACM);
+			printf("|  -------------------- AVALIAÇÃO DELETADA COM SUCESSO --------------------  ");
+			getchar();
+		} else {
+			printf("\n| A avaliação não foi apagada");
+			getchar();
+		}
+	} else {
+		printf("\n| Avaliação não foi encontrada");
+		getchar();
+	}
+	free(ac);
+	fclose(ACM);
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();

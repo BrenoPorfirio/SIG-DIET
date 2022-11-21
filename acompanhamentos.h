@@ -9,6 +9,7 @@ void dietaInd(void);
 typedef struct acompanhamento Acompanhamento;
 struct acompanhamento {
 	char cpf[12];
+	char nome[31];
 	char acMedCintura[8]; 
 	char acMedQuadril[8]; 
 	char acMedbicepsD[7]; 
@@ -18,6 +19,7 @@ struct acompanhamento {
 	float peso;
 	float altura;
 	float imc;
+	char status;
 };
 Acompanhamento *cadastroAC();
 void gravaAcompanhamento(Acompanhamento*);

@@ -224,7 +224,7 @@ void modClientes(void){
 		}
 		fseek(CLI, (menosum)*sizeof(Cliente), SEEK_CUR);
 		fwrite(cl, sizeof(Cliente), 1, CLI);
-		printf("| Cliente editado com sucesso");
+		printf("|  -------------------- CLIENTE EDITADO COM SUCESSO --------------------  ");
 		getchar();
 	} else {
 		printf("| O Cliente não foi encontrado");
@@ -263,6 +263,7 @@ void delClientes(void){
 	achou = 0;
 	while((!achou) && (fread(cl, sizeof(Cliente), 1, CLI))) {
 		if ((strcmp(cl->cpf, dCPF) == 0) && (cl->status != 'x')){
+			exibeCliente(cl);
 			achou = 1;
 		}
 	}
@@ -273,13 +274,12 @@ void delClientes(void){
 			cl->status = 'x';
 			fseek(CLI, (menosum)*sizeof(Cliente), SEEK_CUR);
 			fwrite(cl, sizeof(Cliente), 1, CLI);
-			printf("| -----Cliente deletado com sucesso-----");
+			printf("|  -------------------- CLIENTE DELETADO COM SUCESSO --------------------  ");
 			getchar();
 		} else {
-			printf("\n| Os dados não foram alterados");
+			printf("\n| Cliente não apagado");
 			getchar();
 		}
-		
 	} else {
 		printf("Cliente não encontrado");
 	}
