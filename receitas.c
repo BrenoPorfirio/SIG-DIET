@@ -45,13 +45,17 @@ Receitas *cadastroRC(void){
 	Receitas* rc;
 	rc = (Receitas*) malloc(sizeof(Receitas));
 	int valiNmC;
+	int tam;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                        -> CADASTRO DE RECEITAS <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n| Nome da receita: ");
-	scanf("%s", rc->nome);
-	getchar();
+	//scanf("%s", rc->nome);
+	fgets(rc->nome, 70, stdin);
+	tam = strlen(rc->nome);
+	rc->nome[tam-1] = '\0';
+	//getchar();
 	valiNmC = validarNome(rc->nome);
 	if ((valiNmC) == 1){
 		printf("| NOME OK!");
@@ -70,9 +74,10 @@ Receitas *cadastroRC(void){
 	printf("| Quantas porções ela rende: ");
 	scanf("%2[0-9]", rc->porcaoCad);
 	getchar();
-	printf("| Informe o ID da receita: ");
-	scanf("%6[0-9]", rc->id);
+	printf("| Informe o ID da receita(Ex-> 00001): ");
+	scanf("%5[0-9]", rc->id);
 	getchar();
+	rc->status = 'c';
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
@@ -116,7 +121,7 @@ Receitas* buscaReceitas(void){
 }
 
 void VReceitas(Receitas* rc){
-	if ((rc != NULL)){
+	if ((rc != NULL && rc->status=='c')){
 		system("clear||cls");
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 		printf("\n|                          -> LEITURA DE RECEITAS <-                            |");
@@ -126,6 +131,11 @@ void VReceitas(Receitas* rc){
 		printf("\n| Modo de preparo: %s", rc->preparoCad);
 		printf("\n| Tempo de preparo: %s", rc->tempoCad);
 		printf("\n| Quantidade de porções: %s", rc->porcaoCad);
+		if (rc->status=='c'){
+			printf("\n| Status: Cadastrado");
+		} else {
+			printf("\n| Não encontrada");
+		}
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 		printf("\n->Pressione ENTER para continuar<-");
 		getchar();
@@ -133,47 +143,132 @@ void VReceitas(Receitas* rc){
 	} else {
 		printf("Receita não existe");
 		getchar();
+		getchar();
 	}
 }
 
 void modReceitas(void){
+	FILE* RCT;
 	Receitas* rc;
-	rc = (Receitas*) malloc(sizeof(Receitas));	
+	long int menosum = -1;
+	//char escolha;
+	int achou;
+	int tam;
 	int valiNmRD;
+	char mID[6];
+	
+	RCT = fopen("receitas.dat","r+b");
+	if (RCT == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> MODIFICAÇÃO DE RECEITAS <-                         |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da receita que deseja modificar: ");
-	scanf("%s", rc->nome);
+	printf("\n| Insira o ID da receita que deseja modificar: ");
+	scanf("%5[^\n]", mID);
 	getchar();
-	valiNmRD = validarNome(rc->nome);
-	if ((valiNmRD) == 1){
-		printf("| NOME OK!");
-	} else {
-		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
+	rc = (Receitas*) malloc(sizeof(Receitas));
+	achou = 0;
+
+	while((!achou) && (fread(rc, sizeof(Receitas), 1, RCT))) {
+		if ((strcmp(rc->id, mID) == 0) && (rc->status != 'x')){
+			achou = 1;
+		}
 	}
+
+	if (achou){
+		printf("|");
+		printf("\n| Nome da receita: ");
+		// scanf("%s", rc->nome);
+		fgets(rc->nome, 70, stdin);
+		tam = strlen(rc->nome);
+		rc->nome[tam-1] = '\0';
+		// getchar();
+		valiNmRD = validarNome(rc->nome);
+		if ((valiNmRD) == 1){
+			printf("| NOME OK!");
+		} else {
+			printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
+		}
+		printf("\n| Liste os ingrediente e quantidades: ");
+		scanf("%299[a-zA-Z0-9 -.,]", rc->ingredientesCad);
+		getchar();
+		printf("| Modo de preparo: ");
+		scanf("%699[a-zA-Z0-9 -.,]", rc->preparoCad);
+		getchar();
+		printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15): ");
+		scanf("%5[0-9:]", rc->tempoCad);
+		getchar();
+		printf("| Quantas porções ela rende: ");
+		scanf("%2[0-9]", rc->porcaoCad);
+		getchar();
+		fseek(RCT, (menosum)*sizeof(Receitas), SEEK_CUR);
+		fwrite(rc, sizeof(Receitas), 1, RCT);
+		printf("| Receita editada com sucesso");
+	} else {
+		printf("| A receita não foi encotrada");
+	}
+	free(rc);
+	fclose(RCT);
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 }
 
 void delReceitas(void){
+	FILE* RCT;
 	Receitas* rc;
-	rc = (Receitas*) malloc(sizeof(Receitas));	int valiNmDR;
+	long int menosum = -1;
+	char escolha;
+	int achou;
+	char dID[6];
+	//int valiNmDR;
+
+	RCT = fopen("receitas.dat","r+b");
+	if (RCT == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE RECEITAS <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o nome da receita que deseja deletar: ");
-	scanf("%s", rc->nome);
+	printf("\n| Insira o ID da receita que deseja deletar: ");
+	scanf("%5[^\n]", dID);
 	getchar();
-	valiNmDR = validarNome(rc->nome);
-	if ((valiNmDR) == 1){
-		printf("| NOME OK!");
-	} else {
-		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
+	rc = (Receitas*) malloc(sizeof(Receitas));
+	achou =0;
+
+	while((!achou) && (fread(rc, sizeof(Receitas), 1, RCT))) {
+		if ((strcmp(rc->id, dID) == 0) && (rc->status != 'x')){
+			achou = 1;
+		}
 	}
+
+	if (achou) {
+		printf("| Tem certeza que gostaria de apagar a receita? (s|n) ");
+    	scanf("%c", &escolha);
+		if (escolha=='s' || escolha=='S'){
+			rc->status = 'x';
+			fseek(RCT, (menosum)*sizeof(Receitas), SEEK_CUR);
+			fwrite(rc, sizeof(Receitas), 1, RCT);
+			printf("| -----Cliente deletado com sucesso-----");
+			getchar();
+		} else {
+			printf("\n| Os dados não foram alterados");
+			getchar();
+		}
+		
+	} else {
+		printf("Cliente não encontrado");
+	}
+	free(rc);
+	fclose(RCT);
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();

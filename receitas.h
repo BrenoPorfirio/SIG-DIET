@@ -6,12 +6,13 @@ void delReceitas(void);
 
 typedef struct receitas Receitas;
 struct receitas {
-	char ingredientesCad[300];
-	char preparoCad[800];
+	char ingredientesCad[400];
+	char preparoCad[1000];
 	char tempoCad[6];
 	char porcaoCad[3];
-	char nome[70];
+	char nome[71];
 	char id[6];
+	char status;
 };
 char moduloReceitas();
 Receitas* cadastroRC();
