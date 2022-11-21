@@ -63,12 +63,20 @@ Acompanhamento *cadastroAC(void){
 	printf("| CPF do cliente(somente números): ");
 	scanf("%[0-9]", ac->cpf);
 	getchar();
+	if (!validaCPF(ac->cpf)){
+		printf("| CPF inválido, tente novamente\n");
+		printf("|\n");
+	}
 	} while (!validaCPF(ac->cpf));
 	do {
 	printf("| Nome e sobrenome: ");
 	fgets(ac->nome, 60, stdin);
 	tam = strlen(ac->nome);
 	ac->nome[tam-1] = '\0';
+	if (!validarNome(ac->nome)) {
+		printf("| Nome inválido, tente novamente\n");
+		printf("|\n");
+	}
 	} while (!validarNome(ac->nome));
 	printf("| Cadastre a medida da cintura atual: ");
 	scanf("%7[0-9.,]", ac->acMedCintura);
@@ -126,6 +134,10 @@ Acompanhamento* buscaAcompanhamento(void){
 	do{
 	printf("| Informe o CPF do cliente que deseja ver sua avaliação: ");
 	scanf("%s", cpf);
+	if (!validaCPF(cpf)) {
+		printf("| CPF inválido, tente novamente\n");
+		printf("|\n");
+	}
 	} while (!validaCPF(cpf));
 	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	ACM = fopen("acompanhamento.dat", "rb");
@@ -200,6 +212,10 @@ void modAcompanhamento(void){
 	printf("| Insira o CPF do cliente que deseja modificar a avaliação: ");
 	scanf("%11[^\n]", mdCPF);
 	getchar();
+	if (!validaCPF(mdCPF)){
+		printf("| CPF inválido, tente novamente\n");
+		printf("|\n");
+	}
 	} while (!validaCPF(mdCPF));
 	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	achou = 0;
@@ -214,6 +230,10 @@ void modAcompanhamento(void){
 		fgets(ac->nome, 60, stdin);
 		tam = strlen(ac->nome);
 		ac->nome[tam-1] = '\0';
+		if (!validarNome(ac->nome)) {
+			printf("| Nome inválido, tente novamente\n");
+			printf("|\n");
+		}
 		} while (!validarNome(ac->nome));
 		printf("| Cadastre a medida da cintura atual: ");
 		scanf("%7[0-9.,]", ac->acMedCintura);
@@ -285,6 +305,10 @@ void delAcompanhamento(void){
 	printf("| Insira o CPF do cliente que deseja deletar sua avaliação: ");
 	scanf("%11[^\n]", delAC);
 	getchar();
+	if (!validaCPF(delAC)){
+		printf("| CPF inválido, tente novamente\n");
+		printf("|\n");
+	}
 	} while (!validaCPF(delAC));
 	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	achou = 0;
@@ -362,9 +386,15 @@ void historico(void){ //LISTAGEM DE TODOS OS DADOS DO CLIENTE JUNTO DAS DATAS
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                              -> HISTÓRICO <-                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|Informe o CPF do cliente para mostrar todo seu histórico: ");
-	scanf("%[0-9]",ac->cpf);
-	getchar();
+	do {
+		printf("\n|Informe o CPF do cliente para mostrar todo seu histórico: ");
+		scanf("%[0-9]",ac->cpf);
+		getchar();
+		if (!validaCPF(ac->cpf)){
+			printf("| CPF inválido, tente novamente\n");
+			printf("|\n");
+		}
+	} while (!validaCPF(ac->cpf));
 	histAC = validaCPF(ac->cpf);
 	if ((histAC) == 1){
 		printf("| CPF ACEITO E CORRETO");
