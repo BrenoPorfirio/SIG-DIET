@@ -45,29 +45,28 @@ void verReceitas(void){
 Receitas *cadastroRC(void){
 	Receitas* rc;
 	rc = (Receitas*) malloc(sizeof(Receitas));
-	int valiNmC;
 	int tam;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                        -> CADASTRO DE RECEITAS <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Nome da receita: ");
-	//scanf("%s", rc->nome);
-	fgets(rc->nome, 70, stdin);
-	tam = strlen(rc->nome);
-	rc->nome[tam-1] = '\0';
-	//getchar();
-	valiNmC = validarNome(rc->nome);
-	if ((valiNmC) == 1){
-		printf("| NOME OK!");
-	} else {
-		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
-	}
-	printf("\n| Liste os ingrediente e quantidades: ");
-	scanf("%299[^\n]", rc->ingredientesCad);
+	printf("\n");
+	do {
+		printf("| Nome da receita: ");
+		//scanf("%s", rc->nome);
+		fgets(rc->nome, 70, stdin);
+		tam = strlen(rc->nome);
+		rc->nome[tam-1] = '\0';
+		if (!validarNome(rc->nome)){
+			printf("| Nome inválido, tente novamente\n");
+			printf("|\n");
+		}
+	} while (!validarNome(rc->nome));
+	printf("| Liste os ingrediente e quantidades (Separe os ingredientes por ;): ");
+	scanf("%399[^\n]", rc->ingredientesCad);
 	getchar();
-	printf("| Modo de preparo: ");
-	scanf("%699[^\n]", rc->preparoCad);
+	printf("| Modo de preparo (Aperte Enter apenas quando finalizar): ");
+	scanf("%999[^\n]", rc->preparoCad);
 	getchar();
 	printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15): ");
 	scanf("%5[0-9:]", rc->tempoCad);
@@ -155,7 +154,6 @@ void modReceitas(void){
 	//char escolha;
 	int achou;
 	int tam;
-	int valiNmRD;
 	char mID[6];
 	
 	RCT = fopen("receitas.dat","r+b");
@@ -181,26 +179,23 @@ void modReceitas(void){
 	}
 
 	if (achou){
-		printf("|");
-		printf("\n| Nome da receita: ");
-		// scanf("%s", rc->nome);
-		fgets(rc->nome, 70, stdin);
-		tam = strlen(rc->nome);
-		rc->nome[tam-1] = '\0';
-		// getchar();
-		valiNmRD = validarNome(rc->nome);
-		if ((valiNmRD) == 1){
-			printf("| NOME OK!");
-		} else {
-			printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
-		}
-		printf("\n| Liste os ingrediente e quantidades: ");
-		scanf("%299[^\n]", rc->ingredientesCad);
+		do {
+			printf("| Nome da receita: ");
+			fgets(rc->nome, 70, stdin);
+			tam = strlen(rc->nome);
+			rc->nome[tam-1] = '\0';
+			if (!validarNome(rc->nome)){
+				printf("| Nome inválido, tente novamente\n");
+				printf("|\n");
+			}
+		} while (!validarNome(rc->nome));
+		printf("| Liste os ingrediente e quantidades(Separe os ingredientes por ;): ");
+		scanf("%399[^\n]", rc->ingredientesCad);
 		getchar();
-		printf("| Modo de preparo: ");
-		scanf("%699[^\n]", rc->preparoCad);
+		printf("| Modo de preparo (Aperte Enter apenas quando finalizar): ");
+		scanf("%999[^\n]", rc->preparoCad);
 		getchar();
-		printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15): ");
+		printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 01:15): ");
 		scanf("%5[0-9:]", rc->tempoCad);
 		getchar();
 		printf("| Quantas porções ela rende: ");
