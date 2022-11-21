@@ -16,7 +16,7 @@ char moduloClientes(void){
 	printf("\n| 2-Ver Clientes                                                                |");
 	printf("\n| 3-Modificar Cliente                                                           |");
 	printf("\n| 4-Deletar Cliente                                                             |");
-	printf("\n| 5-Listar Clientes                                                             |");
+	printf("\n| 5-Relatório                                                                   |");
 	printf("\n| 0-Sair para o menu principal                                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n\nEscolha a opção desejada: ");
@@ -346,8 +346,37 @@ void exibeCliente(Cliente* cl) {
 	printf("\n");
 }
 
+void exibeClienteC(Cliente* cl) {
+	if (cl->status=='c'){
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+		printf("\n| CPF: %s", cl->cpf);
+		printf("\n| Nome: %s", cl->nome);
+		printf("\n| Telefone: %s", cl->telefone);
+		printf("\n| Email: %s", cl->email);
+		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
+		if (cl->status=='c'){
+			printf("\n| Status: Cadastrado");
+		}
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	}
+}
 
-void listaClientes(void){
+void exibeClienteD(Cliente* cl) {
+	if (cl->status=='d') {
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+		printf("\n| CPF: %s", cl->cpf);
+		printf("\n| Nome: %s", cl->nome);
+		printf("\n| Telefone: %s", cl->telefone);
+		printf("\n| Email: %s", cl->email);
+		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
+		if (cl->status=='d'){
+			printf("\n| Status: Desistiu");
+		}
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	} 
+}
+
+void relatorioClientes(void){
 	FILE* CLI;
 	Cliente* cl;
 	char status;
@@ -359,16 +388,18 @@ void listaClientes(void){
 	}
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                       -> LISTAGEM DE CLIENTES <-                              |");
+	printf("\n|                      -> RELATÓRIO DE CLIENTES <-                              |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Deseja ver clientes cadastrados ou que desistiu? (c/d): ");
+	printf("\n| Deseja ver clientes (c)adastrados, (d)esistentes ou (t)odos? (c|d|t): ");
 	scanf("%c", &status);
 	getchar();
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	while (fread(cl, sizeof(Cliente), 1, CLI)){
-		if ((cl != NULL) && (cl->status=='c')){
-			exibeCliente(cl);
-		} else if ((cl != NULL) && (cl->status=='d')) {
+		if (status=='c'){
+			exibeClienteC(cl);
+		} else if (status=='d'){
+			exibeClienteD(cl);
+		} else if (status=='t'){
 			exibeCliente(cl);
 		}
 	}
