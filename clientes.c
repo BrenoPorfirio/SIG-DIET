@@ -45,50 +45,33 @@ void verClientes(void){
 Cliente *cadastro(void) {
 	Cliente* cl;
 	cl = (Cliente*) malloc(sizeof(Cliente));
-	int valtele;
-	char valNome;
-	int validaCpf;
-	int dataValida;
 	int tam;
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> CADASTRO DE CLIENTES <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| CPF do cliente(somente números): ");
+	printf("\n");
+	do {
+	printf("| CPF do cliente(somente números): ");
 	scanf("%[0-9]", cl->cpf);
 	getchar();
-	validaCpf = validaCPF(cl->cpf);
-	if ((validaCpf) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-	}
-	printf("\n| Nome completo: ");
-	//scanf("%s[a-z A-Z]", cl->nome);
+	} while (!validaCPF(cl->cpf));
+	do {
+	printf("| Nome completo: ");
 	fgets(cl->nome, 60, stdin);
 	tam = strlen(cl->nome);
 	cl->nome[tam-1] = '\0';
-	//getchar();
-	valNome = validarNome(cl->nome);
-	if ((valNome) == 1){
-		printf("| NOME OK!");
-	} else {
-		printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
-	}
-	printf("\n| Telefone(somente números): ");
+	} while (!validarNome(cl->nome));
+	do {
+	printf("| Telefone(FORMATO = 84999999999): ");
 	scanf("%[0-9()]", cl->telefone);
 	getchar();
-	valtele = validaTele(cl->telefone);
-	if ((valtele) == 1){
-		printf("| NÚMERO CORRETO ! ");
-	} else {
-		printf("| NÚMERO INCORRETO ! ");
-	}
-	printf("\n| E-mail: ");
+	} while (!validaTele(cl->telefone));
+	printf("| E-mail: ");
 	scanf("%[a-zA-Z@.0-9_-]", cl->email);
 	getchar();
-	printf("|");
-	printf("\n| Informe sua data de nascimento - ");
+	do { 
+	printf("| Informe sua data de nascimento: ");
 	printf("\n| Dia: ");
 	scanf("%d", &cl->dia);
 	getchar();
@@ -98,16 +81,9 @@ Cliente *cadastro(void) {
 	printf("| Ano: ");
 	scanf("%d", &cl->ano);
 	getchar();
-	dataValida = testaData(cl->dia, cl->mes, cl->ano);
-	if (!dataValida){
-		printf("| A data %02d/%02d/%d == NOT OK \n", cl->dia, cl->mes, cl->ano);
-		printf("\n| !! TENTE NOVAMENTE !!\n\n");
-	} else {
-		printf("| A data %02d/%02d/%d == OK", cl->dia, cl->mes, cl->ano);
-	}
-	getchar();
+	} while (!testaData(cl->dia, cl->mes, cl->ano));
 	cl->status = 'c';
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 	return cl;
@@ -129,8 +105,10 @@ Cliente* buscaCliente(void){
 	FILE* CLI;
 	Cliente* cl;
 	char cpf[12];
-	printf("| Informe o CPF: ");
+	do{
+	printf("| Informe o CPF do cliente que deseja ver: ");
 	scanf("%s", cpf);
+	} while (!validaCPF(cpf));
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	CLI = fopen("clientes.dat", "rb");
 	if (CLI == NULL){
@@ -181,15 +159,10 @@ void VCliente(Cliente* cl){
 void modClientes(void){
 	FILE* CLI;
 	Cliente* cl;
-	//int modcpf;
 	long int menosum = -1;
 	char escolha;
 	int achou;
 	int tam;	
-	int valtele;
-	char valNome;
-	//int validaCpf;
-	int dataValida;
 	char mCPF[12];
 	CLI = fopen("clientes.dat","r+b");
 	if (CLI == NULL){
@@ -199,50 +172,37 @@ void modClientes(void){
 	}
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                    -> MODIFICAÇÃO DE DADOS DO CLIENTES <-                    |");
+	printf("\n|                    -> MODIFICAÇÃO DE DADOS DO CLIENTE <-                      |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF que deseja modificar os dados do cliente: ");
+	printf("\n");
+	do {
+	printf("| Insira o CPF que deseja modificar os dados do cliente: ");
 	scanf("%11[^\n]", mCPF);
 	getchar();
+	} while (!validaCPF(mCPF));
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	achou = 0;
-	//modcpf = validaCPF(cl->cpf);
-	//if ((modcpf) == 1){
-	//	printf("| CPF ACEITO E CORRETO");
-	//} else {
-	//	printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-	//}
 	while((!achou) && (fread(cl, sizeof(Cliente), 1, CLI))) {
 		if ((strcmp(cl->cpf, mCPF) == 0) && (cl->status != 'x')){
 			achou = 1;
 		}
 	}
 	if (achou) {
-		//printf("|");
-		printf("\n| Nome completo: ");
-		//scanf("%s[a-z A-Z]", cl->nome);
+		do {
+		printf("| Nome completo: ");
 		fgets(cl->nome, 60, stdin);
 		tam = strlen(cl->nome);
 		cl->nome[tam-1] = '\0';
-		//getchar();
-		valNome = validarNome(cl->nome);
-		if ((valNome) == 1){
-			printf("| NOME OK!");
-		} else {
-			printf("| HÁ ALGO INCOMUM NO NOME INFORMADO!");
-		}
-		printf("\n| Telefone(somente números): ");
+		} while (!validarNome(cl->nome));
+		do {
+		printf("| Telefone(somente números): ");
 		scanf("%[0-9()]", cl->telefone);
 		getchar();
-		valtele = validaTele(cl->telefone);
-		if ((valtele) == 1){
-			printf("| NÚMERO CORRETO ! ");
-		} else {
-			printf("| NÚMERO INCORRETO ! ");
-		}
-		printf("\n| E-mail: ");
+		} while (!validaTele(cl->telefone));
+		printf("| E-mail: ");
 		scanf("%[a-zA-Z@.0-9_-]", cl->email);
 		getchar();
+		do { 
 		printf("| Informe sua data de nascimento: ");
 		printf("\n| Dia: ");
 		scanf("%d", &cl->dia);
@@ -253,15 +213,7 @@ void modClientes(void){
 		printf("| Ano: ");
 		scanf("%d", &cl->ano);
 		getchar();
-		dataValida = testaData(cl->dia, cl->mes, cl->ano);
-		if (!dataValida){
-			printf("| A data %02d/%02d/%d == NOT OK \n", cl->dia, cl->mes, cl->ano);
-			printf("| !! TENTE NOVAMENTE !!");
-		} else {
-			printf("| A data %02d/%02d/%d == OK", cl->dia, cl->mes, cl->ano);
-		}
-		getchar();
-		printf("|");
+		} while (!testaData(cl->dia, cl->mes, cl->ano));
 		printf("\n| Informe o status do cliente -");
 		printf("\n| (c)adastrado ou (d)esistiu (c|d): ");
 		scanf("%c", &escolha);
@@ -301,23 +253,19 @@ void delClientes(void){
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE CLIENTES <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Insira o CPF do cliente que deseja deletar: ");
+	printf("\n");
+	do {
+	printf("| Insira o CPF do cliente que deseja deletar: ");
 	scanf("%11[^\n]", dCPF);
 	getchar();
+	} while (!validaCPF(dCPF));
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	achou = 0;
-	//modcpf = validaCPF(cl->cpf);
-	//if ((modcpf) == 1){
-	//	printf("| CPF ACEITO E CORRETO");
-	//} else {
-	//	printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-	//}
 	while((!achou) && (fread(cl, sizeof(Cliente), 1, CLI))) {
 		if ((strcmp(cl->cpf, dCPF) == 0) && (cl->status != 'x')){
 			achou = 1;
 		}
 	}
-
 	if (achou) {
 		printf("| Tem certeza que gostaria de apagar o cliente? (s|n) ");
     	scanf("%c", &escolha);
