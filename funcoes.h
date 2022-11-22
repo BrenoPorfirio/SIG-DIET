@@ -11,3 +11,5 @@ int validarNome(char*);
 int validaTele(char*);
 
 int ehDg(char);
+
+int validaemail(char*);

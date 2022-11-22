@@ -120,3 +120,24 @@ int ehDg(char c){
     return 0;
   }
 }
+
+//BASEADO NO CÓDIGO DE VICTOR RYAN
+int validaemail(char* email){
+    int i;
+    i = '\0';
+    while (email[i] != '\0'){
+        if(((email[i] >= '@' ) && (email[i] <= 'z')) || (email[i] == '.')){
+            i += 1;
+        } 
+        else if ((email[i] >= 'A' ) && (email[i] <= 'Z')){
+            i += 1;
+        }
+        else if ((email[i] >= '0') && (email[i] <= '9')){
+            i += 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    return 1;
+}

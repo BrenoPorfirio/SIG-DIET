@@ -79,9 +79,15 @@ Cliente *cadastro(void) {
 		printf("|\n");
 	}
 	} while (!validaTele(cl->telefone));
+	do {
 	printf("| E-mail: ");
 	scanf("%[a-zA-Z@.0-9_-]", cl->email);
 	getchar();
+	if (!validaemail(cl->email)){
+		printf("| Email inválido, tente novamente\n");
+		printf("|\n");
+	}
+	} while (!validaemail(cl->email));
 	do { 
 	printf("| Informe sua data de nascimento: ");
 	printf("\n| Dia: ");
