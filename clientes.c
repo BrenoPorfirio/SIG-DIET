@@ -237,9 +237,15 @@ void modClientes(void){
 			printf("|\n");
 		}
 		} while (!validaTele(cl->telefone));
+		do {
 		printf("| E-mail: ");
 		scanf("%[a-zA-Z@.0-9_-]", cl->email);
 		getchar();
+		if (!validaemail(cl->email)){
+			printf("| Email inválido, tente novamente\n");
+			printf("|\n");
+		}
+		} while (!validaemail(cl->email));
 		do { 
 		printf("| Informe sua data de nascimento: ");
 		printf("\n| Dia: ");
@@ -256,7 +262,7 @@ void modClientes(void){
 			printf("|\n");
 		}
 		} while (!testaData(cl->dia, cl->mes, cl->ano));
-		printf("\n| Informe o status do cliente -");
+		printf("| Informe o status do cliente -");
 		printf("\n| (c)adastrado ou (d)esistiu (c|d): ");
 		scanf("%c", &escolha);
 		if (escolha == 'c' || escolha == 'C'){
