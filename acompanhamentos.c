@@ -341,7 +341,6 @@ void delAcompanhamento(void){
 	getchar();
 }
 void dietaIndicada(Acompanhamento* ac){
-	// ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                            -> DIETA INDICADA <-                               |");
@@ -378,30 +377,50 @@ void dietaIndicada(Acompanhamento* ac){
 		dietFlexitariana();
 	}
 }
-void historico(void){ //LISTAGEM DE TODOS OS DADOS DO CLIENTE JUNTO DAS DATAS
+
+void exibeHistorico(Acompanhamento* ac) {
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n| CPF: %s", ac->cpf);
+	printf("\n| Nome e sobrenome: %s", ac->nome);
+	printf("\n| Seu IMC atual: %0.2f", ac->imc);
+	printf("\n| Medida da cintura: %s", ac->acMedCintura);
+	printf("\n| Medida do quadril: %s", ac->acMedQuadril);
+	printf("\n| Medida do bíceps direito: %s", ac->acMedbicepsD);
+	printf("\n| Medida do bíceps esquerdo: %s", ac->acMedbicepsE);
+	printf("\n| Medida da coxa direita: %s", ac->acMedpernaD);
+	printf("\n| Medida da coxa esquerda: %s", ac->acMedpernaE);
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n");
+}
+
+void historico(void){
+	FILE* ACM; 
 	Acompanhamento* ac;
-	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
-	int histAC;
+	char status;
+	ACM = fopen("acompanhamento.dat", "rb");
+	if (ACM == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                              -> HISTÓRICO <-                                  |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	do {
-		printf("\n|Informe o CPF do cliente para mostrar todo seu histórico: ");
-		scanf("%[0-9]",ac->cpf);
-		getchar();
-		if (!validaCPF(ac->cpf)){
-			printf("| CPF inválido, tente novamente\n");
-			printf("|\n");
-		}
-	} while (!validaCPF(ac->cpf));
-	histAC = validaCPF(ac->cpf);
-	if ((histAC) == 1){
-		printf("| CPF ACEITO E CORRETO");
-	} else {
-		printf("| CPF INCORRETO, TENTE NOVAMENTE !");
-	}
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n->Pressione ENTER para continuar<-");
+	printf("\n");
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
+	printf("| Deseja ver clientes todas as avaliações?(s/n) ");
+	scanf("%c", &status);
 	getchar();
+	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
+	while (fread(ac, sizeof(Acompanhamento), 1, ACM)){
+		if (status=='s'){
+			exibeHistorico(ac);
+		} else { 
+			printf("| Voltando ao menu...");
+		}
+	}
+	getchar();
+	free(ac);
+	fclose(ACM);
 }

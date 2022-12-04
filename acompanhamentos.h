@@ -26,3 +26,4 @@ void gravaAcompanhamento(Acompanhamento*);
 Acompanhamento* buscaAcompanhamento(void);
 void VAcompanhamento(Acompanhamento*);
 void dietaIndicada(Acompanhamento*);
+ void exibeHistorico(Acompanhamento*);

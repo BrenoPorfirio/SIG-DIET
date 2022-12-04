@@ -273,7 +273,7 @@ void modClientes(void){
 			printf("|\n");
 		}
 		} while (!testaData(cl->dia, cl->mes, cl->ano));
-		printf("\n| Informe o status do cliente -");
+		printf("| Informe o status do cliente -");
 		printf("\n| (c)adastrado ou (d)esistiu (c|d): ");
 		scanf("%c", &escolha);
 		if (escolha == 'c' || escolha == 'C'){
