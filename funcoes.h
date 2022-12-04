@@ -13,3 +13,5 @@ int validaTele(char*);
 int ehDg(char);
 
 int validaemail(char*);
+
+//int validasexo(char*);

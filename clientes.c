@@ -88,6 +88,11 @@ Cliente *cadastro(void) {
 		printf("|\n");
 	}
 	} while (!validaemail(cl->email));
+	
+	printf("| Sexo (m)asculino ou (f)eminino (m|f): ");
+	scanf("%c", &cl->sexo);
+	getchar();
+	
 	do { 
 	printf("| Informe sua data de nascimento: ");
 	printf("\n| Dia: ");
@@ -163,6 +168,7 @@ void VCliente(Cliente* cl){
 		printf("\n| Nome: %s", cl->nome);
 		printf("\n| Telefone: %s", cl->telefone);
 		printf("\n| Email: %s", cl->email);
+		printf("\n| Sexo: %c", cl->sexo);
 		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
 		if (cl->status=='c'){
 			printf("\n| Status: Cadastrado");
@@ -233,13 +239,24 @@ void modClientes(void){
 		scanf("%[0-9()]", cl->telefone);
 		getchar();
 		if (!validaTele(cl->telefone)){
-			printf("Telefone inválido, tente novamente\n");
+			printf("| Telefone inválido, tente novamente\n");
 			printf("|\n");
 		}
 		} while (!validaTele(cl->telefone));
+		do{
 		printf("| E-mail: ");
 		scanf("%[a-zA-Z@.0-9_-]", cl->email);
 		getchar();
+		if (!validaemail(cl->email)){
+			printf("| Email inválido, tente novamente\n");
+			printf("|\n");
+		}
+		} while (!validaemail(cl->email));
+		
+		printf("| Sexo (m)asculino ou (f)eminino (m|f): ");
+		scanf("%c", &cl->sexo);
+		getchar();
+
 		do { 
 		printf("| Informe sua data de nascimento: ");
 		printf("\n| Dia: ");
@@ -342,6 +359,7 @@ void exibeCliente(Cliente* cl) {
 	printf("\n| Nome: %s", cl->nome);
 	printf("\n| Telefone: %s", cl->telefone);
 	printf("\n| Email: %s", cl->email);
+	printf("\n| Sexo: %c", cl->sexo);
 	printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
 	if (cl->status=='c'){
 		printf("\n| Status: Cadastrado");
@@ -352,13 +370,14 @@ void exibeCliente(Cliente* cl) {
 	printf("\n");
 }
 
-void exibeClienteC(Cliente* cl) {
-	if (cl->status=='c'){
+void exibeClienteCF(Cliente* cl) {
+	if ((cl->status=='c') && ((cl->sexo=='f' || cl->sexo=='F'))){
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 		printf("\n| CPF: %s", cl->cpf);
 		printf("\n| Nome: %s", cl->nome);
 		printf("\n| Telefone: %s", cl->telefone);
 		printf("\n| Email: %s", cl->email);
+		printf("\n| Sexo: %c", cl->sexo);
 		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
 		if (cl->status=='c'){
 			printf("\n| Status: Cadastrado");
@@ -367,13 +386,46 @@ void exibeClienteC(Cliente* cl) {
 	}
 }
 
-void exibeClienteD(Cliente* cl) {
-	if (cl->status=='d') {
+void exibeClienteCM(Cliente* cl) {
+	if ((cl->status=='c') && ((cl->sexo=='m' || cl->sexo=='M'))){
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 		printf("\n| CPF: %s", cl->cpf);
 		printf("\n| Nome: %s", cl->nome);
 		printf("\n| Telefone: %s", cl->telefone);
 		printf("\n| Email: %s", cl->email);
+		printf("\n| Sexo: %c", cl->sexo);
+		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
+		if (cl->status=='c'){
+			printf("\n| Status: Cadastrado");
+		}
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	}
+}
+
+void exibeClienteDF(Cliente* cl) {
+	if ((cl->status=='d') && ((cl->sexo=='f' || cl->sexo=='F'))) {
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+		printf("\n| CPF: %s", cl->cpf);
+		printf("\n| Nome: %s", cl->nome);
+		printf("\n| Telefone: %s", cl->telefone);
+		printf("\n| Email: %s", cl->email);
+		printf("\n| Sexo: %c", cl->sexo);
+		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
+		if (cl->status=='d'){
+			printf("\n| Status: Desistiu");
+		}
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	} 
+}
+
+void exibeClienteDM(Cliente* cl) {
+	if ((cl->status=='d') && ((cl->sexo=='m') || (cl->sexo=='M'))){
+		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+		printf("\n| CPF: %s", cl->cpf);
+		printf("\n| Nome: %s", cl->nome);
+		printf("\n| Telefone: %s", cl->telefone);
+		printf("\n| Email: %s", cl->email);
+		printf("\n| Sexo: %c", cl->sexo);
 		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
 		if (cl->status=='d'){
 			printf("\n| Status: Desistiu");
@@ -386,6 +438,7 @@ void relatorioClientes(void){
 	FILE* CLI;
 	Cliente* cl;
 	char status;
+	char sexo;
 	CLI = fopen("clientes.dat", "rb");
 	if (CLI == NULL){
 		printf("\nErro na abertura do arquivo!");
@@ -399,16 +452,25 @@ void relatorioClientes(void){
 	printf("\n| Deseja ver clientes (c)adastrados, (d)esistentes ou (t)odos? (c|d|t): ");
 	scanf("%c", &status);
 	getchar();
+	if (status == 'c' || status == 'd'){
+		printf("| Deseja ver clientes (m)asculinos ou (f)emininos? (m|f): ");
+		scanf("%c", &sexo);
+	}
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	while (fread(cl, sizeof(Cliente), 1, CLI)){
-		if (status=='c'){
-			exibeClienteC(cl);
-		} else if (status=='d'){
-			exibeClienteD(cl);
+		if ((status=='c' || status=='C') && (sexo=='f' || sexo=='F')){
+			exibeClienteCF(cl);
+		} else if ((status=='c' || status=='C') && (sexo=='m' || sexo=='M')){
+			exibeClienteCM(cl);
+		} else if ((status=='d' || status=='D') && (sexo=='f' || sexo=='F')){
+			exibeClienteDF(cl);
+		} else if ((status=='d' || status=='D') && (sexo=='m' || sexo=='M')){
+			exibeClienteDM(cl);
 		} else if (status=='t'){
 			exibeCliente(cl);
 		}
 	}
+	getchar();
 	getchar();
 	free(cl);
 	fclose(CLI);

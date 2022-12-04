@@ -5,6 +5,7 @@ struct cliente{
 	char nome[61];
 	char telefone[20];
 	char email[40];
+	char sexo;
 	int dia;
 	int mes;
 	int ano;

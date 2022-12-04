@@ -141,3 +141,13 @@ int validaemail(char* email){
     }
     return 1;
 }
+
+/*int validasexo(char* sexo){
+  if (sexo == 'm' || sexo == 'M'){
+    return 1;
+  } else if (sexo == 'f' || sexo == 'F'){
+    return 1;
+  } else {
+    return 0;
+  }
+}*/
