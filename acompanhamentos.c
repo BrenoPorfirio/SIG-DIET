@@ -351,30 +351,40 @@ void dietaIndicada(Acompanhamento* ac){
 		printf("\n| ------------------- PRESSIONE ENTER PARA VER SUA DIETA IDEAL------------------|");
 		getchar();
 		dietHipercalorica();
+		printf("| Recomendamos a receita - Shake Hipercalorico (00006)");
+		getchar();
 	} else if (ac->imc >= 18.6 && ac->imc <= 20.0){
 		printf("\n| Encontramos que seu IMC é = %0.2f", ac->imc);
 		getchar();
 		printf("\n| ------------------- PRESSIONE ENTER PARA VER SUA DIETA IDEAL------------------|");
 		getchar();
 		dietHiperproteica();
+		printf("| Recomendamos as receitas - Omelete Hiperproteico (00003) e Panqueca Proteica (00004)");
+		getchar();
 	} else if (ac->imc >= 20.1 && ac->imc <= 24.9){
 		printf("\n| Encontramos que seu IMC é = %0.2f", ac->imc);
 		getchar();
 		printf("\n| ------------------- PRESSIONE ENTER PARA VER SUA DIETA IDEAL------------------|");
 		getchar();
 		dietDash();
+		printf("| Recomendamos a receita - Salada Dash (00005)");
+		getchar();
 	} else if (ac->imc >= 25.0 && ac->imc <= 29.9){
 		printf("\n| Encontramos que seu IMC é = %0.2f", ac->imc);
 		getchar();
 		printf("\n| ------------------- PRESSIONE ENTER PARA VER SUA DIETA IDEAL------------------|");
 		getchar();
 		dietMediterranea();
+		printf("| Recomendamos as receitas - Salada Mediterranea (00001) e Sanduiche Mediterraneo (00002)");
+		getchar();
 	} else if (ac->imc >= 30){
 		printf("\n| Encontramos que seu IMC é = %0.2f", ac->imc);
 		getchar();
 		printf("\n| ------------------- PRESSIONE ENTER PARA VER SUA DIETA IDEAL------------------|");
 		getchar();
 		dietFlexitariana();
+		printf("| Recomendamos as receitas - Hamburger Vegetariano (00007) e Escondidinho Vegetariano (00008)");
+		getchar();
 	}
 }
 
