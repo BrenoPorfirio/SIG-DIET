@@ -1,5 +1,6 @@
 char moduloClientes(void);
 typedef struct cliente Cliente;
+
 struct cliente{
 	char cpf[12];
 	char nome[61];
@@ -11,6 +12,7 @@ struct cliente{
 	int ano;
 	char status;
 };
+
 Cliente *cadastro();
 void gravaClientes(Cliente*);
 Cliente* buscaCliente(void);
@@ -21,5 +23,7 @@ void modClientes(void);
 void delClientes(void);
 void relatorioClientes(void);
 void exibeCliente(Cliente*);
-void exibeClienteC(Cliente*);
-void exibeClienteD(Cliente*);
+void exibeClienteCF(Cliente*);
+void exibeClienteCM(Cliente*);
+void exibeClienteDF(Cliente*);
+void exibeClienteDM(Cliente*);

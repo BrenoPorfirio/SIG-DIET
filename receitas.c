@@ -4,10 +4,11 @@
 #include "receitas.h"
 #include"funcoes.h"
 
-//
-//MODULO RECEITAS
-//
+//+---------------+
+//|MODULO RECEITAS|
+//+---------------+
 
+//Menu do módulo de receitas
 char moduloReceitas(void){
 	char esc;
 	system("clear||cls");
@@ -28,6 +29,7 @@ char moduloReceitas(void){
 typedef struct receitas Receitas;
 Receitas *cadastroRC();
 
+//Utilizado para cadastrar uma receita e então salva-la em arquivo ".dat"
 void cadReceitas(void){
 	Receitas* rc;
 	rc = cadastroRC();
@@ -35,6 +37,7 @@ void cadReceitas(void){
 	free(rc);
 }
 
+//Utilizado para realizar a leitura de uma receita individualmente por meio de seu código de cadastro
 void verReceitas(void){
 	Receitas* rc;
 	rc = buscaReceitas();
@@ -42,10 +45,12 @@ void verReceitas(void){
 	free(rc);
 }
 
+//Utilizado para cadastrar uma receita
 Receitas *cadastroRC(void){
 	Receitas* rc;
 	rc = (Receitas*) malloc(sizeof(Receitas));
 	int tam;
+	//+---------+
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                        -> CADASTRO DE RECEITAS <-                             |");
@@ -62,28 +67,36 @@ Receitas *cadastroRC(void){
 			printf("|\n");
 		}
 	} while (!validarNome(rc->nome));
+	//+---------+
 	printf("| Liste os ingrediente e quantidades (Separe os ingredientes por ;): ");
 	scanf("%399[^\n]", rc->ingredientesCad);
 	getchar();
+	//+---------+
 	printf("| Modo de preparo (Aperte Enter apenas quando finalizar): ");
 	scanf("%999[^\n]", rc->preparoCad);
 	getchar();
+	//+---------+
 	printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 1:15): ");
 	scanf("%5[0-9:]", rc->tempoCad);
 	getchar();
+	//+---------+
 	printf("| Quantas porções ela rende: ");
 	scanf("%2[0-9]", rc->porcaoCad);
 	getchar();
+	//+---------+
 	printf("| Informe o ID da receita(Ex-> 00001): ");
 	scanf("%5[0-9]", rc->id);
 	getchar();
+	//+---------+
 	rc->status = 'c';
+	//+---------+
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 	return rc;
 }
 
+//Utilizado para gravar uma receita cadastrada em um arquivo "".dat"
 void gravaReceitas(Receitas* rc){
 	FILE* RCT;
 	RCT = fopen("receitas.dat", "ab");
@@ -96,10 +109,12 @@ void gravaReceitas(Receitas* rc){
 	fclose(RCT);
 }
 
+//Utilizado para encontrar uma receita especifica por meio de seu código de cadastro
 Receitas* buscaReceitas(void){
 	FILE* RCT;
 	Receitas* rc;
 	char id[6];
+	//+---------+
 	printf("\nInforme o id da receita: ");
 	scanf("%s", id);
 	rc = (Receitas*) malloc(sizeof(Receitas));
@@ -120,6 +135,7 @@ Receitas* buscaReceitas(void){
 	return NULL;
 }
 
+//Utilizado para realizar a leitura de uma receita individualmente
 void VReceitas(Receitas* rc){
 	if ((rc != NULL && rc->status=='c')){
 		system("clear||cls");
@@ -147,6 +163,7 @@ void VReceitas(Receitas* rc){
 	}
 }
 
+//Utilizado para modificar uma receita existente
 void modReceitas(void){
 	FILE* RCT;
 	Receitas* rc;
@@ -155,13 +172,14 @@ void modReceitas(void){
 	int achou;
 	int tam;
 	char mID[6];
-	
+	//+---------+
 	RCT = fopen("receitas.dat","r+b");
 	if (RCT == NULL){
 		printf("\nErro na abertura do arquivo!");
 		printf("\nImpossível continuar este programa...!");
 		exit(1);
 	}
+	//+---------+
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> MODIFICAÇÃO DE RECEITAS <-                         |");
@@ -189,18 +207,23 @@ void modReceitas(void){
 				printf("|\n");
 			}
 		} while (!validarNome(rc->nome));
+		//+---------+
 		printf("| Liste os ingrediente e quantidades(Separe os ingredientes por ;): ");
 		scanf("%399[^\n]", rc->ingredientesCad);
 		getchar();
+		//+---------+
 		printf("| Modo de preparo (Aperte Enter apenas quando finalizar): ");
 		scanf("%999[^\n]", rc->preparoCad);
 		getchar();
+		//+---------+
 		printf("| Tempo de preparo(Ex-> Uma hora e quinze minutos fica 01:15): ");
 		scanf("%5[0-9:]", rc->tempoCad);
 		getchar();
+		//+---------+
 		printf("| Quantas porções ela rende: ");
 		scanf("%2[0-9]", rc->porcaoCad);
 		getchar();
+		//+---------+
 		fseek(RCT, (menosum)*sizeof(Receitas), SEEK_CUR);
 		fwrite(rc, sizeof(Receitas), 1, RCT);
 		printf("| Receita editada com sucesso");
@@ -214,6 +237,7 @@ void modReceitas(void){
 	getchar();
 }
 
+//Utilizado para deleção lógica de uma receita
 void delReceitas(void){
 	FILE* RCT;
 	Receitas* rc;
@@ -222,14 +246,14 @@ void delReceitas(void){
 	int achou;
 	char dID[6];
 	//int valiNmDR;
-
+	//+---------+
 	RCT = fopen("receitas.dat","r+b");
 	if (RCT == NULL){
 		printf("\nErro na abertura do arquivo!");
 		printf("\nImpossível continuar este programa...!");
 		exit(1);
 	}
-
+	//+---------+
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE RECEITAS <-                             |");
@@ -270,6 +294,7 @@ void delReceitas(void){
 	getchar();
 }
 
+//Utilizado como template na listagem de receitas
 void exibeReceitas(Receitas* rc) {
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 	printf("\n| Nome: %s", rc->nome);
@@ -282,16 +307,19 @@ void exibeReceitas(Receitas* rc) {
 	printf("\n");
 }
 
+//Utilizada para listar todas as receitas cadastradas (listagem de receitas)
 void listaReceitas(void){
 	FILE* RCT;
 	Receitas* rc;
 	//char status;
+	//+---------+
 	RCT = fopen("receitas.dat", "rb");
 	if (RCT == NULL){
 		printf("\nErro na abertura do arquivo!");
 		printf("\nImpossível continuar este programa...!");
 		exit(1);
 	}
+	//+---------+
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                       -> LISTAGEM DE RECEITAS <-                              |");

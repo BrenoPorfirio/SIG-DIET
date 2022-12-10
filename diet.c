@@ -3,9 +3,11 @@
 #include <string.h>
 #include "diet.h"
 
-//
-//MODULO DIETAS
-//
+//+-------------+
+//|MODULO DIETAS|
+//+-------------+
+
+//Menu do módulo de dietas
 char moduloDiet(void){
 	char esc;
 	system("clear||cls");
@@ -19,6 +21,10 @@ char moduloDiet(void){
 	return esc;
 }
 
+//Utilizado para listar todas as dietas cadastradas
+//
+//Nota: Código redundante, criar uma função mais compacta
+//utilizando as funções individuais das dietas
 void verDiet(void){
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -158,6 +164,7 @@ void verDiet(void){
 	getchar();
 }
 
+//Dieta Mediterranea
 void dietMediterranea(void){
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -185,6 +192,7 @@ void dietMediterranea(void){
 	getchar();
 }
 
+//Dieta Hiperproteica
 void dietHiperproteica(void){
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -216,7 +224,7 @@ void dietHiperproteica(void){
 	getchar();
 }
 
-
+//Dieta Dash
 void dietDash(void){
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -249,6 +257,7 @@ void dietDash(void){
 	getchar();
 }
 
+//Dieta Hipercalórica
 void dietHipercalorica(void){
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
@@ -285,6 +294,7 @@ void dietHipercalorica(void){
 	getchar();
 }
 
+//Dieta Flexitariana
 void dietFlexitariana(void){
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");

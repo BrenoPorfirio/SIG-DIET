@@ -5,9 +5,11 @@
 #include "funcoes.h"
 
 
-//
-//MODULO CLIENTES:
-//
+//+---------------+
+//|MODULO CLIENTES|
+//+---------------+
+
+//Menu do módulo de clientes
 char moduloClientes(void){
 	char esc;
 	system("clear||cls");
@@ -28,13 +30,15 @@ typedef struct cliente Cliente;
 
 Cliente *cadastro();
 
-
+//Utilizado para cadastrar um cliente e então salva-lo em um arquivo ".dat"
 void cadClientes(void){
 	Cliente* cl;
 	cl = cadastro();
 	gravaClientes(cl);
 	free(cl);
 }
+
+//Utilizado para visualizar o cadastro de um cliente especifico por meio de seu CPF
 void verClientes(void){
 	Cliente* cl;
 	cl = buscaCliente();
@@ -42,15 +46,18 @@ void verClientes(void){
 	free(cl);
 }
 
+//Utilizado para realizar o cadastro de um cliente 
 Cliente *cadastro(void) {
 	Cliente* cl;
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	int tam;
+	//+---------+
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                          -> CADASTRO DE CLIENTES <-                           |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n");
+	//+---------+
 	do {
 	printf("| CPF do cliente(somente números): ");
 	scanf("%[0-9]", cl->cpf);
@@ -60,6 +67,7 @@ Cliente *cadastro(void) {
 		printf("|\n");
 	}
 	} while (!validaCPF(cl->cpf));
+	//+---------+
 	do {
 	printf("| Nome completo: ");
 	fgets(cl->nome, 60, stdin);
@@ -70,6 +78,7 @@ Cliente *cadastro(void) {
 		printf("|\n");
 	}
 	} while (!validarNome(cl->nome));
+	//+---------+
 	do {
 	printf("| Telefone(FORMATO = 84999999999): ");
 	scanf("%[0-9()]", cl->telefone);
@@ -79,6 +88,7 @@ Cliente *cadastro(void) {
 		printf("|\n");
 	}
 	} while (!validaTele(cl->telefone));
+	//+---------+
 	do {
 	printf("| E-mail: ");
 	scanf("%[a-zA-Z@.0-9_-]", cl->email);
@@ -88,11 +98,11 @@ Cliente *cadastro(void) {
 		printf("|\n");
 	}
 	} while (!validaemail(cl->email));
-	
+	//+---------+
 	printf("| Sexo (m)asculino ou (f)eminino (m|f): ");
 	scanf("%c", &cl->sexo);
 	getchar();
-	
+	//+---------+
 	do { 
 	printf("| Informe sua data de nascimento: ");
 	printf("\n| Dia: ");
@@ -109,13 +119,16 @@ Cliente *cadastro(void) {
 		printf("|\n");
 	}
 	} while (!testaData(cl->dia, cl->mes, cl->ano));
+	//+---------+
 	cl->status = 'c';
+	//+---------+
 	printf("|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n->Pressione ENTER para continuar<-");
 	getchar();
 	return cl;
 }
 
+//Utilizado para gravar um cliente cadastrado em um arquivo ".dat"
 void gravaClientes(Cliente* cl){
 	FILE* CLI;
 	CLI = fopen("clientes.dat", "ab");
@@ -128,10 +141,13 @@ void gravaClientes(Cliente* cl){
 	fclose(CLI);
 }
 
+//Utilizado para encontrar o cadastro de um cliente especifico
+//por meio do CPF cadastrado
 Cliente* buscaCliente(void){
 	FILE* CLI;
 	Cliente* cl;
 	char cpf[12];
+	//+---------+
 	do{
 	printf("| Informe o CPF do cliente que deseja ver: ");
 	scanf("%s", cpf);
@@ -140,6 +156,7 @@ Cliente* buscaCliente(void){
 		printf("|\n");
 	}
 	} while (!validaCPF(cpf));
+	//+---------+
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	CLI = fopen("clientes.dat", "rb");
 	if (CLI == NULL){
@@ -158,6 +175,7 @@ Cliente* buscaCliente(void){
 	return NULL;
 }
 
+//Utilizado para ver o cadastro individual de um cliente
 void VCliente(Cliente* cl){
 	if ((cl != NULL && cl->status=='c') || (cl != NULL && cl->status=='d')){
 		system("clear||cls");
@@ -188,6 +206,7 @@ void VCliente(Cliente* cl){
 	}
 }
 
+//Utilizado para modificar um cliente cadastrado
 void modClientes(void){
 	FILE* CLI;
 	Cliente* cl;
@@ -196,17 +215,20 @@ void modClientes(void){
 	int achou;
 	int tam;	
 	char mCPF[12];
+	//+---------+
 	CLI = fopen("clientes.dat","r+b");
 	if (CLI == NULL){
 		printf("\nErro na abertura do arquivo!");
 		printf("\nImpossível continuar este programa...!");
 		exit(1);
 	}
+	//+---------+
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                    -> MODIFICAÇÃO DE DADOS DO CLIENTE <-                      |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n");
+	//+---------+
 	do {
 	printf("| Insira o CPF que deseja modificar os dados do cliente: ");
 	scanf("%11[^\n]", mCPF);
@@ -216,6 +238,7 @@ void modClientes(void){
 		printf("|\n");
 	}
 	} while (!validaCPF(mCPF));
+	//+---------+
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	achou = 0;
 	while((!achou) && (fread(cl, sizeof(Cliente), 1, CLI))) {
@@ -224,6 +247,7 @@ void modClientes(void){
 		}
 	}
 	if (achou) {
+		//+---------+
 		do {
 		printf("| Nome completo: ");
 		fgets(cl->nome, 60, stdin);
@@ -234,6 +258,7 @@ void modClientes(void){
 			printf("|\n");
 		}
 		} while (!validarNome(cl->nome));
+		//+---------+
 		do {
 		printf("| Telefone(somente números): ");
 		scanf("%[0-9()]", cl->telefone);
@@ -243,6 +268,7 @@ void modClientes(void){
 			printf("|\n");
 		}
 		} while (!validaTele(cl->telefone));
+		//+---------+
 		do{
 		printf("| E-mail: ");
 		scanf("%[a-zA-Z@.0-9_-]", cl->email);
@@ -252,11 +278,11 @@ void modClientes(void){
 			printf("|\n");
 		}
 		} while (!validaemail(cl->email));
-		
+		//+---------+		
 		printf("| Sexo (m)asculino ou (f)eminino (m|f): ");
 		scanf("%c", &cl->sexo);
 		getchar();
-
+		//+---------+
 		do { 
 		printf("| Informe sua data de nascimento: ");
 		printf("\n| Dia: ");
@@ -273,6 +299,7 @@ void modClientes(void){
 			printf("|\n");
 		}
 		} while (!testaData(cl->dia, cl->mes, cl->ano));
+		//+---------+
 		printf("| Informe o status do cliente -");
 		printf("\n| (c)adastrado ou (d)esistiu (c|d): ");
 		scanf("%c", &escolha);
@@ -281,6 +308,7 @@ void modClientes(void){
 		} else if (escolha == 'd' || escolha == 'D'){
 			cl->status = 'd';
 		}
+		//+---------+
 		fseek(CLI, (menosum)*sizeof(Cliente), SEEK_CUR);
 		fwrite(cl, sizeof(Cliente), 1, CLI);
 		printf("|  -------------------- CLIENTE EDITADO COM SUCESSO --------------------  ");
@@ -295,6 +323,7 @@ void modClientes(void){
 	getchar();
 }
 
+//Utilizado para realizar a deleção lógica de um cliente
 void delClientes(void){
 	FILE* CLI;
 	Cliente* cl;
@@ -302,17 +331,20 @@ void delClientes(void){
 	char escolha;
 	int achou;
 	char dCPF[12];
+	//+---------+
 	CLI = fopen("clientes.dat","r+b");
 	if (CLI == NULL){
 		printf("\nErro na abertura do arquivo!");
 		printf("\nImpossível continuar este programa...!");
 		exit(1);
 	}
+	//+---------+
 	system("clear||cls");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n|                         -> DELEÇÃO DE CLIENTES <-                             |");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
 	printf("\n");
+	//+---------+
 	do {
 	printf("| Insira o CPF do cliente que deseja deletar: ");
 	scanf("%11[^\n]", dCPF);
@@ -322,6 +354,7 @@ void delClientes(void){
 		printf("|\n");
 	}
 	} while (!validaCPF(dCPF));
+	//+---------+
 	cl = (Cliente*) malloc(sizeof(Cliente));
 	achou = 0;
 	while((!achou) && (fread(cl, sizeof(Cliente), 1, CLI))) {
@@ -353,6 +386,9 @@ void delClientes(void){
 	getchar();
 }
 
+//Utilizado como template na listagem de relatórios
+//para exibir clientes cadastrados e que desistiram
+//tanto do sexo feminino quando masculino
 void exibeCliente(Cliente* cl) {
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 	printf("\n| CPF: %s", cl->cpf);
@@ -370,6 +406,8 @@ void exibeCliente(Cliente* cl) {
 	printf("\n");
 }
 
+//Utilizado como template na listagem de relatórios
+//para clientes cadastrados do sexo feminino
 void exibeClienteCF(Cliente* cl) {
 	if ((cl->status=='c') && ((cl->sexo=='f' || cl->sexo=='F'))){
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
@@ -386,6 +424,8 @@ void exibeClienteCF(Cliente* cl) {
 	}
 }
 
+//Utilizado como template na listagem de relatórios
+//para clientes cadastrados do sexo masculino
 void exibeClienteCM(Cliente* cl) {
 	if ((cl->status=='c') && ((cl->sexo=='m' || cl->sexo=='M'))){
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
@@ -402,6 +442,8 @@ void exibeClienteCM(Cliente* cl) {
 	}
 }
 
+//Utilizado como template na listagem de relatórios
+//para clientes que desistiram do sexo feminino
 void exibeClienteDF(Cliente* cl) {
 	if ((cl->status=='d') && ((cl->sexo=='f' || cl->sexo=='F'))) {
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
@@ -418,6 +460,8 @@ void exibeClienteDF(Cliente* cl) {
 	} 
 }
 
+//Utilizado como template na listagem de relatórios
+//para clientes que desistiram do sexo masculino
 void exibeClienteDM(Cliente* cl) {
 	if ((cl->status=='d') && ((cl->sexo=='m') || (cl->sexo=='M'))){
 		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
@@ -434,6 +478,8 @@ void exibeClienteDM(Cliente* cl) {
 	} 
 }
 
+//Utilizado para listar o relatório de um cliente cadastrado (listagem de relatório)
+//utilizando o status e sexo como filtros
 void relatorioClientes(void){
 	FILE* CLI;
 	Cliente* cl;

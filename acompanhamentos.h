@@ -3,10 +3,11 @@ void cadAcompanhamento(void);
 void verAcompanhamento(void);
 void modAcompanhamento(void);
 void delAcompanhamento(void);
-void orienta(void);
+//void orienta(void);
 void historico(void);
 void dietaInd(void);
 typedef struct acompanhamento Acompanhamento;
+
 struct acompanhamento {
 	char cpf[12];
 	char nome[31];
@@ -21,6 +22,7 @@ struct acompanhamento {
 	float imc;
 	char status;
 };
+
 Acompanhamento *cadastroAC();
 void gravaAcompanhamento(Acompanhamento*);
 Acompanhamento* buscaAcompanhamento(void);

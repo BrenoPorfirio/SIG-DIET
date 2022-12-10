@@ -14,6 +14,7 @@ struct receitas {
 	char id[6];
 	char status;
 };
+
 char moduloReceitas();
 Receitas* cadastroRC();
 void VReceitas(Receitas*);

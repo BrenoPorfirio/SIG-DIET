@@ -3,6 +3,10 @@
 #include <string.h>
 #include "funcoes.h"
 
+//+--------------------+
+//|FUNÇÕES DE VALIDAÇÃO|
+//+--------------------+
+
 //CÁLCULO IMC:
 float calculoImc(float peso, float altura){
   return peso/(altura*altura);
@@ -19,6 +23,7 @@ int bissexto(int aa){
 		return 0;
 	}
 }
+
 //TESTA DATAS
 //BASEADO NO CÓDIGO DE FLAVIUS GORGÔNIO
 int testaData(int dd, int mm, int aa) {
@@ -75,6 +80,7 @@ int validaCPF(char *cpf){
     }
     return 1;
 }
+
 //VALIDAR NOME
 //BASEADO NO CÓDIGO DE FLAVIUS GORGÔNIO
 int testaLetra(char c){
@@ -88,6 +94,7 @@ int testaLetra(char c){
     return 0;
   }
 }
+
 //BASEADO NO CÓDIGO DE FLAVIUS GORGÔNIO
 int validarNome(char *nome){
   for (int i=0; nome[i]!='\0'; i++){
@@ -121,6 +128,7 @@ int ehDg(char c){
   }
 }
 
+//VALIDAÇÃO DE EMAIL
 //BASEADO NO CÓDIGO DE VICTOR RYAN
 int validaemail(char* email){
     int i;

@@ -4,6 +4,7 @@
         "stdio.h": "c",
         "clientes.h": "c",
         "string.h": "c",
-        "funcoes.h": "c"
+        "funcoes.h": "c",
+        "diet.h": "c"
     }
 }
