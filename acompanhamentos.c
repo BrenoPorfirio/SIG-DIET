@@ -81,7 +81,7 @@ Acompanhamento *cadastroAC(void){
 	//+---------+
 	do {
 	printf("| Nome e sobrenome: ");
-	fgets(ac->nome, 60, stdin);
+	fgets(ac->nome, 31, stdin);
 	tam = strlen(ac->nome);
 	ac->nome[tam-1] = '\0';
 	if (!validarNome(ac->nome)) {
@@ -262,7 +262,7 @@ void modAcompanhamento(void){
 		//+---------+
 		do {
 		printf("| Nome e sobrenome: ");
-		fgets(ac->nome, 60, stdin);
+		fgets(ac->nome, 31, stdin);
 		tam = strlen(ac->nome);
 		ac->nome[tam-1] = '\0';
 		if (!validarNome(ac->nome)) {
