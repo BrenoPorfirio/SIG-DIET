@@ -12,7 +12,22 @@ struct cliente{
 	int ano;
 	char status;
 };
+// typedef struct nocliente NoCliente;
 
+// struct nocliente{
+// 	char cpf[12];
+// 	char nome[61];
+// 	char telefone[20];
+// 	char email[40];
+// 	char sexo;
+// 	int dia;
+// 	int mes;
+// 	int ano;
+// 	char status;
+// 	NoCliente* prox;
+// };
+
+// NoCliente* listaAlfaClien(void);
 Cliente *cadastro();
 void gravaClientes(Cliente*);
 Cliente* buscaCliente(void);
