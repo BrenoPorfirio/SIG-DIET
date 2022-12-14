@@ -389,6 +389,41 @@ void delClientes(void){
 //Utilizado como template na listagem de relatórios
 //para exibir clientes cadastrados e que desistiram
 //tanto do sexo feminino quando masculino
+
+void listaCLI(void){
+	char esc;
+	do{
+		modListaClientes();
+		printf("\n| Escolha a opção desejada: ");
+		scanf("%c", &esc);
+		getchar();
+		switch(esc){
+			case '1' : listaTODOS();
+				break;
+			case '2' : listaSEXO();
+				break;
+			case '3' : listaAlfaClien();
+				break;
+			case '4' : listaSTATUS();
+				break;
+			default:
+				printf("| Escolha uma opção válida...");
+				break;
+		}	
+	} while (esc != '0');
+}
+void modListaClientes(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                      -> RELATÓRIO DE CLIENTES <-                              |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| 1-Listar todos os clientes                                                    |");
+	printf("\n| 2-Listar por sexo                                                             |");
+	printf("\n| 3-Listar por  ordem alfabética                                                |");
+	printf("\n| 4-Listar por status                                                           |");
+	printf("\n| 0-Sair para o menu principal                                                  |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+}
 void exibeCliente(Cliente* cl) {
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 	printf("\n| CPF: %s", cl->cpf);
@@ -403,123 +438,7 @@ void exibeCliente(Cliente* cl) {
 		printf("\n| Status: Desistiu");
 	}
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-	printf("\n");
-}
-
-//Utilizado como template na listagem de relatórios
-//para clientes cadastrados do sexo feminino
-void exibeClienteCF(Cliente* cl) {
-	if ((cl->status=='c') && ((cl->sexo=='f' || cl->sexo=='F'))){
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-		printf("\n| CPF: %s", cl->cpf);
-		printf("\n| Nome: %s", cl->nome);
-		printf("\n| Telefone: %s", cl->telefone);
-		printf("\n| Email: %s", cl->email);
-		printf("\n| Sexo: %c", cl->sexo);
-		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
-		if (cl->status=='c'){
-			printf("\n| Status: Cadastrado");
-		}
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-	}
-}
-
-//Utilizado como template na listagem de relatórios
-//para clientes cadastrados do sexo masculino
-void exibeClienteCM(Cliente* cl) {
-	if ((cl->status=='c') && ((cl->sexo=='m' || cl->sexo=='M'))){
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-		printf("\n| CPF: %s", cl->cpf);
-		printf("\n| Nome: %s", cl->nome);
-		printf("\n| Telefone: %s", cl->telefone);
-		printf("\n| Email: %s", cl->email);
-		printf("\n| Sexo: %c", cl->sexo);
-		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
-		if (cl->status=='c'){
-			printf("\n| Status: Cadastrado");
-		}
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-	}
-}
-
-//Utilizado como template na listagem de relatórios
-//para clientes que desistiram do sexo feminino
-void exibeClienteDF(Cliente* cl) {
-	if ((cl->status=='d') && ((cl->sexo=='f' || cl->sexo=='F'))) {
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-		printf("\n| CPF: %s", cl->cpf);
-		printf("\n| Nome: %s", cl->nome);
-		printf("\n| Telefone: %s", cl->telefone);
-		printf("\n| Email: %s", cl->email);
-		printf("\n| Sexo: %c", cl->sexo);
-		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
-		if (cl->status=='d'){
-			printf("\n| Status: Desistiu");
-		}
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-	} 
-}
-
-//Utilizado como template na listagem de relatórios
-//para clientes que desistiram do sexo masculino
-void exibeClienteDM(Cliente* cl) {
-	if ((cl->status=='d') && ((cl->sexo=='m') || (cl->sexo=='M'))){
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-		printf("\n| CPF: %s", cl->cpf);
-		printf("\n| Nome: %s", cl->nome);
-		printf("\n| Telefone: %s", cl->telefone);
-		printf("\n| Email: %s", cl->email);
-		printf("\n| Sexo: %c", cl->sexo);
-		printf("\n| Data de Nascimento: %02d/%02d/%d", cl->dia, cl->mes, cl->ano);
-		if (cl->status=='d'){
-			printf("\n| Status: Desistiu");
-		}
-		printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-	} 
-}
-
-//Utilizado para listar o relatório de um cliente cadastrado (listagem de relatório)
-//utilizando o status e sexo como filtros
-void relatorioClientes(void){
-	FILE* CLI;
-	Cliente* cl;
-	char status;
-	char sexo;
-	CLI = fopen("clientes.dat", "rb");
-	if (CLI == NULL){
-		printf("\nErro na abertura do arquivo!");
-		printf("\nImpossível continuar este programa...!");
-		exit(1);
-	}
-	system("clear||cls");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                      -> RELATÓRIO DE CLIENTES <-                              |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n| Deseja ver clientes (c)adastrados, (d)esistentes ou (t)odos? (c|d|t): ");
-	scanf("%c", &status);
-	getchar();
-	if (status == 'c' || status == 'd'){
-		printf("| Deseja ver clientes (m)asculinos ou (f)emininos? (m|f): ");
-		scanf("%c", &sexo);
-	}
-	cl = (Cliente*) malloc(sizeof(Cliente));
-	while (fread(cl, sizeof(Cliente), 1, CLI)){
-		if ((status=='c' || status=='C') && (sexo=='f' || sexo=='F')){
-			exibeClienteCF(cl);
-		} else if ((status=='c' || status=='C') && (sexo=='m' || sexo=='M')){
-			exibeClienteCM(cl);
-		} else if ((status=='d' || status=='D') && (sexo=='f' || sexo=='F')){
-			exibeClienteDF(cl);
-		} else if ((status=='d' || status=='D') && (sexo=='m' || sexo=='M')){
-			exibeClienteDM(cl);
-		} else if (status=='t'){
-			exibeCliente(cl);
-		}
-	}
-	getchar();
-	getchar();
-	free(cl);
-	fclose(CLI);
+	printf("\n| ----- TECLE ENTER PARA EXIBIR O PRÓXIMO OU VOLTAR AO MENU -----");
 }
 
 void listaAlfaClien(void){
@@ -533,6 +452,9 @@ void listaAlfaClien(void){
 		printf("\nImpossível continuar este programa...!");
 		exit(1);
 	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n| RELATÓRIO DE TODOS OS CLIENTE POR ORDEM ALFABÉTICA");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 	lista = NULL;
 	novocl = (Cliente*) malloc(sizeof(Cliente));
 	while(fread(novocl, sizeof(Cliente), 1, CLI)){
@@ -555,6 +477,7 @@ void listaAlfaClien(void){
 	novocl=lista;
 	while (novocl != NULL){
 		exibeCliente(novocl);
+		getchar();
 		novocl = novocl->prox;
 	}
 	novocl = lista;
@@ -563,4 +486,81 @@ void listaAlfaClien(void){
 		free(novocl);
 		novocl = lista;
 	}
+}
+
+void listaTODOS(void){
+	FILE* CLI;
+    Cliente* cl;
+    cl = (Cliente*) malloc(sizeof(Cliente));
+	CLI = fopen("clientes.dat", "rb");
+   	if (CLI == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+    printf("\n| RELATÓRIO DE TODOS OS CLIENTES ");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+    while(fread(cl, sizeof(Cliente), 1, CLI)) {        
+        exibeCliente(cl);
+		getchar();
+	}
+    fclose(CLI);
+    free(cl);
+}
+
+void listaSEXO(void){
+	FILE* CLI;
+	Cliente* cl;
+	char sexo;
+
+	cl = (Cliente*) malloc(sizeof(Cliente));
+	CLI = fopen("clientes.dat", "rb");
+	if (CLI == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n| RELATÓRIO DE TODOS OS CLIENTES COM FILTRO DE SEXO");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n| Deseja ver clientes (m)asculinos ou (f)emininos ? ");
+	scanf("%c", &sexo);
+	getchar();
+	while (fread(cl, sizeof(Cliente), 1, CLI)){
+		if (cl->sexo == sexo){
+			exibeCliente(cl);
+			getchar();
+		}
+	}
+	fclose(CLI);
+	free(cl);
+}
+
+void listaSTATUS(void){
+	FILE* CLI;
+	Cliente* cl;
+	char status;
+
+	cl = (Cliente*) malloc(sizeof(Cliente));
+	CLI = fopen("clientes.dat", "rb");
+	if (CLI == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n| RELATÓRIO DE TODOS OS CLIENTES CADASTRADOS OU DESISTENTES");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	printf("\n| Deseja ver clientes (c)adastrados ou (d)esistentes ? ");
+	scanf("%c", &status);
+	getchar();
+	while (fread(cl, sizeof(Cliente), 1, CLI)){
+		if (cl->status == status){
+			exibeCliente(cl);
+			getchar();
+		}
+	}
+	fclose(CLI);
+	free(cl);
 }

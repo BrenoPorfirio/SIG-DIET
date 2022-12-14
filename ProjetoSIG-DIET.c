@@ -43,7 +43,7 @@ int main(void){
 					delClientes();
 				}
 				else if (esc=='5'){
-					relatorioClientes();
+					listaCLI();
 				}
 			} while (esc!='0');
 		}
