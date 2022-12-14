@@ -496,7 +496,7 @@ void exibeHistorico(Acompanhamento* ac) {
 		printf("\n| Não encontrada");
 	}
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-	//getchar();
+	getchar();
 }
 
 //Utilizado para mostrar o historico do acompanhamento de um cliente (historico de acompanhamento) 
