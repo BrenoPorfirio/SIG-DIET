@@ -553,7 +553,7 @@ Acompanhamento* listaUNI(void){
 		}
 	}
 	getchar();
-	getchar();
+	//getchar();
 	return NULL;
 	fclose(ACM);
 	free(ac);
