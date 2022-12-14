@@ -445,6 +445,7 @@ void dietaIndicada(Acompanhamento* ac){
 		getchar();
 	}
 }
+
 void listaACC(void){
 	char esc;
 	do{
@@ -536,20 +537,21 @@ Acompanhamento* listaUNI(void){
     printf("\n| HISTÓRICO DE AVALIAÇÕES POR CLIENTE ");
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
 	do{
-	printf("|\n Informe o CPF do cliente que deseja ver sua avaliação: ");
-	scanf("%s", cpf);
-	if (!validaCPF(cpf)) {
-		printf("| CPF inválido, tente novamente\n");
-		printf("|\n");
-	}
+		printf("|\n Informe o CPF do cliente que deseja ver sua avaliação: ");
+		scanf("%s", cpf);
+		if (!validaCPF(cpf)) {
+			printf("| CPF inválido, tente novamente\n");
+			printf("|\n");
+		}
 	} while (!validaCPF(cpf));
     while (fread(ac, sizeof(Acompanhamento), 1, ACM)){
 		if (!strcmp(ac->cpf, cpf)){
 			exibeHistorico(ac);
 			getchar();
 			printf("\n| ----- TECLE ENTER PARA VOLTAR AO MENU -----");
-		} 
+		}
 	}
+	return NULL;
 	fclose(ACM);
 	free(ac);
 }
