@@ -66,7 +66,7 @@ int main(void){
 					dietaInd();
 				}
 				else if (esc=='6'){
-					historico();
+					listaACC();
 				}
 			} while (esc!='0');
 		}

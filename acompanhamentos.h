@@ -17,6 +17,7 @@ struct acompanhamento {
 	char acMedbicepsE[7]; 
 	char acMedpernaD[7]; 
 	char acMedpernaE[7];
+	char cpf2;
 	float peso;
 	float altura;
 	float imc;
@@ -28,4 +29,7 @@ void gravaAcompanhamento(Acompanhamento*);
 Acompanhamento* buscaAcompanhamento(void);
 void VAcompanhamento(Acompanhamento*);
 void dietaIndicada(Acompanhamento*);
- void exibeHistorico(Acompanhamento*);
+void listaACC(void);
+void submodACC(void);
+void listaTODOSAC(void);
+Acompanhamento* listaUNI(void);

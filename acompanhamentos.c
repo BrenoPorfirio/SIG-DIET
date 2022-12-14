@@ -445,6 +445,35 @@ void dietaIndicada(Acompanhamento* ac){
 		getchar();
 	}
 }
+void listaACC(void){
+	char esc;
+	do{
+		submodACC();
+		printf("\n| Escolha a opção desejada: ");
+		scanf("%c", &esc);
+		getchar();
+		switch(esc){
+			case '1' : listaTODOSAC();
+				break;
+			case '2' : listaUNI();
+				break;
+			default:
+				printf("| Escolha uma opção válida...");
+				break;
+		}
+	} while (esc != '0');
+}
+
+void submodACC(void){
+	system("clear||cls");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n|                              -> HISTÓRICO <-                                  |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+	printf("\n| 1-Listar todas as avaliações                                                  |");
+	printf("\n| 2-Listar avaliações do cliente                                                |");
+	printf("\n| 0-Sair para o menu principal                                                  |");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
+}
 
 //Utilizado como template para o historico de acompanhamento
 void exibeHistorico(Acompanhamento* ac) {
@@ -458,41 +487,69 @@ void exibeHistorico(Acompanhamento* ac) {
 	printf("\n| Medida do bíceps esquerdo: %s", ac->acMedbicepsE);
 	printf("\n| Medida da coxa direita: %s", ac->acMedpernaD);
 	printf("\n| Medida da coxa esquerda: %s", ac->acMedpernaE);
+	if (ac->status=='c'){
+		printf("\n| Status: Cadastrado");
+	} else if (ac->status=='d'){
+		printf("\n| Status: Desistiu");
+	} else {
+		printf("\n| Não encontrada");
+	}
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
-	printf("\n");
 }
 
 //Utilizado para mostrar o historico do acompanhamento de um cliente (historico de acompanhamento) 
-void historico(void){
-	FILE* ACM; 
-	Acompanhamento* ac;
-	char status;
-	//+---------+
+
+void listaTODOSAC(void){
+	FILE* ACM;
+    Acompanhamento* ac;
+    ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
 	ACM = fopen("acompanhamento.dat", "rb");
-	if (ACM == NULL){
+   	if (ACM == NULL){
 		printf("\nErro na abertura do arquivo!");
 		printf("\nImpossível continuar este programa...!");
 		exit(1);
 	}
-	//+---------+
-	system("clear||cls");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n|                              -> HISTÓRICO <-                                  |");
-	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|");
-	printf("\n");
-	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
-	printf("| Deseja ver clientes todas as avaliações?(s/n) ");
-	scanf("%c", &status);
-	getchar();
-	ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
-	while (fread(ac, sizeof(Acompanhamento), 1, ACM)){
-		if (status=='s'){
-			exibeHistorico(ac);
-		} else { 
-			printf("| Voltando ao menu...");
-		}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+    printf("\n| HISTÓRICO DE TODOS OS CLIENTES ");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+    while(fread(ac, sizeof(Acompanhamento), 1, ACM)) {        
+        exibeHistorico(ac);
 	}
+	printf("\n| ----- TECLE ENTER PARA VOLTAR AO MENU -----");
 	getchar();
-	free(ac);
+    fclose(ACM);
+    free(ac);
+}
+
+Acompanhamento* listaUNI(void){
+	FILE* ACM;
+    Acompanhamento* ac;
+	char cpf[12];
+    ac = (Acompanhamento*) malloc(sizeof(Acompanhamento));
+	ACM = fopen("acompanhamento.dat", "rb");
+   	if (ACM == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+    printf("\n| HISTÓRICO DE AVALIAÇÕES POR CLIENTE ");
+	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	do{
+	printf("|\n Informe o CPF do cliente que deseja ver sua avaliação: ");
+	scanf("%s", cpf);
+	if (!validaCPF(cpf)) {
+		printf("| CPF inválido, tente novamente\n");
+		printf("|\n");
+	}
+	} while (!validaCPF(cpf));
+    while (fread(ac, sizeof(Acompanhamento), 1, ACM)){
+		if (!strcmp(ac->cpf, cpf)){
+			exibeHistorico(ac);
+			getchar();
+			printf("\n| ----- TECLE ENTER PARA VOLTAR AO MENU -----");
+		} 
+	}
 	fclose(ACM);
+	free(ac);
 }

@@ -17,10 +17,14 @@ Cliente *cadastro();
 void gravaClientes(Cliente*);
 Cliente* buscaCliente(void);
 void cadClientes(void);
+
 void verClientes(void);
 void VCliente(Cliente*);
+
 void modClientes(void);
+
 void delClientes(void);
+
 void listaCLI(void);
 void modListaClientes(void);
 void listaTODOS(void);
