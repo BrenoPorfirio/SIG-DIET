@@ -496,6 +496,7 @@ void exibeHistorico(Acompanhamento* ac) {
 		printf("\n| Não encontrada");
 	}
 	printf("\n|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+	getchar();
 }
 
 //Utilizado para mostrar o historico do acompanhamento de um cliente (historico de acompanhamento) 
@@ -547,7 +548,6 @@ Acompanhamento* listaUNI(void){
     while (fread(ac, sizeof(Acompanhamento), 1, ACM)){
 		if (!strcmp(ac->cpf, cpf)){
 			exibeHistorico(ac);
-			getchar();
 			printf("\n| ----- TECLE ENTER PARA VOLTAR AO MENU -----");
 		}
 	}
