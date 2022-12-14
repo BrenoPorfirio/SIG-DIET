@@ -522,48 +522,45 @@ void relatorioClientes(void){
 	fclose(CLI);
 }
 
-// NoCliente* listaAlfaClien(void){
-// 	FILE* CLI;
-// 	Cliente* cl;
-// 	NoCliente* nocliente;
-// 	NoCliente* lista;
-
-// 	lista = NULL;
-// 	CLI = fopen("clientes.dat", "rb");
-// 	if (CLI == NULL){
-// 		printf("\nErro na abertura do arquivo!");
-// 		printf("\nImpossível continuar este programa...!");
-// 		exit(1);
-// 	}
-// 	cl = (Cliente*) malloc(sizeof(Cliente));
-// 	while(fread(cl, sizeof(Cliente), 1, CLI)){
-// 		if(cl->status == '1'){
-// 			nocliente = (NoCliente*) malloc(sizeof(NoCliente));
-// 			nocliente->cpf = cl->cpf;
-// 			strcpy(nocliente->nome, cl->nome);
-// 			nocliente->sexo = cl->sexo;
-// 			strcpy(nocliente->email, cl->email);
-// 			nocliente->status = cl->status;
-
-// 			if(lista == NULL){
-// 				lista = nocliente;
-// 				nocliente->prox = NULL;
-// 			} else if (strcmp(nocliente->nome, lista->nome) <0 ){
-// 				nocliente->prox = lista;
-// 				lista = nocliente;
-// 			} else {
-// 				NoCliente* anter = lista;
-// 				NoCliente* atual = lista->prox;
-// 				while ((atual != NULL) && strcmp(atual->nome, nocliente->nome) <0) {
-// 					anter = atual;
-// 					atual = atual->prox;
-// 				}
-// 				anter->prox = nocliente;
-// 				nocliente->prox = atual;
-// 			}
-// 		}
-// 	}
-// 	fclose(CLI);
-// 	free(cl);
-// 	return lista;
-// }
+void listaAlfaClien(void){
+	FILE* CLI;
+	Cliente* novocl;
+	Cliente* lista;
+	
+	CLI = fopen("clientes.dat", "rb");
+	if (CLI == NULL){
+		printf("\nErro na abertura do arquivo!");
+		printf("\nImpossível continuar este programa...!");
+		exit(1);
+	}
+	lista = NULL;
+	novocl = (Cliente*) malloc(sizeof(Cliente));
+	while(fread(novocl, sizeof(Cliente), 1, CLI)){
+		if ((lista == NULL) || strcmp(novocl->nome, lista->nome) <0 ){
+			novocl->prox = lista;
+			lista = novocl;
+		} else {
+			Cliente* anter = lista;
+			Cliente* atual = lista->prox;
+			while ((atual != NULL) && strcmp(atual->nome,novocl->nome) <0 ){
+				anter = atual;
+				atual = atual->prox;
+			}
+		anter->prox = novocl;
+		novocl->prox = atual;
+		}
+		novocl = (Cliente*) malloc(sizeof(Cliente));
+	}
+	fclose(CLI);
+	novocl=lista;
+	while (novocl != NULL){
+		exibeCliente(novocl);
+		novocl = novocl->prox;
+	}
+	novocl = lista;
+	while(lista != NULL){
+		lista = lista->prox;
+		free(novocl);
+		novocl = lista;
+	}
+}
